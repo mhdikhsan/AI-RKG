@@ -1,0 +1,100 @@
+nexus_id,risk_type,descriptors,ibm_group_id,ibm_group
+atlas-accountability-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-governance,Governance
+atlas-ai-agent-compliance-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-governance,Governance
+atlas-attribute-inference-attack,inference,amplified by generative AI,ibm-risk-atlas-privacy,Privacy
+atlas-bypassing-learning,non-technical,specific to generative AI,ibm-risk-atlas-societal-impact,Societal impact
+atlas-confidential-data-in-prompt,inference,specific to generative AI,ibm-risk-atlas-intellectual-property,Intellectual property
+atlas-confidential-information-in-data,training-data,amplified by generative AI,ibm-risk-atlas-intellectual-property,Intellectual property
+atlas-context-overload-attack,inference,specific to generative AI,ibm-risk-atlas-robustness-prompt-attacks,Robustness: prompt attacks
+atlas-copyright-infringement,output,specific to generative AI; amplified by synthetic data,ibm-risk-atlas-intellectual-property,Intellectual property
+atlas-dangerous-use,output,specific to generative AI,ibm-risk-atlas-misuse,Misuse
+atlas-data-acquisition,training-data,amplified by generative AI,ibm-risk-atlas-data-laws,Data laws
+atlas-data-bias,training-data,amplified by generative AI; amplified by synthetic data,ibm-risk-atlas-fairness,Fairness
+atlas-data-contamination,training-data,amplified by generative AI,ibm-risk-atlas-accuracy,Accuracy
+atlas-data-curation,training-data,amplified by generative AI; amplified by synthetic data,ibm-risk-atlas-value-alignment,Value alignment
+atlas-data-poisoning,training-data,traditional risk of AI; amplified by synthetic data,ibm-risk-atlas-robustness,Robustness
+atlas-data-privacy-rights,training-data,amplified by generative AI; amplified by synthetic data,ibm-risk-atlas-privacy,Privacy
+atlas-data-provenance,training-data,amplified by generative AI; amplified by synthetic data,ibm-risk-atlas-transparency,Transparency
+atlas-data-transfer,training-data,traditional risk of AI,ibm-risk-atlas-data-laws,Data laws
+atlas-data-transparency,training-data,amplified by generative AI; amplified by synthetic data,ibm-risk-atlas-transparency,Transparency
+atlas-data-usage,training-data,traditional risk of AI,ibm-risk-atlas-data-laws,Data laws
+atlas-data-usage-rights,training-data,amplified by generative AI,ibm-risk-atlas-intellectual-property,Intellectual property
+atlas-decision-bias,output,traditional risk of AI,ibm-risk-atlas-fairness,Fairness
+atlas-direct-instructions-attack,inference,specific to generative AI,ibm-risk-atlas-robustness-prompt-attacks,Robustness: prompt attacks
+atlas-discriminatory-actions-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-fairness,Fairness
+atlas-encoded-interactions-attack,inference,specific to generative AI,ibm-risk-atlas-robustness-prompt-attacks,Robustness: prompt attacks
+atlas-evasion-attack,inference,amplified by generative AI,ibm-risk-atlas-robustness-model-behavior-manipulation,Robustness: model behavior manipulation
+atlas-exclusion,non-technical,specific to synthetic data,ibm-risk-atlas-societal-impact,Societal impact
+atlas-exploit-trust-mismatch-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-robustness,Robustness
+atlas-exposing-personal-information,output,amplified by generative AI; amplified by synthetic data,ibm-risk-atlas-privacy,Privacy
+atlas-external-resources-attack-agentic,agentic,specific to agentic AI,ibm-risk-atlas-robustness,Robustness
+atlas-extraction-attack,inference,amplified by generative AI,ibm-risk-atlas-robustness-model-behavior-manipulation,Robustness: model behavior manipulation
+atlas-function-calling-hallucination-agentic,agentic,specific to agentic AI,ibm-risk-atlas-robustness,Robustness
+atlas-generated-content-ownership,non-technical,specific to generative AI,ibm-risk-atlas-legal-compliance,Legal compliance
+atlas-hallucination,output,specific to generative AI; amplified by synthetic data,ibm-risk-atlas-robustness,Robustness
+atlas-harmful-code-generation,output,specific to generative AI,ibm-risk-atlas-value-alignment,Value alignment
+atlas-harmful-output,output,specific to generative AI,ibm-risk-atlas-value-alignment,Value alignment
+atlas-human-exploitation,non-technical,amplified by generative AI,ibm-risk-atlas-societal-impact,Societal impact
+atlas-impact-environment-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-societal-impact,Societal impact
+atlas-impact-human-agency-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-societal-impact,Societal impact
+atlas-impact-human-dignity-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-societal-impact,Societal impact
+atlas-impact-jobs-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-societal-impact,Societal impact
+atlas-impact-on-affected-communities,non-technical,traditional risk of AI,ibm-risk-atlas-societal-impact,Societal impact
+atlas-impact-on-cultural-diversity,non-technical,specific to generative AI; amplified by synthetic data,ibm-risk-atlas-societal-impact,Societal impact
+atlas-impact-on-human-agency,non-technical,amplified by generative AI,ibm-risk-atlas-societal-impact,Societal impact
+atlas-impact-on-jobs,non-technical,amplified by generative AI,ibm-risk-atlas-societal-impact,Societal impact
+atlas-impact-on-the-environment,non-technical,amplified by generative AI,ibm-risk-atlas-societal-impact,Societal impact
+atlas-improper-retraining,training-data,amplified by generative AI,ibm-risk-atlas-value-alignment,Value alignment
+atlas-improper-usage,output,amplified by generative AI,ibm-risk-atlas-misuse,Misuse
+atlas-inaccessible-training-data,output,amplified by generative AI,ibm-risk-atlas-explainability,Explainability
+atlas-incomplete-advice,output,specific to generative AI,ibm-risk-atlas-value-alignment,Value alignment
+atlas-incomplete-ai-agent-evaluation-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-governance,Governance
+atlas-incomplete-usage-definition,non-technical,specific to generative AI,ibm-risk-atlas-governance,Governance
+atlas-incorrect-risk-testing,non-technical,amplified by generative AI,ibm-risk-atlas-governance,Governance
+atlas-indirect-instructions-attack,inference,specific to generative AI,ibm-risk-atlas-robustness-prompt-attacks,Robustness: prompt attacks
+atlas-introduce-data-bias-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-fairness,Fairness
+atlas-ip-information-in-prompt,inference,specific to generative AI,ibm-risk-atlas-intellectual-property,Intellectual property
+atlas-jailbreaking,inference,specific to generative AI,ibm-risk-atlas-robustness-model-behavior-manipulation,Robustness: model behavior manipulation
+atlas-lack-domain-expertise,non-technical,specific to synthetic data,ibm-risk-atlas-governance,Governance
+atlas-lack-of-ai-agent-transparency-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-governance,Governance
+atlas-lack-of-data-transparency,non-technical,amplified by generative AI; amplified by synthetic data,ibm-risk-atlas-governance,Governance
+atlas-lack-of-model-transparency,non-technical,traditional risk of AI,ibm-risk-atlas-governance,Governance
+atlas-lack-of-system-transparency,non-technical,traditional risk of AI,ibm-risk-atlas-governance,Governance
+atlas-lack-of-testing-diversity,non-technical,amplified by generative AI,ibm-risk-atlas-governance,Governance
+atlas-legal-accountability,non-technical,amplified by generative AI; amplified by synthetic data,ibm-risk-atlas-legal-compliance,Legal compliance
+atlas-membership-inference-attack,inference,amplified by generative AI,ibm-risk-atlas-privacy,Privacy
+atlas-misaligned-actions-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-value-alignment,Value alignment
+atlas-mitigation-maintenance-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-governance,Governance
+atlas-model-usage-rights,non-technical,traditional risk of AI,ibm-risk-atlas-legal-compliance,Legal compliance
+atlas-non-disclosure,output,specific to generative AI,ibm-risk-atlas-misuse,Misuse
+atlas-nonconsensual-use,output,specific to generative AI; amplified by synthetic data,ibm-risk-atlas-misuse,Misuse
+atlas-output-bias,output,specific to generative AI,ibm-risk-atlas-fairness,Fairness
+atlas-over-or-under-reliance,output,amplified by generative AI,ibm-risk-atlas-value-alignment,Value alignment
+atlas-over-or-under-reliance-on-ai-agents-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-value-alignment,Value alignment
+atlas-overfitting,training-data,amplified by synthetic data,ibm-risk-atlas-accuracy,Accuracy
+atlas-personal-information-in-data,training-data,traditional risk of AI,ibm-risk-atlas-privacy,Privacy
+atlas-personal-information-in-prompt,inference,specific to generative AI,ibm-risk-atlas-privacy,Privacy
+atlas-plagiarism,non-technical,specific to generative AI,ibm-risk-atlas-societal-impact,Societal impact
+atlas-poor-model-accuracy,inference,amplified by generative AI; amplified by synthetic data,ibm-risk-atlas-accuracy,Accuracy
+atlas-prompt-injection,inference,specific to generative AI,ibm-risk-atlas-robustness-prompt-attacks,Robustness: prompt attacks
+atlas-prompt-leaking,inference,specific to generative AI,ibm-risk-atlas-robustness-prompt-attacks,Robustness: prompt attacks
+atlas-prompt-priming,inference,specific to generative AI,ibm-risk-atlas-robustness-prompt-attacks,Robustness: prompt attacks
+atlas-redundant-actions-agentic,agentic,specific to agentic AI,ibm-risk-atlas-computational-inefficiency,Computational inefficiency
+atlas-reidentification,training-data,traditional risk of AI; amplified by synthetic data,ibm-risk-atlas-privacy,Privacy
+atlas-reproducibility-agentic,agentic,specific to agentic AI,ibm-risk-atlas-governance,Governance
+atlas-revealing-confidential-information,output,amplified by generative AI,ibm-risk-atlas-intellectual-property,Intellectual property
+atlas-sharing-info-tools-agentic,agentic,specific to agentic AI,ibm-risk-atlas-privacy,Privacy
+atlas-sharing-info-user-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-privacy,Privacy
+atlas-social-hacking-attack,inference,specific to generative AI,ibm-risk-atlas-robustness-prompt-attacks,Robustness: prompt attacks
+atlas-specialized-tokens-attack,inference,specific to generative AI,ibm-risk-atlas-robustness-prompt-attacks,Robustness: prompt attacks
+atlas-spreading-disinformation,output,specific to generative AI,ibm-risk-atlas-misuse,Misuse
+atlas-spreading-toxicity,output,specific to generative AI,ibm-risk-atlas-misuse,Misuse
+atlas-temporal-gap,non-technical,amplified by synthetic data,ibm-risk-atlas-governance,Governance
+atlas-toxic-output,output,specific to generative AI,ibm-risk-atlas-value-alignment,Value alignment
+atlas-unauthorized-use-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-robustness,Robustness
+atlas-unexplainable-output,output,amplified by generative AI,ibm-risk-atlas-explainability,Explainability
+atlas-unexplainable-untraceable-actions-agentic,agentic,amplified by agentic AI,ibm-risk-atlas-explainability,Explainability
+atlas-unreliable-source-attribution,output,specific to generative AI; amplified by synthetic data,ibm-risk-atlas-explainability,Explainability
+atlas-unrepresentative-data,training-data,traditional risk of AI; amplified by synthetic data,ibm-risk-atlas-accuracy,Accuracy
+atlas-unrepresentative-risk-testing,non-technical,amplified by generative AI,ibm-risk-atlas-governance,Governance
+atlas-untraceable-attribution,output,amplified by generative AI,ibm-risk-atlas-explainability,Explainability

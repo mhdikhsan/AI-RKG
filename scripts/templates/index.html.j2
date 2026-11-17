@@ -1,0 +1,28 @@
+{% extends "_base.html.j2" %}
+{% block title %}Index{% endblock %}
+{% block body %}
+<h1>AI Risk Knowledge Graph – core</h1>
+<p class="note">{{ total }} entries. Merged graph: <code>build/airkg-core-kg.ttl</code> ({{ triples }} triples).
+Generated pages; IRIs use the configured base <code>{{ base }}</code>.</p>
+<input type="search" id="q" placeholder="Filter by name, identifier or type…" aria-label="Filter entries">
+{% for s in sections %}
+<h2 id="{{ s.id }}">{{ s.title }} <span class="note">({{ s.rows|length }})</span></h2>
+<table class="list">
+  <tr><th>Name</th><th>Type</th><th>Identifier</th><th>Origin</th></tr>
+  {% for r in s.rows %}
+  <tr><td><a href="{{ r.href }}">{{ r.title }}</a></td><td>{{ r.type }}</td><td>{{ r.identifier }}</td><td>{{ r.origin }}</td></tr>
+  {% endfor %}
+</table>
+{% endfor %}
+<footer>Licences per catalogue: see <code>LICENSES.md</code>. Each entry page names its licence and attribution.</footer>
+<script>
+  const q = document.getElementById('q');
+  q.addEventListener('input', () => {
+    const v = q.value.toLowerCase();
+    document.querySelectorAll('table.list tr').forEach((tr, i) => {
+      if (tr.querySelector('th')) return;
+      tr.style.display = tr.textContent.toLowerCase().includes(v) ? '' : 'none';
+    });
+  });
+</script>
+{% endblock %}

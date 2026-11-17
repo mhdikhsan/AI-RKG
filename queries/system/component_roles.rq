@@ -1,0 +1,8 @@
+# Baseline (pipeline-authored): system component -> component role (+ the role it specialises)
+PREFIX ak: <http://example.org/airkg#>
+SELECT ?component ?role ?roleName ?parentRole WHERE {
+  ?component ak:hasComponentRole ?role .
+  OPTIONAL { ?role ak:name ?roleName }
+  OPTIONAL { ?role ak:specialises ?parentRole }
+}
+ORDER BY ?component ?role

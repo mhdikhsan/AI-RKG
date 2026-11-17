@@ -1,0 +1,47 @@
+{
+  "beam": {
+    "fetched": "2026-11-17",
+    "file": "sources/manual/beam_core.ttl",
+    "sha256": "68d1ddbc133a3f25235827adb65eaf76be8234c019f67543fd5afee4a45f7072",
+    "status": "downloaded",
+    "url": "https://semsys.ai.wu.ac.at/beam/beam_core.ttl"
+  },
+  "dpv": {
+    "commit": "c85ffacc97041b90a7a3afb3b6417f0b4d9fafbc",
+    "fetched": "2026-11-17",
+    "files": {
+      "2.3/ai/ai.ttl": "0bf0b50b074cd18da989410cfe6d1d7fd7fee8062ea1fb6829d76e78c422de92",
+      "2.3/dpv/dpv.ttl": "3c89b43a61da5021b9b53c4032f9cf7d2ebdfa4bc43c857574c869ca99d2db46"
+    },
+    "local": "sources/_clones/dpv/",
+    "url": "https://github.com/w3c/dpv.git",
+    "version": "2.3"
+  },
+  "manual": {
+    "files": {
+      "sources/manual/beam_core.ttl": "68d1ddbc133a3f25235827adb65eaf76be8234c019f67543fd5afee4a45f7072",
+      "sources/manual/iso22989_roles.csv": "f482c9a77032bb8a4bf11b77b8ae1d16eb250821e549996083478b142682dba2",
+      "sources/manual/role_grounding.csv": "0f39949e4d03f7acbc08f1905c6ac00bba61f49e929d938bb0a227c52f57a9c3"
+    },
+    "iso22989_rows": 18,
+    "missing_or_empty": []
+  },
+  "nexus": {
+    "commit": "54fcc4e935150004dfec483d32387a58225e09ba",
+    "commit_date": "2026-11-16",
+    "fetched": "2026-11-17",
+    "files": {
+      "knowledge_graph/mit_ai_risk_mitigation_data.yaml": "fcf05c50a4ed517d83fe6da5f358a6a392579cef0b4eee761cba7ceceb20d4d5",
+      "knowledge_graph/mit_ai_risk_repository_data.yaml": "03fdb44c3da8db8f3a7e845f85c9fff5db11a4eff9a47bdc6760ede5d9c5c054",
+      "knowledge_graph/mit_ai_risk_repository_data_controls.yaml": "215b4abeeb3b6f21478780b6d7c92be480adb5fad2dfbac389e23eccda8a8492",
+      "knowledge_graph/owasp_llm_2.0_data.yaml": "2fa5bea2e89833b4943d26730b4e5832301bf2e941e211cdd5d0d7c1f50f0963",
+      "knowledge_graph/risk_atlas_data.yaml": "ac22bdda29db726ebcd86fd26fb5ba30c7cfb3766ae82d22167b48c5822f31c7",
+      "mappings/ibm2ibm.tsv": "d79fadc05d2699ff0abd3b9fa91ab64cb0c10f0f061271fd8e9cec528448a743",
+      "mappings/ibm2owasp.tsv": "1550e96f69af4ce67bf3c948d65e6fe3decc52ae8c21360dbea901330c2323c8",
+      "mappings/mit-ai-risk-repository_ibm-risk-atlas.tsv": "0f87bf0fc85b244e18cd57c26fc826b776bebfa81bfc23fba1680144e6c0397f",
+      "mappings/mit_ai_risk_mitigation_mappings.tsv": "589b6a314c71c352f67966e4eee21091b5bc50b63c2f6590481a887f697b9577"
+    },
+    "path": "src/ai_atlas_nexus/data/",
+    "url": "https://github.com/IBM/ai-atlas-nexus.git"
+  }
+}

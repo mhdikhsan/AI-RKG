@@ -1,0 +1,120 @@
+<http://example.org/airkg/role/iso22989/ai-auditor> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-auditor> <http://example.org/airkg#name> "AI auditor" .
+<http://example.org/airkg/role/iso22989/ai-auditor> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-auditor> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/ai-partner> .
+<http://example.org/airkg/role/iso22989/ai-auditor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-auditor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-auditor> <http://www.w3.org/2000/01/rdf-schema#label> "AI auditor"@en .
+<http://example.org/airkg/role/iso22989/ai-customer> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-customer> <http://example.org/airkg#name> "AI customer" .
+<http://example.org/airkg/role/iso22989/ai-customer> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-customer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-customer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-customer> <http://www.w3.org/2000/01/rdf-schema#label> "AI customer"@en .
+<http://example.org/airkg/role/iso22989/ai-developer> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-developer> <http://example.org/airkg#name> "AI developer" .
+<http://example.org/airkg/role/iso22989/ai-developer> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-developer> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/ai-producer> .
+<http://example.org/airkg/role/iso22989/ai-developer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-developer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-developer> <http://www.w3.org/2000/01/rdf-schema#label> "AI developer"@en .
+<http://example.org/airkg/role/iso22989/ai-evaluator> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-evaluator> <http://example.org/airkg#name> "AI evaluator" .
+<http://example.org/airkg/role/iso22989/ai-evaluator> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-evaluator> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/ai-partner> .
+<http://example.org/airkg/role/iso22989/ai-evaluator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-evaluator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-evaluator> <http://www.w3.org/2000/01/rdf-schema#label> "AI evaluator"@en .
+<http://example.org/airkg/role/iso22989/ai-partner> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-partner> <http://example.org/airkg#name> "AI partner" .
+<http://example.org/airkg/role/iso22989/ai-partner> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-partner> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-partner> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-partner> <http://www.w3.org/2000/01/rdf-schema#label> "AI partner"@en .
+<http://example.org/airkg/role/iso22989/ai-platform-provider> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-platform-provider> <http://example.org/airkg#name> "AI platform provider" .
+<http://example.org/airkg/role/iso22989/ai-platform-provider> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-platform-provider> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/ai-provider> .
+<http://example.org/airkg/role/iso22989/ai-platform-provider> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-platform-provider> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-platform-provider> <http://www.w3.org/2000/01/rdf-schema#label> "AI platform provider"@en .
+<http://example.org/airkg/role/iso22989/ai-producer> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-producer> <http://example.org/airkg#name> "AI producer" .
+<http://example.org/airkg/role/iso22989/ai-producer> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-producer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-producer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-producer> <http://www.w3.org/2000/01/rdf-schema#label> "AI producer"@en .
+<http://example.org/airkg/role/iso22989/ai-provider> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-provider> <http://example.org/airkg#name> "AI provider" .
+<http://example.org/airkg/role/iso22989/ai-provider> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-provider> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-provider> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-provider> <http://www.w3.org/2000/01/rdf-schema#label> "AI provider"@en .
+<http://example.org/airkg/role/iso22989/ai-service-or-product-provider> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-service-or-product-provider> <http://example.org/airkg#name> "AI service or product provider" .
+<http://example.org/airkg/role/iso22989/ai-service-or-product-provider> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-service-or-product-provider> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/ai-provider> .
+<http://example.org/airkg/role/iso22989/ai-service-or-product-provider> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-service-or-product-provider> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-service-or-product-provider> <http://www.w3.org/2000/01/rdf-schema#label> "AI service or product provider"@en .
+<http://example.org/airkg/role/iso22989/ai-subject> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-subject> <http://example.org/airkg#name> "AI subject" .
+<http://example.org/airkg/role/iso22989/ai-subject> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-subject> <http://www.w3.org/2000/01/rdf-schema#label> "AI subject"@en .
+<http://example.org/airkg/role/iso22989/ai-system-integrator> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-system-integrator> <http://example.org/airkg#name> "AI system integrator" .
+<http://example.org/airkg/role/iso22989/ai-system-integrator> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-system-integrator> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/ai-partner> .
+<http://example.org/airkg/role/iso22989/ai-system-integrator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-system-integrator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-system-integrator> <http://www.w3.org/2000/01/rdf-schema#label> "AI system integrator"@en .
+<http://example.org/airkg/role/iso22989/ai-user> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/ai-user> <http://example.org/airkg#name> "AI user" .
+<http://example.org/airkg/role/iso22989/ai-user> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/ai-user> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/ai-customer> .
+<http://example.org/airkg/role/iso22989/ai-user> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/ai-user> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/ai-user> <http://www.w3.org/2000/01/rdf-schema#label> "AI user"@en .
+<http://example.org/airkg/role/iso22989/data-provider> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/data-provider> <http://example.org/airkg#name> "Data provider" .
+<http://example.org/airkg/role/iso22989/data-provider> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/data-provider> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/ai-partner> .
+<http://example.org/airkg/role/iso22989/data-provider> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/data-provider> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/data-provider> <http://www.w3.org/2000/01/rdf-schema#label> "Data provider"@en .
+<http://example.org/airkg/role/iso22989/data-subject> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/data-subject> <http://example.org/airkg#name> "Data subject" .
+<http://example.org/airkg/role/iso22989/data-subject> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/data-subject> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/ai-subject> .
+<http://example.org/airkg/role/iso22989/data-subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/data-subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/data-subject> <http://www.w3.org/2000/01/rdf-schema#label> "Data subject"@en .
+<http://example.org/airkg/role/iso22989/other-subjects> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/other-subjects> <http://example.org/airkg#name> "Other subjects" .
+<http://example.org/airkg/role/iso22989/other-subjects> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/other-subjects> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/ai-subject> .
+<http://example.org/airkg/role/iso22989/other-subjects> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/other-subjects> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/other-subjects> <http://www.w3.org/2000/01/rdf-schema#label> "Other subjects"@en .
+<http://example.org/airkg/role/iso22989/policy-makers> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/policy-makers> <http://example.org/airkg#name> "Policy makers" .
+<http://example.org/airkg/role/iso22989/policy-makers> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/policy-makers> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/relevant-authorities> .
+<http://example.org/airkg/role/iso22989/policy-makers> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/policy-makers> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/policy-makers> <http://www.w3.org/2000/01/rdf-schema#label> "Policy makers"@en .
+<http://example.org/airkg/role/iso22989/regulators> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/regulators> <http://example.org/airkg#name> "Regulators" .
+<http://example.org/airkg/role/iso22989/regulators> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/regulators> <http://example.org/airkg#specialises> <http://example.org/airkg/role/iso22989/relevant-authorities> .
+<http://example.org/airkg/role/iso22989/regulators> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/regulators> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/regulators> <http://www.w3.org/2000/01/rdf-schema#label> "Regulators"@en .
+<http://example.org/airkg/role/iso22989/relevant-authorities> <http://example.org/airkg#identifier> "5.19" .
+<http://example.org/airkg/role/iso22989/relevant-authorities> <http://example.org/airkg#name> "Relevant authorities" .
+<http://example.org/airkg/role/iso22989/relevant-authorities> <http://example.org/airkg#source> "https://www.iso.org/standard/74296.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/role/iso22989/relevant-authorities> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#StakeholderRole> .
+<http://example.org/airkg/role/iso22989/relevant-authorities> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/role/iso22989/relevant-authorities> <http://www.w3.org/2000/01/rdf-schema#label> "Relevant authorities"@en .

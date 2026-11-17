@@ -1,0 +1,240 @@
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.1> <http://example.org/airkg#description> "Unequal treatment of individuals or groups by AI, often based on race, gender, or other sensitive characteristics, resulting in unfair outcomes and representation of those groups." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.1> <http://example.org/airkg#identifier> "1.1" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.1> <http://example.org/airkg#name> "Unfair discrimination and misrepresentation" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.1> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.1> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.1> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.1> <http://www.w3.org/2000/01/rdf-schema#label> "Unfair discrimination and misrepresentation"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.1> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-1.1> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.2> <http://example.org/airkg#description> "AI exposing users to harmful, abusive, unsafe or inappropriate content. May involve AI creating, describing, providing advice, or encouraging action. Examples of toxic content include hate-speech, violence, extremism, illegal acts, child sexual abuse material, as well as content that violates community norms such as profanity, inflammatory political speech, or pornography." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.2> <http://example.org/airkg#identifier> "1.2" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.2> <http://example.org/airkg#name> "Exposure to toxic content" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.2> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.2> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.2> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.2> <http://www.w3.org/2000/01/rdf-schema#label> "Exposure to toxic content"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.2> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-1.2> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.3> <http://example.org/airkg#description> "Accuracy and effectiveness of AI decisions and actions is dependent on group membership, where decisions in AI system design and biased training data lead to unequal outcomes, reduced benefits, increased effort, and alienation of users." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.3> <http://example.org/airkg#identifier> "1.3" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.3> <http://example.org/airkg#name> "Unequal performance across groups" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.3> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.3> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.3> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.3> <http://www.w3.org/2000/01/rdf-schema#label> "Unequal performance across groups"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-1.3> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-1.3> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.1> <http://example.org/airkg#description> "AI systems that memorize and leak sensitive personal data or infer private information about individuals without their consent. Unexpected or unauthorized sharing of data and information can compromise user expectation of privacy, assist identity theft, or loss of confidential intellectual property." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.1> <http://example.org/airkg#identifier> "2.1" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.1> <http://example.org/airkg#name> "Compromise of privacy by obtaining, leaking or correctly inferring sensitive information" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.1> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.1> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.1> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.1> <http://www.w3.org/2000/01/rdf-schema#label> "Compromise of privacy by obtaining, leaking or correctly inferring sensitive information"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.1> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-2.1> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.2> <http://example.org/airkg#description> "Vulnerabilities in AI systems, software development toolchains, and hardware that can be exploited, resulting in unauthorized access, data and privacy breaches, or system manipulation causing unsafe outputs or behavior." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.2> <http://example.org/airkg#identifier> "2.2" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.2> <http://example.org/airkg#name> "AI system security vulnerabilities and attacks" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.2> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.2> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.2> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.2> <http://www.w3.org/2000/01/rdf-schema#label> "AI system security vulnerabilities and attacks"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-2.2> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-2.2> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.1> <http://example.org/airkg#description> "AI systems that inadvertently generate or spread incorrect or deceptive information, which can lead to inaccurate beliefs in users and undermine their autonomy. Humans that make decisions based on false beliefs can experience physical, emotional or material harms" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.1> <http://example.org/airkg#identifier> "3.1" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.1> <http://example.org/airkg#name> "False or misleading information" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.1> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.1> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.1> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.1> <http://www.w3.org/2000/01/rdf-schema#label> "False or misleading information"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.1> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-3.1> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.2> <http://example.org/airkg#description> "Highly personalized AI-generated misinformation creating “filter bubbles” where individuals only see what matches their existing beliefs, undermining shared reality, weakening social cohesion and political processes." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.2> <http://example.org/airkg#identifier> "3.2" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.2> <http://example.org/airkg#name> "Pollution of information ecosystem and loss of consensus reality" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.2> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.2> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.2> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.2> <http://www.w3.org/2000/01/rdf-schema#label> "Pollution of information ecosystem and loss of consensus reality"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-3.2> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-3.2> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.1> <http://example.org/airkg#description> "Using AI systems to conduct large-scale disinformation campaigns, malicious surveillance, or targeted and sophisticated automated censorship and propaganda, with the aim to manipulate political processes, public opinion and behavior." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.1> <http://example.org/airkg#identifier> "4.1" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.1> <http://example.org/airkg#name> "Disinformation, surveillance, and influence at scale" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.1> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.1> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.1> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.1> <http://www.w3.org/2000/01/rdf-schema#label> "Disinformation, surveillance, and influence at scale"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.1> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-4.1> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.2> <http://example.org/airkg#description> "Using AI systems to develop cyber weapons (e.g., coding cheaper, more effective malware), develop new or enhance existing weapons (e.g., Lethal Autonomous Weapons or CBRNE), or use weapons to cause mass harm." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.2> <http://example.org/airkg#identifier> "4.2" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.2> <http://example.org/airkg#name> "Cyberattacks, weapon development or use, and mass harm" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.2> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.2> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.2> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.2> <http://www.w3.org/2000/01/rdf-schema#label> "Cyberattacks, weapon development or use, and mass harm"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.2> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-4.2> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.3> <http://example.org/airkg#description> "Using AI systems to gain a personal advantage over others such as through cheating, fraud, scams, blackmail or targeted manipulation of beliefs or behavior. Examples include AI-facilitated plagiarism for research or education, impersonating a trusted or fake individual for illegitimate financial benefit, or creating humiliating or sexual imagery." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.3> <http://example.org/airkg#identifier> "4.3" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.3> <http://example.org/airkg#name> "Fraud, scams, and targeted manipulation" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.3> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.3> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.3> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.3> <http://www.w3.org/2000/01/rdf-schema#label> "Fraud, scams, and targeted manipulation"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-4.3> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-4.3> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.1> <http://example.org/airkg#description> "Users anthropomorphizing, trusting, or relying on AI systems, leading to emotional or material dependence and inappropriate relationships with or expectations of AI systems. Trust can be exploited by malicious actors (e.g., to harvest personal information or enable manipulation), or result in harm from inappropriate use of AI in critical situations (e.g., medical emergency). Overreliance on AI systems can compromise autonomy and weaken social ties." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.1> <http://example.org/airkg#identifier> "5.1" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.1> <http://example.org/airkg#name> "Overreliance and unsafe use" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.1> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.1> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.1> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.1> <http://www.w3.org/2000/01/rdf-schema#label> "Overreliance and unsafe use"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.1> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-5.1> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.2> <http://example.org/airkg#description> "Humans delegating key decisions to AI systems, or AI systems making decisions that diminish human control and autonomy, potentially leading to humans feeling disempowered, losing the ability to shape a fulfilling life trajectory or becoming cognitively enfeebled." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.2> <http://example.org/airkg#identifier> "5.2" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.2> <http://example.org/airkg#name> "Loss of human agency and autonomy" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.2> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.2> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.2> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.2> <http://www.w3.org/2000/01/rdf-schema#label> "Loss of human agency and autonomy"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-5.2> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-5.2> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.1> <http://example.org/airkg#description> "AI-driven concentration of power and resources within certain entities or groups, especially those with access to or ownership of powerful AI systems, leading to inequitable distribution of benefits and increased societal inequality." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.1> <http://example.org/airkg#identifier> "6.1" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.1> <http://example.org/airkg#name> "Power centralization and unfair distribution of benefits" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.1> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.1> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.1> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.1> <http://www.w3.org/2000/01/rdf-schema#label> "Power centralization and unfair distribution of benefits"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.1> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-6.1> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.2> <http://example.org/airkg#description> "Widespread use of AI increasing social and economic inequalities, such as by automating jobs, reducing the quality of employment, or producing exploitative dependencies between workers and their employers." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.2> <http://example.org/airkg#identifier> "6.2" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.2> <http://example.org/airkg#name> "Increased inequality and decline in employment quality" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.2> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.2> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.2> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.2> <http://www.w3.org/2000/01/rdf-schema#label> "Increased inequality and decline in employment quality"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.2> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-6.2> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.3> <http://example.org/airkg#description> "AI systems capable of creating economic or cultural value, including through reproduction of human innovation or creativity (e.g., art, music, writing, code, invention), can destabilize economic and social systems that rely on human effort. This may lead to reduced appreciation for human skills, disruption of creative and knowledge-based industries, and homogenization of cultural experiences due to the ubiquity of AI-generated content." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.3> <http://example.org/airkg#identifier> "6.3" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.3> <http://example.org/airkg#name> "Economic and cultural devaluation of human effort" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.3> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.3> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.3> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.3> <http://www.w3.org/2000/01/rdf-schema#label> "Economic and cultural devaluation of human effort"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.3> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-6.3> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.4> <http://example.org/airkg#description> "AI developers or state-like actors competing in an AI ‘race’ by rapidly developing, deploying, and applying AI systems to maximize strategic or economic advantage, increasing the risk they release unsafe and error-prone systems." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.4> <http://example.org/airkg#identifier> "6.4" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.4> <http://example.org/airkg#name> "Competitive dynamics" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.4> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.4> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.4> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.4> <http://www.w3.org/2000/01/rdf-schema#label> "Competitive dynamics"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.4> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-6.4> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.5> <http://example.org/airkg#description> "Inadequate regulatory frameworks and oversight mechanisms failing to keep pace with AI development, leading to ineffective governance and the inability to manage AI risks appropriately." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.5> <http://example.org/airkg#identifier> "6.5" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.5> <http://example.org/airkg#name> "Governance failure" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.5> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.5> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.5> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.5> <http://www.w3.org/2000/01/rdf-schema#label> "Governance failure"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.5> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-6.5> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.6> <http://example.org/airkg#description> "The development and operation of AI systems causing environmental harm, such as through energy consumption of data centers, or material and carbon footprints associated with AI hardware." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.6> <http://example.org/airkg#identifier> "6.6" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.6> <http://example.org/airkg#name> "Environmental harm" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.6> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.6> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.6> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.6> <http://www.w3.org/2000/01/rdf-schema#label> "Environmental harm"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-6.6> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-6.6> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.1> <http://example.org/airkg#description> "AI systems acting in conflict with human goals or values, especially the goals of designers or users, or ethical standards. These misaligned behaviors may be introduced by humans during design and development, such as through reward hacking and goal misgeneralisation, or may result from AI using dangerous capabilities such as manipulation, deception, situational awareness to seek power, self-proliferate, or achieve other goals." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.1> <http://example.org/airkg#identifier> "7.1" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.1> <http://example.org/airkg#name> "AI pursuing its own goals in conflict with human goals or values" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.1> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.1> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.1> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.1> <http://www.w3.org/2000/01/rdf-schema#label> "AI pursuing its own goals in conflict with human goals or values"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.1> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-7.1> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.2> <http://example.org/airkg#description> "AI systems that develop, access, or are provided with capabilities that increase their potential to cause mass harm through deception, weapons development and acquisition, persuasion and manipulation, political strategy, cyber-offense, AI development, situational awareness, and self-proliferation. These capabilities may cause mass harm due to malicious human actors, misaligned AI systems, or failure in the AI system." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.2> <http://example.org/airkg#identifier> "7.2" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.2> <http://example.org/airkg#name> "AI possessing dangerous capabilities" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.2> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.2> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.2> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.2> <http://www.w3.org/2000/01/rdf-schema#label> "AI possessing dangerous capabilities"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.2> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-7.2> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.3> <http://example.org/airkg#description> "AI systems that fail to perform reliably or effectively under varying conditions, exposing them to errors and failures that can have significant consequences, especially in critical applications or areas that require moral reasoning." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.3> <http://example.org/airkg#identifier> "7.3" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.3> <http://example.org/airkg#name> "Lack of capability or robustness" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.3> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.3> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.3> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.3> <http://www.w3.org/2000/01/rdf-schema#label> "Lack of capability or robustness"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.3> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-7.3> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.4> <http://example.org/airkg#description> "Challenges in understanding or explaining the decision-making processes of AI systems, which can lead to mistrust, difficulty in enforcing compliance standards or holding relevant actors accountable for harms, and the inability to identify and correct errors." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.4> <http://example.org/airkg#identifier> "7.4" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.4> <http://example.org/airkg#name> "Lack of transparency or interpretability" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.4> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.4> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.4> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.4> <http://www.w3.org/2000/01/rdf-schema#label> "Lack of transparency or interpretability"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.4> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-7.4> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.5> <http://example.org/airkg#description> "Ethical considerations regarding the treatment of potentially sentient AI entities, including discussions around their potential rights and welfare, particularly as AI systems become more advanced and autonomous." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.5> <http://example.org/airkg#identifier> "7.5" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.5> <http://example.org/airkg#name> "AI welfare and rights" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.5> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.5> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.5> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.5> <http://www.w3.org/2000/01/rdf-schema#label> "AI welfare and rights"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.5> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-7.5> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.6> <http://example.org/airkg#description> "Risks from multi-agent interactions, due to incentives (which can lead to conflict or collusion) and/or the structure of multi-agent systems, which can create cascading failures, selection pressures, new security vulnerabilities, and a lack of shared information and trust." .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.6> <http://example.org/airkg#identifier> "7.6" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.6> <http://example.org/airkg#name> "Multi-agent risks" .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.6> <http://example.org/airkg#source> "https://airisk.mit.edu/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.6> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.6> <http://purl.org/dc/terms/source> <https://airisk.mit.edu/> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.6> <http://www.w3.org/2000/01/rdf-schema#label> "Multi-agent risks"@en .
+<http://example.org/airkg/risk/mit-ai-risk-subdomain-7.6> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/mit-ai-risk-subdomain-7.6> .

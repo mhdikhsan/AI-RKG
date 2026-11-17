@@ -1,0 +1,9 @@
+# Baseline (pipeline-authored): workflow -> risk -> consequence -> affected stakeholder role -> stakeholder
+PREFIX ak: <http://example.org/airkg#>
+SELECT ?workflow ?risk ?consequence ?role ?stakeholder WHERE {
+  ?workflow ak:hasRiskPattern/ak:indicatesRisk ?risk .
+  ?risk ak:hasConsequence ?consequence .
+  ?consequence ak:affectsRole ?role .
+  OPTIONAL { ?stakeholder ak:hasStakeholderRole ?role }
+}
+ORDER BY ?workflow ?risk ?consequence ?role ?stakeholder

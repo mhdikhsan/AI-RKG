@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+# large / re-fetchable sources (checksums are in sources/manifest.json)
+sources/nexus/
+sources/_clones/
+sources/dpv/
+# LLM response cache (never commit)
+llm_mitigation/cache/
+# secrets
+.envsources/manual/beam_core.ttl
+llm_mitigation/output/prompts_preview/
+site/*
+!site/.gitkeep
+# local working notes (survey, decisions, issues, full changelog) - not pushed
+doc_local/

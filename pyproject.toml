@@ -1,0 +1,21 @@
+[project]
+name = "airkg-core-pipeline"
+version = "0.1.0"
+description = "Construction pipeline for the core AI Risk Knowledge Graph (AI-RKG core)"
+requires-python = ">=3.11"
+# Exact pins are in requirements.txt (pip freeze); these are the direct dependencies.
+dependencies = [
+  "rdflib==7.2.1",
+  "morph-kgc==2.10.0",
+  "pyshacl==0.30.1",
+  "owlrl==7.1.4",
+  "owlready2==0.51",
+  "pyyaml",
+  "jinja2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "llm_mitigation/tests"]

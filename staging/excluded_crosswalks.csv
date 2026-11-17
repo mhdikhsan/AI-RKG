@@ -1,0 +1,45 @@
+subject_nexus_id,predicate,object_nexus_id,justification,author,mapping_date,mapping_file,reason
+atlas-attribute-inference-attack,relatedMatch,llm01-prompt-injection,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-bypassing-learning,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-copyright-infringement,relatedMatch,llm032025-supply-chain,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-copyright-infringement,relatedMatch,llm082025-vector-and-embedding-weaknesses,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-dangerous-use,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-data-bias,relatedMatch,llm032025-supply-chain,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-data-privacy-rights,relatedMatch,llm022025-sensitive-information-disclosure,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-data-transfer,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-data-transparency,relatedMatch,llm032025-supply-chain,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-data-transparency,relatedMatch,llm042025-data-and-model-poisoning,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-data-usage-rights,broadMatch,llm032025-supply-chain,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,duplicate row
+atlas-decision-bias,relatedMatch,llm042025-data-and-model-poisoning,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-evasion-attack,relatedMatch,llm042025-data-and-model-poisoning,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-extraction-attack,relatedMatch,llm052025-improper-output-handling,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-generated-content-ownership,relatedMatch,llm032025-supply-chain,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-harmful-output,relatedMatch,llm052025-improper-output-handling,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-human-exploitation,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-impact-on-affected-communities,relatedMatch,llm092025-misinformation,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-impact-on-cultural-diversity,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-impact-on-human-agency,relatedMatch,llm092025-misinformation,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-impact-on-jobs,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-impact-on-the-environment,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-improper-usage,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-incomplete-usage-definition,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-incorrect-risk-testing,relatedMatch,llm032025-supply-chain,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-lack-of-model-transparency,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-lack-of-system-transparency,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-lack-of-testing-diversity,relatedMatch,llm042025-data-and-model-poisoning,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-legal-accountability,relatedMatch,llm032025-supply-chain,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-non-disclosure,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-nonconsensual-use,relatedMatch,llm092025-misinformation,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-output-bias,relatedMatch,llm052025-improper-output-handling,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-over-or-under-reliance,relatedMatch,llm082025-vector-and-embedding-weaknesses,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-over-or-under-reliance,relatedMatch,llm092025-misinformation,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-plagiarism,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-poor-model-accuracy,relatedMatch,llm052025-improper-output-handling,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-spreading-toxicity,relatedMatch,llm092025-misinformation,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-toxic-output,relatedMatch,llm052025-improper-output-handling,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-unexplainable-output,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-unreliable-source-attribution,relatedMatch,NoTermFound,semapv:ManualMappingCuration,cgi@zurich.ibm.com,2025-01-27,ibm2owasp.tsv,object sssom:NoTermFound
+atlas-unrepresentative-data,relatedMatch,llm042025-data-and-model-poisoning,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-unrepresentative-risk-testing,relatedMatch,llm032025-supply-chain,semapv:ManualMappingCuration,david.piorkowski@ibm.com,2025-01-27,ibm2owasp.tsv,predicate_modifier Not (negated mapping)
+atlas-improper-usage,relatedMatch,mit-ai-risk-subdomain-5.1,semapv:ManualMappingCuration,pslat@mit.edu,2025-03-31,mit-ai-risk-repository_ibm-risk-atlas.tsv,duplicate row
+atlas-improper-usage,relatedMatch,mit-ai-risk-subdomain-5.1,semapv:ManualMappingCuration,pslat@mit.edu,2025-03-31,mit-ai-risk-repository_ibm-risk-atlas.tsv,duplicate row

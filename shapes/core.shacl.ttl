@@ -1,0 +1,87 @@
+# SHACL shapes for the merged core AI risk knowledge graph (closed-world completeness checks).
+# __BASE_IRI__ is replaced by base_iri from config/pipeline.yaml at validation time.
+# Severity: sh:Violation = error; sh:Warning = known gap in imported data (reported, not an error).
+# (sh:severity is set on the property shapes: it is not inherited from the node shape.)
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix ak:   <http://example.org/airkg#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix akshape: <http://example.org/airkg/shapes#> .
+
+akshape:prefixes sh:declare
+  [ sh:prefix "ak" ;   sh:namespace "http://example.org/airkg#"^^xsd:anyURI ] ,
+  [ sh:prefix "skos" ; sh:namespace "http://www.w3.org/2004/02/skos/core#"^^xsd:anyURI ] .
+
+# ---------------------------------------------------------------- Risk
+akshape:RiskShape a sh:NodeShape ;
+  sh:targetClass ak:Risk ;
+  sh:property [ sh:path ak:name ; sh:minCount 1 ; sh:maxCount 1 ;
+                sh:message "ak:Risk needs exactly one ak:name" ] ;
+  sh:property [ sh:path ak:source ; sh:minCount 1 ;
+                sh:message "ak:Risk needs at least one ak:source" ] ;
+  sh:property [ sh:path ak:identifier ; sh:maxCount 1 ;
+                sh:message "ak:Risk has more than one ak:identifier" ] .
+
+# OWL says ak:Risk hasConsequence min 1; imported risks have none.
+akshape:RiskConsequenceShape a sh:NodeShape ;
+  sh:targetClass ak:Risk ;
+  sh:property [ sh:path ak:hasConsequence ; sh:minCount 1 ; sh:severity sh:Warning ;
+                sh:message "ak:Risk without ak:hasConsequence" ] .
+
+# OWASP descriptions are not copied (licence), so some risks lack ak:description.
+akshape:RiskDescriptionShape a sh:NodeShape ;
+  sh:targetClass ak:Risk ;
+  sh:property [ sh:path ak:description ; sh:minCount 1 ; sh:severity sh:Warning ;
+                sh:message "ak:Risk without ak:description" ] .
+
+# ---------------------------------------------------------------- Mitigation
+akshape:MitigationShape a sh:NodeShape ;
+  sh:targetClass ak:Mitigation, ak:TechnicalMitigation, ak:OrganisationalMitigation ;
+  sh:property [ sh:path ak:name ; sh:minCount 1 ; sh:message "Mitigation needs an ak:name" ] .
+
+akshape:MitigationGapShape a sh:NodeShape ;
+  sh:targetClass ak:Mitigation, ak:TechnicalMitigation, ak:OrganisationalMitigation ;
+  sh:property [ sh:path ak:mitigates ; sh:minCount 1 ; sh:severity sh:Warning ;
+                sh:message "mitigation not linked to any risk (ak:mitigates)" ] ;
+  sh:property [ sh:path ak:description ; sh:minCount 1 ; sh:severity sh:Warning ;
+                sh:message "mitigation without ak:description" ] .
+
+# ---------------------------------------------------------------- Patterns, motifs, roles
+akshape:RiskPatternShape a sh:NodeShape ;
+  sh:targetClass ak:RiskPattern ;
+  sh:property [ sh:path ak:hasMotif ; sh:minCount 1 ; sh:message "ak:RiskPattern needs >= 1 ak:hasMotif" ] ;
+  sh:property [ sh:path ak:indicatesRisk ; sh:minCount 1 ; sh:message "ak:RiskPattern needs >= 1 ak:indicatesRisk" ] .
+
+akshape:MotifShape a sh:NodeShape ;
+  sh:targetClass ak:Motif ;
+  sh:property [ sh:path ak:involvesRole ; sh:minCount 2 ; sh:message "ak:Motif needs >= 2 ak:involvesRole" ] .
+
+akshape:RoleShape a sh:NodeShape ;
+  sh:targetClass ak:Role, ak:ComponentRole, ak:StakeholderRole ;
+  sh:property [ sh:path ak:specialises ; sh:maxCount 1 ; sh:message "a role specialises at most one role" ] .
+
+# ---------------------------------------------------------------- Graph-wide rules
+# Evaluated once (target = the core ontology IRI, which is always present).
+akshape:GraphRules a sh:NodeShape ;
+  sh:targetNode <http://example.org/airkg/core> ;
+  sh:sparql [
+    a sh:SPARQLConstraint ;
+    sh:message "skos match object {?o} is in our namespace but is never a subject" ;
+    sh:prefixes akshape:prefixes ;
+    sh:select """
+      SELECT $this ?o WHERE {
+        ?s ?p ?o .
+        FILTER(?p IN (skos:exactMatch, skos:closeMatch, skos:relatedMatch, skos:broadMatch, skos:narrowMatch))
+        FILTER(isIRI(?o) && (STRSTARTS(STR(?o), "http://example.org/airkg#") || STRSTARTS(STR(?o), "__BASE_IRI__")))
+        FILTER NOT EXISTS { ?o ?anyp ?anyo }
+      }"""
+  ] ;
+  sh:sparql [
+    a sh:SPARQLConstraint ;
+    sh:message "forbidden property {?p}: systems/components must not link directly to risks (use risk patterns)" ;
+    sh:select """
+      SELECT $this ?p WHERE {
+        ?s ?p ?o .
+        FILTER(REGEX(STR(?p), "[#/]hasRisk$", "i"))
+      }"""
+  ] .

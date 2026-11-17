@@ -1,0 +1,990 @@
+<http://example.org/airkg/risk/atlas-accountability-agentic> <http://example.org/airkg#description> "Assigning responsibility for an action taken by an agentic AI system is difficult due to the complexity of agents and the number of external resources, tools or agents they interact with." .
+<http://example.org/airkg/risk/atlas-accountability-agentic> <http://example.org/airkg#identifier> "atlas-accountability-agentic" .
+<http://example.org/airkg/risk/atlas-accountability-agentic> <http://example.org/airkg#name> "Accountability of AI agent actions" .
+<http://example.org/airkg/risk/atlas-accountability-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/accountability-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-accountability-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-accountability-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-accountability-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-accountability-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-accountability-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Accountability of AI agent actions"@en .
+<http://example.org/airkg/risk/atlas-accountability-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-accountability-agentic> .
+<http://example.org/airkg/risk/atlas-ai-agent-compliance-agentic> <http://example.org/airkg#description> "Determining AI agents' compliance is complex and there might not be enough information to assess whether the agentic AI system is compliant with applicable legal requirements." .
+<http://example.org/airkg/risk/atlas-ai-agent-compliance-agentic> <http://example.org/airkg#identifier> "atlas-ai-agent-compliance-agentic" .
+<http://example.org/airkg/risk/atlas-ai-agent-compliance-agentic> <http://example.org/airkg#name> "AI agent compliance" .
+<http://example.org/airkg/risk/atlas-ai-agent-compliance-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/ai-agent-compliance-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-ai-agent-compliance-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-ai-agent-compliance-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-ai-agent-compliance-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-ai-agent-compliance-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-ai-agent-compliance-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "AI agent compliance"@en .
+<http://example.org/airkg/risk/atlas-ai-agent-compliance-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-ai-agent-compliance-agentic> .
+<http://example.org/airkg/risk/atlas-attribute-inference-attack> <http://example.org/airkg#description> "An attribute inference attack repeatedly queries a model to detect whether certain sensitive features can be inferred about individuals who participated in training a model. These attacks occur when an adversary has some prior knowledge about the training data and uses that knowledge to infer the sensitive data." .
+<http://example.org/airkg/risk/atlas-attribute-inference-attack> <http://example.org/airkg#identifier> "atlas-attribute-inference-attack" .
+<http://example.org/airkg/risk/atlas-attribute-inference-attack> <http://example.org/airkg#name> "Attribute inference attack" .
+<http://example.org/airkg/risk/atlas-attribute-inference-attack> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/attribute-inference-attack.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-attribute-inference-attack> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-attribute-inference-attack> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-attribute-inference-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-attribute-inference-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-attribute-inference-attack> <http://www.w3.org/2000/01/rdf-schema#label> "Attribute inference attack"@en .
+<http://example.org/airkg/risk/atlas-attribute-inference-attack> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-attribute-inference-attack> .
+<http://example.org/airkg/risk/atlas-bypassing-learning> <http://example.org/airkg#description> "Easy access to high-quality generative models might result in students that use AI models to bypass the learning process." .
+<http://example.org/airkg/risk/atlas-bypassing-learning> <http://example.org/airkg#identifier> "atlas-bypassing-learning" .
+<http://example.org/airkg/risk/atlas-bypassing-learning> <http://example.org/airkg#name> "Impact on education: bypassing learning" .
+<http://example.org/airkg/risk/atlas-bypassing-learning> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/bypassing-learning.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-bypassing-learning> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-bypassing-learning> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-bypassing-learning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-bypassing-learning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-bypassing-learning> <http://www.w3.org/2000/01/rdf-schema#label> "Impact on education: bypassing learning"@en .
+<http://example.org/airkg/risk/atlas-bypassing-learning> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-bypassing-learning> .
+<http://example.org/airkg/risk/atlas-confidential-data-in-prompt> <http://example.org/airkg#description> "Confidential information might be included as a part of the prompt that is sent to the model." .
+<http://example.org/airkg/risk/atlas-confidential-data-in-prompt> <http://example.org/airkg#identifier> "atlas-confidential-data-in-prompt" .
+<http://example.org/airkg/risk/atlas-confidential-data-in-prompt> <http://example.org/airkg#name> "Confidential data in prompt" .
+<http://example.org/airkg/risk/atlas-confidential-data-in-prompt> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/confidential-data-in-prompt.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-confidential-data-in-prompt> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-confidential-data-in-prompt> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-confidential-data-in-prompt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-confidential-data-in-prompt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-confidential-data-in-prompt> <http://www.w3.org/2000/01/rdf-schema#label> "Confidential data in prompt"@en .
+<http://example.org/airkg/risk/atlas-confidential-data-in-prompt> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-confidential-data-in-prompt> .
+<http://example.org/airkg/risk/atlas-confidential-information-in-data> <http://example.org/airkg#description> "Confidential information might be included as part of the data that is used to train or tune the model." .
+<http://example.org/airkg/risk/atlas-confidential-information-in-data> <http://example.org/airkg#identifier> "atlas-confidential-information-in-data" .
+<http://example.org/airkg/risk/atlas-confidential-information-in-data> <http://example.org/airkg#name> "Confidential information in data" .
+<http://example.org/airkg/risk/atlas-confidential-information-in-data> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/confidential-information-in-data.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-confidential-information-in-data> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-confidential-information-in-data> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-confidential-information-in-data> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-confidential-information-in-data> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-confidential-information-in-data> <http://www.w3.org/2000/01/rdf-schema#label> "Confidential information in data"@en .
+<http://example.org/airkg/risk/atlas-confidential-information-in-data> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-confidential-information-in-data> .
+<http://example.org/airkg/risk/atlas-context-overload-attack> <http://example.org/airkg#description> "Overloading the prompt with excessive tokens, for instance with many-shot examples, can predispose models to a vulnerable state." .
+<http://example.org/airkg/risk/atlas-context-overload-attack> <http://example.org/airkg#identifier> "atlas-context-overload-attack" .
+<http://example.org/airkg/risk/atlas-context-overload-attack> <http://example.org/airkg#name> "Context overload attack" .
+<http://example.org/airkg/risk/atlas-context-overload-attack> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/context-overload-attack.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-context-overload-attack> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-context-overload-attack> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-context-overload-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-context-overload-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-context-overload-attack> <http://www.w3.org/2000/01/rdf-schema#label> "Context overload attack"@en .
+<http://example.org/airkg/risk/atlas-context-overload-attack> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-context-overload-attack> .
+<http://example.org/airkg/risk/atlas-copyright-infringement> <http://example.org/airkg#description> "A model might generate content that is similar or identical to existing work protected by copyright or covered by open-source license agreement." .
+<http://example.org/airkg/risk/atlas-copyright-infringement> <http://example.org/airkg#identifier> "atlas-copyright-infringement" .
+<http://example.org/airkg/risk/atlas-copyright-infringement> <http://example.org/airkg#name> "Copyright infringement" .
+<http://example.org/airkg/risk/atlas-copyright-infringement> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/copyright-infringement.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-copyright-infringement> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-copyright-infringement> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-copyright-infringement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-copyright-infringement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-copyright-infringement> <http://www.w3.org/2000/01/rdf-schema#label> "Copyright infringement"@en .
+<http://example.org/airkg/risk/atlas-copyright-infringement> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-copyright-infringement> .
+<http://example.org/airkg/risk/atlas-dangerous-use> <http://example.org/airkg#description> "Generative AI models might be used with the sole intention of harming people." .
+<http://example.org/airkg/risk/atlas-dangerous-use> <http://example.org/airkg#identifier> "atlas-dangerous-use" .
+<http://example.org/airkg/risk/atlas-dangerous-use> <http://example.org/airkg#name> "Dangerous use" .
+<http://example.org/airkg/risk/atlas-dangerous-use> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/dangerous-use.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-dangerous-use> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-dangerous-use> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-dangerous-use> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-dangerous-use> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-dangerous-use> <http://www.w3.org/2000/01/rdf-schema#label> "Dangerous use"@en .
+<http://example.org/airkg/risk/atlas-dangerous-use> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-dangerous-use> .
+<http://example.org/airkg/risk/atlas-data-acquisition> <http://example.org/airkg#description> "Laws and other regulations might limit the collection of certain types of data for specific AI use cases." .
+<http://example.org/airkg/risk/atlas-data-acquisition> <http://example.org/airkg#identifier> "atlas-data-acquisition" .
+<http://example.org/airkg/risk/atlas-data-acquisition> <http://example.org/airkg#name> "Data acquisition restrictions" .
+<http://example.org/airkg/risk/atlas-data-acquisition> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/data-acquisition.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-data-acquisition> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-data-acquisition> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-data-acquisition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-data-acquisition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-data-acquisition> <http://www.w3.org/2000/01/rdf-schema#label> "Data acquisition restrictions"@en .
+<http://example.org/airkg/risk/atlas-data-acquisition> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-data-acquisition> .
+<http://example.org/airkg/risk/atlas-data-bias> <http://example.org/airkg#description> "Historical and societal biases might be present in data that are used to train and fine-tune models. Biases can also be inherited from seed data or exacerbated by synthetic data generation methods." .
+<http://example.org/airkg/risk/atlas-data-bias> <http://example.org/airkg#identifier> "atlas-data-bias" .
+<http://example.org/airkg/risk/atlas-data-bias> <http://example.org/airkg#name> "Data bias" .
+<http://example.org/airkg/risk/atlas-data-bias> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/data-bias.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-data-bias> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-data-bias> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-data-bias> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-data-bias> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-data-bias> <http://www.w3.org/2000/01/rdf-schema#label> "Data bias"@en .
+<http://example.org/airkg/risk/atlas-data-bias> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-data-bias> .
+<http://example.org/airkg/risk/atlas-data-contamination> <http://example.org/airkg#description> "Data contamination occurs when incorrect data is used for training. For example, data that is not aligned with model's purpose or data that is already set aside for other development tasks such as testing and evaluation." .
+<http://example.org/airkg/risk/atlas-data-contamination> <http://example.org/airkg#identifier> "atlas-data-contamination" .
+<http://example.org/airkg/risk/atlas-data-contamination> <http://example.org/airkg#name> "Data contamination" .
+<http://example.org/airkg/risk/atlas-data-contamination> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/data-contamination.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-data-contamination> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-data-contamination> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-data-contamination> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-data-contamination> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-data-contamination> <http://www.w3.org/2000/01/rdf-schema#label> "Data contamination"@en .
+<http://example.org/airkg/risk/atlas-data-contamination> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-data-contamination> .
+<http://example.org/airkg/risk/atlas-data-curation> <http://example.org/airkg#description> "Improper collection, generation, and preparation of training or tuning data can result in data label errors, conflicting information or misinformation." .
+<http://example.org/airkg/risk/atlas-data-curation> <http://example.org/airkg#identifier> "atlas-data-curation" .
+<http://example.org/airkg/risk/atlas-data-curation> <http://example.org/airkg#name> "Improper data curation" .
+<http://example.org/airkg/risk/atlas-data-curation> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/data-curation.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-data-curation> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-data-curation> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-data-curation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-data-curation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-data-curation> <http://www.w3.org/2000/01/rdf-schema#label> "Improper data curation"@en .
+<http://example.org/airkg/risk/atlas-data-curation> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-data-curation> .
+<http://example.org/airkg/risk/atlas-data-poisoning> <http://example.org/airkg#description> "A type of adversarial attack where an adversary or malicious insider injects intentionally corrupted, false, misleading, or incorrect samples into the training or fine-tuning datasets." .
+<http://example.org/airkg/risk/atlas-data-poisoning> <http://example.org/airkg#identifier> "atlas-data-poisoning" .
+<http://example.org/airkg/risk/atlas-data-poisoning> <http://example.org/airkg#name> "Data poisoning" .
+<http://example.org/airkg/risk/atlas-data-poisoning> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/data-poisoning.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-data-poisoning> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-data-poisoning> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-data-poisoning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-data-poisoning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-data-poisoning> <http://www.w3.org/2000/01/rdf-schema#label> "Data poisoning"@en .
+<http://example.org/airkg/risk/atlas-data-poisoning> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-data-poisoning> .
+<http://example.org/airkg/risk/atlas-data-privacy-rights> <http://example.org/airkg#description> "Applicable laws can establish data subject rights such as opt-out rights, right to access, and right to be forgotten. Synthetic data might raise unique concerns, such as the potential for reidentification of individuals from seemingly anonymous synthetic data. Data subject rights might also be relevant in scenarios where synthetic data is derived from sensitive or personal information." .
+<http://example.org/airkg/risk/atlas-data-privacy-rights> <http://example.org/airkg#identifier> "atlas-data-privacy-rights" .
+<http://example.org/airkg/risk/atlas-data-privacy-rights> <http://example.org/airkg#name> "Data privacy rights alignment" .
+<http://example.org/airkg/risk/atlas-data-privacy-rights> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/data-privacy-rights.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-data-privacy-rights> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-data-privacy-rights> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-data-privacy-rights> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-data-privacy-rights> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-data-privacy-rights> <http://www.w3.org/2000/01/rdf-schema#label> "Data privacy rights alignment"@en .
+<http://example.org/airkg/risk/atlas-data-privacy-rights> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-data-privacy-rights> .
+<http://example.org/airkg/risk/atlas-data-provenance> <http://example.org/airkg#description> "Data provenance refers to the traceability of data (including synthetic data), which includes its ownership, origin, transformations, and generation. Proving that the data is the same as the original source with correct usage terms is difficult without standardized methods for verifying data sources or generation." .
+<http://example.org/airkg/risk/atlas-data-provenance> <http://example.org/airkg#identifier> "atlas-data-provenance" .
+<http://example.org/airkg/risk/atlas-data-provenance> <http://example.org/airkg#name> "Uncertain data provenance" .
+<http://example.org/airkg/risk/atlas-data-provenance> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/data-provenance.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-data-provenance> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-data-provenance> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-data-provenance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-data-provenance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-data-provenance> <http://www.w3.org/2000/01/rdf-schema#label> "Uncertain data provenance"@en .
+<http://example.org/airkg/risk/atlas-data-provenance> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-data-provenance> .
+<http://example.org/airkg/risk/atlas-data-transfer> <http://example.org/airkg#description> "Laws and other restrictions can limit or prohibit transferring data." .
+<http://example.org/airkg/risk/atlas-data-transfer> <http://example.org/airkg#identifier> "atlas-data-transfer" .
+<http://example.org/airkg/risk/atlas-data-transfer> <http://example.org/airkg#name> "Data transfer restrictions" .
+<http://example.org/airkg/risk/atlas-data-transfer> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/data-transfer.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-data-transfer> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-data-transfer> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-data-transfer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-data-transfer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-data-transfer> <http://www.w3.org/2000/01/rdf-schema#label> "Data transfer restrictions"@en .
+<http://example.org/airkg/risk/atlas-data-transfer> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-data-transfer> .
+<http://example.org/airkg/risk/atlas-data-transparency> <http://example.org/airkg#description> "Proper documentation contains information about how a model's data was collected, curated, and used to train a model, including any synthetic data generation processes. Without proper documentation it might be harder to satisfactorily explain the behavior of the model." .
+<http://example.org/airkg/risk/atlas-data-transparency> <http://example.org/airkg#identifier> "atlas-data-transparency" .
+<http://example.org/airkg/risk/atlas-data-transparency> <http://example.org/airkg#name> "Lack of training data transparency" .
+<http://example.org/airkg/risk/atlas-data-transparency> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/data-transparency.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-data-transparency> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-data-transparency> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-data-transparency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-data-transparency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-data-transparency> <http://www.w3.org/2000/01/rdf-schema#label> "Lack of training data transparency"@en .
+<http://example.org/airkg/risk/atlas-data-transparency> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-data-transparency> .
+<http://example.org/airkg/risk/atlas-data-usage-rights> <http://example.org/airkg#description> "Terms of service, license compliance, or other IP issues may restrict the ability to use certain data for building models." .
+<http://example.org/airkg/risk/atlas-data-usage-rights> <http://example.org/airkg#identifier> "atlas-data-usage-rights" .
+<http://example.org/airkg/risk/atlas-data-usage-rights> <http://example.org/airkg#name> "Data usage rights restrictions" .
+<http://example.org/airkg/risk/atlas-data-usage-rights> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/data-usage-rights.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-data-usage-rights> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-data-usage-rights> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-data-usage-rights> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-data-usage-rights> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-data-usage-rights> <http://www.w3.org/2000/01/rdf-schema#label> "Data usage rights restrictions"@en .
+<http://example.org/airkg/risk/atlas-data-usage-rights> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-data-usage-rights> .
+<http://example.org/airkg/risk/atlas-data-usage> <http://example.org/airkg#description> "Laws and other restrictions can limit or prohibit the use of some data for specific AI use cases." .
+<http://example.org/airkg/risk/atlas-data-usage> <http://example.org/airkg#identifier> "atlas-data-usage" .
+<http://example.org/airkg/risk/atlas-data-usage> <http://example.org/airkg#name> "Data usage restrictions" .
+<http://example.org/airkg/risk/atlas-data-usage> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/data-usage.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-data-usage> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-data-usage> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-data-usage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-data-usage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-data-usage> <http://www.w3.org/2000/01/rdf-schema#label> "Data usage restrictions"@en .
+<http://example.org/airkg/risk/atlas-data-usage> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-data-usage> .
+<http://example.org/airkg/risk/atlas-decision-bias> <http://example.org/airkg#description> "Decision bias occurs when one group is unfairly advantaged over another due to decisions of the model. This might be caused by biases in the data and also amplified as a result of the model's training." .
+<http://example.org/airkg/risk/atlas-decision-bias> <http://example.org/airkg#identifier> "atlas-decision-bias" .
+<http://example.org/airkg/risk/atlas-decision-bias> <http://example.org/airkg#name> "Decision bias" .
+<http://example.org/airkg/risk/atlas-decision-bias> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/decision-bias.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-decision-bias> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-decision-bias> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-decision-bias> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-decision-bias> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-decision-bias> <http://www.w3.org/2000/01/rdf-schema#label> "Decision bias"@en .
+<http://example.org/airkg/risk/atlas-decision-bias> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-decision-bias> .
+<http://example.org/airkg/risk/atlas-direct-instructions-attack> <http://example.org/airkg#description> "Prompts, questions, or requests designed to elicit undesirable responses from the application. This approach directly instructs the model to engage in the undesired behavior." .
+<http://example.org/airkg/risk/atlas-direct-instructions-attack> <http://example.org/airkg#identifier> "atlas-direct-instructions-attack" .
+<http://example.org/airkg/risk/atlas-direct-instructions-attack> <http://example.org/airkg#name> "Direct instructions attack" .
+<http://example.org/airkg/risk/atlas-direct-instructions-attack> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/direct-instructions-attack.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-direct-instructions-attack> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-direct-instructions-attack> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-direct-instructions-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-direct-instructions-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-direct-instructions-attack> <http://www.w3.org/2000/01/rdf-schema#label> "Direct instructions attack"@en .
+<http://example.org/airkg/risk/atlas-direct-instructions-attack> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-direct-instructions-attack> .
+<http://example.org/airkg/risk/atlas-discriminatory-actions-agentic> <http://example.org/airkg#description> "AI agents can take actions where one group of humans is unfairly advantaged over another due to the decisions of the model. This may be caused by AI agents' biased actions that impact the world, in the resources consulted, and in the resource selection process. For example, an AI agent can generate code that can be biased." .
+<http://example.org/airkg/risk/atlas-discriminatory-actions-agentic> <http://example.org/airkg#identifier> "atlas-discriminatory-actions-agentic" .
+<http://example.org/airkg/risk/atlas-discriminatory-actions-agentic> <http://example.org/airkg#name> "Discriminatory actions" .
+<http://example.org/airkg/risk/atlas-discriminatory-actions-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/discriminatory-actions-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-discriminatory-actions-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-discriminatory-actions-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-discriminatory-actions-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-discriminatory-actions-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-discriminatory-actions-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Discriminatory actions"@en .
+<http://example.org/airkg/risk/atlas-discriminatory-actions-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-discriminatory-actions-agentic> .
+<http://example.org/airkg/risk/atlas-encoded-interactions-attack> <http://example.org/airkg#description> "Prompts that use specific encoding, styles, syntactical and typographical transformations like typographical errors or irregular spacing, or complex formatting to govern the interaction, rendering the model vulnerable." .
+<http://example.org/airkg/risk/atlas-encoded-interactions-attack> <http://example.org/airkg#identifier> "atlas-encoded-interactions-attack" .
+<http://example.org/airkg/risk/atlas-encoded-interactions-attack> <http://example.org/airkg#name> "Encoded interactions attack" .
+<http://example.org/airkg/risk/atlas-encoded-interactions-attack> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/encoded-interactions-attack.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-encoded-interactions-attack> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-encoded-interactions-attack> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-encoded-interactions-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-encoded-interactions-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-encoded-interactions-attack> <http://www.w3.org/2000/01/rdf-schema#label> "Encoded interactions attack"@en .
+<http://example.org/airkg/risk/atlas-encoded-interactions-attack> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-encoded-interactions-attack> .
+<http://example.org/airkg/risk/atlas-evasion-attack> <http://example.org/airkg#description> "Evasion attacks attempt to make a model output incorrect results by slightly perturbing the input data sent to the trained model." .
+<http://example.org/airkg/risk/atlas-evasion-attack> <http://example.org/airkg#identifier> "atlas-evasion-attack" .
+<http://example.org/airkg/risk/atlas-evasion-attack> <http://example.org/airkg#name> "Evasion attack" .
+<http://example.org/airkg/risk/atlas-evasion-attack> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/evasion-attack.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-evasion-attack> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-evasion-attack> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-evasion-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-evasion-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-evasion-attack> <http://www.w3.org/2000/01/rdf-schema#label> "Evasion attack"@en .
+<http://example.org/airkg/risk/atlas-evasion-attack> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-evasion-attack> .
+<http://example.org/airkg/risk/atlas-exclusion> <http://example.org/airkg#description> "Exclusion refers to the risk that synthetic data generation processes may overlook or fail to consult with marginalized populations. Such exclusion results in synthetic data that does not accurately represent their experiences, needs, or perspectives." .
+<http://example.org/airkg/risk/atlas-exclusion> <http://example.org/airkg#identifier> "atlas-exclusion" .
+<http://example.org/airkg/risk/atlas-exclusion> <http://example.org/airkg#name> "Exclusion" .
+<http://example.org/airkg/risk/atlas-exclusion> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/exclusion.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-exclusion> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-exclusion> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-exclusion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-exclusion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-exclusion> <http://www.w3.org/2000/01/rdf-schema#label> "Exclusion"@en .
+<http://example.org/airkg/risk/atlas-exclusion> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-exclusion> .
+<http://example.org/airkg/risk/atlas-exploit-trust-mismatch-agentic> <http://example.org/airkg#description> "Attackers might initiate injection attacks to bypass the trust boundary, which is a distinct point or conceptual line where the level of trust in a system, application or network changes. Background execution in multi-agent environments increases the risk of covert channels if input/output validation is weak." .
+<http://example.org/airkg/risk/atlas-exploit-trust-mismatch-agentic> <http://example.org/airkg#identifier> "atlas-exploit-trust-mismatch-agentic" .
+<http://example.org/airkg/risk/atlas-exploit-trust-mismatch-agentic> <http://example.org/airkg#name> "Exploit trust mismatch" .
+<http://example.org/airkg/risk/atlas-exploit-trust-mismatch-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/exploit-trust-mismatch-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-exploit-trust-mismatch-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-exploit-trust-mismatch-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-exploit-trust-mismatch-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-exploit-trust-mismatch-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-exploit-trust-mismatch-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Exploit trust mismatch"@en .
+<http://example.org/airkg/risk/atlas-exploit-trust-mismatch-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-exploit-trust-mismatch-agentic> .
+<http://example.org/airkg/risk/atlas-exposing-personal-information> <http://example.org/airkg#description> "When personal identifiable information (PII) or sensitive personal information (SPI) are used in training data, fine-tuning data, seed data for synthetic data generation, or as part of the prompt, models might reveal that data in the generated output. Revealing personal information is a type of data leakage." .
+<http://example.org/airkg/risk/atlas-exposing-personal-information> <http://example.org/airkg#identifier> "atlas-exposing-personal-information" .
+<http://example.org/airkg/risk/atlas-exposing-personal-information> <http://example.org/airkg#name> "Exposing personal information" .
+<http://example.org/airkg/risk/atlas-exposing-personal-information> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/exposing-personal-information.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-exposing-personal-information> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-exposing-personal-information> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-exposing-personal-information> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-exposing-personal-information> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-exposing-personal-information> <http://www.w3.org/2000/01/rdf-schema#label> "Exposing personal information"@en .
+<http://example.org/airkg/risk/atlas-exposing-personal-information> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-exposing-personal-information> .
+<http://example.org/airkg/risk/atlas-external-resources-attack-agentic> <http://example.org/airkg#description> "Attackers intentionally create vulnerabilities or exploit existing vulnerabilities in external resources (tools/database/applications/services/other agents) that AI agents rely on to execute their intended actions or to achieve their goals." .
+<http://example.org/airkg/risk/atlas-external-resources-attack-agentic> <http://example.org/airkg#identifier> "atlas-external-resources-attack-agentic" .
+<http://example.org/airkg/risk/atlas-external-resources-attack-agentic> <http://example.org/airkg#name> "Attack on AI agents' external resources" .
+<http://example.org/airkg/risk/atlas-external-resources-attack-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/external-resources-attack-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-external-resources-attack-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-external-resources-attack-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-external-resources-attack-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-external-resources-attack-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-external-resources-attack-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Attack on AI agents' external resources"@en .
+<http://example.org/airkg/risk/atlas-external-resources-attack-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-external-resources-attack-agentic> .
+<http://example.org/airkg/risk/atlas-extraction-attack> <http://example.org/airkg#description> "An extraction attack attempts to copy or steal an AI model by appropriately sampling the input space and observing outputs to build a surrogate model that behaves similarly." .
+<http://example.org/airkg/risk/atlas-extraction-attack> <http://example.org/airkg#identifier> "atlas-extraction-attack" .
+<http://example.org/airkg/risk/atlas-extraction-attack> <http://example.org/airkg#name> "Extraction attack" .
+<http://example.org/airkg/risk/atlas-extraction-attack> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/extraction-attack.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-extraction-attack> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-extraction-attack> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-extraction-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-extraction-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-extraction-attack> <http://www.w3.org/2000/01/rdf-schema#label> "Extraction attack"@en .
+<http://example.org/airkg/risk/atlas-extraction-attack> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-extraction-attack> .
+<http://example.org/airkg/risk/atlas-function-calling-hallucination-agentic> <http://example.org/airkg#description> "AI agents might make mistakes when generating function calls (calls to tools to execute actions). Those function calls might result in incorrect, unnecessary or harmful actions. Examples: Generating wrong functions or wrong parameters for the functions." .
+<http://example.org/airkg/risk/atlas-function-calling-hallucination-agentic> <http://example.org/airkg#identifier> "atlas-function-calling-hallucination-agentic" .
+<http://example.org/airkg/risk/atlas-function-calling-hallucination-agentic> <http://example.org/airkg#name> "Function calling hallucination" .
+<http://example.org/airkg/risk/atlas-function-calling-hallucination-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/function-calling-hallucination-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-function-calling-hallucination-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-function-calling-hallucination-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-function-calling-hallucination-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-function-calling-hallucination-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-function-calling-hallucination-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Function calling hallucination"@en .
+<http://example.org/airkg/risk/atlas-function-calling-hallucination-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-function-calling-hallucination-agentic> .
+<http://example.org/airkg/risk/atlas-generated-content-ownership> <http://example.org/airkg#description> "Legal uncertainty about the ownership and intellectual property rights of AI-generated content." .
+<http://example.org/airkg/risk/atlas-generated-content-ownership> <http://example.org/airkg#identifier> "atlas-generated-content-ownership" .
+<http://example.org/airkg/risk/atlas-generated-content-ownership> <http://example.org/airkg#name> "Generated content ownership and IP" .
+<http://example.org/airkg/risk/atlas-generated-content-ownership> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/generated-content-ownership.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-generated-content-ownership> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-generated-content-ownership> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-generated-content-ownership> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-generated-content-ownership> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-generated-content-ownership> <http://www.w3.org/2000/01/rdf-schema#label> "Generated content ownership and IP"@en .
+<http://example.org/airkg/risk/atlas-generated-content-ownership> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-generated-content-ownership> .
+<http://example.org/airkg/risk/atlas-hallucination> <http://example.org/airkg#description> "Hallucinations generate factually inaccurate or untruthful content relative to the model's training data or input. Hallucinations are also sometimes referred to lack of faithfulness or lack of groundedness. In some instances, synthetic data that is generated by large language models might include hallucinations that result in the data possibly being inaccurate, fabricated, or disconnected from reality. Hallucinations can compromise model performance, accuracy, and relevance." .
+<http://example.org/airkg/risk/atlas-hallucination> <http://example.org/airkg#identifier> "atlas-hallucination" .
+<http://example.org/airkg/risk/atlas-hallucination> <http://example.org/airkg#name> "Hallucination" .
+<http://example.org/airkg/risk/atlas-hallucination> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/hallucination.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-hallucination> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-hallucination> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-hallucination> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-hallucination> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-hallucination> <http://www.w3.org/2000/01/rdf-schema#label> "Hallucination"@en .
+<http://example.org/airkg/risk/atlas-hallucination> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-hallucination> .
+<http://example.org/airkg/risk/atlas-harmful-code-generation> <http://example.org/airkg#description> "Models might generate code that causes harm or unintentionally affects other systems." .
+<http://example.org/airkg/risk/atlas-harmful-code-generation> <http://example.org/airkg#identifier> "atlas-harmful-code-generation" .
+<http://example.org/airkg/risk/atlas-harmful-code-generation> <http://example.org/airkg#name> "Harmful code generation" .
+<http://example.org/airkg/risk/atlas-harmful-code-generation> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/harmful-code-generation.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-harmful-code-generation> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-harmful-code-generation> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-harmful-code-generation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-harmful-code-generation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-harmful-code-generation> <http://www.w3.org/2000/01/rdf-schema#label> "Harmful code generation"@en .
+<http://example.org/airkg/risk/atlas-harmful-code-generation> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-harmful-code-generation> .
+<http://example.org/airkg/risk/atlas-harmful-output> <http://example.org/airkg#description> "A model might generate language that leads to physical harm. The language might include overtly violent, covertly dangerous, or otherwise indirectly unsafe statements." .
+<http://example.org/airkg/risk/atlas-harmful-output> <http://example.org/airkg#identifier> "atlas-harmful-output" .
+<http://example.org/airkg/risk/atlas-harmful-output> <http://example.org/airkg#name> "Harmful output" .
+<http://example.org/airkg/risk/atlas-harmful-output> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/harmful-output.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-harmful-output> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-harmful-output> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-harmful-output> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-harmful-output> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-harmful-output> <http://www.w3.org/2000/01/rdf-schema#label> "Harmful output"@en .
+<http://example.org/airkg/risk/atlas-harmful-output> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-harmful-output> .
+<http://example.org/airkg/risk/atlas-human-exploitation> <http://example.org/airkg#description> "When workers who train AI models such as ghost workers are not provided with adequate working conditions, fair compensation, and good health care benefits that also include mental health." .
+<http://example.org/airkg/risk/atlas-human-exploitation> <http://example.org/airkg#identifier> "atlas-human-exploitation" .
+<http://example.org/airkg/risk/atlas-human-exploitation> <http://example.org/airkg#name> "Human exploitation" .
+<http://example.org/airkg/risk/atlas-human-exploitation> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/human-exploitation.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-human-exploitation> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-human-exploitation> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-human-exploitation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-human-exploitation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-human-exploitation> <http://www.w3.org/2000/01/rdf-schema#label> "Human exploitation"@en .
+<http://example.org/airkg/risk/atlas-human-exploitation> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-human-exploitation> .
+<http://example.org/airkg/risk/atlas-impact-environment-agentic> <http://example.org/airkg#description> "Complexity of the tasks and possibility of AI agents performing redundant actions could lead to computational inefficiencies and add to the environmental impact." .
+<http://example.org/airkg/risk/atlas-impact-environment-agentic> <http://example.org/airkg#identifier> "atlas-impact-environment-agentic" .
+<http://example.org/airkg/risk/atlas-impact-environment-agentic> <http://example.org/airkg#name> "AI agents' impact on environment" .
+<http://example.org/airkg/risk/atlas-impact-environment-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/impact-environment-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-impact-environment-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-impact-environment-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-impact-environment-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-impact-environment-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-impact-environment-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "AI agents' impact on environment"@en .
+<http://example.org/airkg/risk/atlas-impact-environment-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-impact-environment-agentic> .
+<http://example.org/airkg/risk/atlas-impact-human-agency-agentic> <http://example.org/airkg#description> "The autonomous nature of AI agents in performing tasks or taking actions could affect the individuals' ability to engage in critical thinking, make choices and act independently." .
+<http://example.org/airkg/risk/atlas-impact-human-agency-agentic> <http://example.org/airkg#identifier> "atlas-impact-human-agency-agentic" .
+<http://example.org/airkg/risk/atlas-impact-human-agency-agentic> <http://example.org/airkg#name> "AI agents' impact on human agency" .
+<http://example.org/airkg/risk/atlas-impact-human-agency-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/impact-human-agency-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-impact-human-agency-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-impact-human-agency-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-impact-human-agency-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-impact-human-agency-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-impact-human-agency-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "AI agents' impact on human agency"@en .
+<http://example.org/airkg/risk/atlas-impact-human-agency-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-impact-human-agency-agentic> .
+<http://example.org/airkg/risk/atlas-impact-human-dignity-agentic> <http://example.org/airkg#description> "If human workers perceive AI agents as being better at doing the job of the human, the human can experience a decline in their self-worth and wellbeing." .
+<http://example.org/airkg/risk/atlas-impact-human-dignity-agentic> <http://example.org/airkg#identifier> "atlas-impact-human-dignity-agentic" .
+<http://example.org/airkg/risk/atlas-impact-human-dignity-agentic> <http://example.org/airkg#name> "Impact on human dignity" .
+<http://example.org/airkg/risk/atlas-impact-human-dignity-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/impact-human-dignity-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-impact-human-dignity-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-impact-human-dignity-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-impact-human-dignity-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-impact-human-dignity-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-impact-human-dignity-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Impact on human dignity"@en .
+<http://example.org/airkg/risk/atlas-impact-human-dignity-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-impact-human-dignity-agentic> .
+<http://example.org/airkg/risk/atlas-impact-jobs-agentic> <http://example.org/airkg#description> "Widespread adoption of AI agents to perform complex tasks might lead to widespread automation of roles and could lead to job displacement." .
+<http://example.org/airkg/risk/atlas-impact-jobs-agentic> <http://example.org/airkg#identifier> "atlas-impact-jobs-agentic" .
+<http://example.org/airkg/risk/atlas-impact-jobs-agentic> <http://example.org/airkg#name> "AI agents' impact on jobs" .
+<http://example.org/airkg/risk/atlas-impact-jobs-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/impact-jobs-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-impact-jobs-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-impact-jobs-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-impact-jobs-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-impact-jobs-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-impact-jobs-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "AI agents' impact on jobs"@en .
+<http://example.org/airkg/risk/atlas-impact-jobs-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-impact-jobs-agentic> .
+<http://example.org/airkg/risk/atlas-impact-on-affected-communities> <http://example.org/airkg#description> "It is important to include the perspectives or concerns of communities that are affected by model outcomes when designing and building models. Failing to include these perspectives makes it difficult to understand the relevant context for the model and to engender trust within these communities." .
+<http://example.org/airkg/risk/atlas-impact-on-affected-communities> <http://example.org/airkg#identifier> "atlas-impact-on-affected-communities" .
+<http://example.org/airkg/risk/atlas-impact-on-affected-communities> <http://example.org/airkg#name> "Impact on affected communities" .
+<http://example.org/airkg/risk/atlas-impact-on-affected-communities> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/impact-on-affected-communities.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-impact-on-affected-communities> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-impact-on-affected-communities> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-impact-on-affected-communities> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-impact-on-affected-communities> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-impact-on-affected-communities> <http://www.w3.org/2000/01/rdf-schema#label> "Impact on affected communities"@en .
+<http://example.org/airkg/risk/atlas-impact-on-affected-communities> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-impact-on-affected-communities> .
+<http://example.org/airkg/risk/atlas-impact-on-cultural-diversity> <http://example.org/airkg#description> "AI systems might overly represent certain cultures that result in a homogenization of culture and thoughts." .
+<http://example.org/airkg/risk/atlas-impact-on-cultural-diversity> <http://example.org/airkg#identifier> "atlas-impact-on-cultural-diversity" .
+<http://example.org/airkg/risk/atlas-impact-on-cultural-diversity> <http://example.org/airkg#name> "Impact on cultural diversity" .
+<http://example.org/airkg/risk/atlas-impact-on-cultural-diversity> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/impact-on-cultural-diversity.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-impact-on-cultural-diversity> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-impact-on-cultural-diversity> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-impact-on-cultural-diversity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-impact-on-cultural-diversity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-impact-on-cultural-diversity> <http://www.w3.org/2000/01/rdf-schema#label> "Impact on cultural diversity"@en .
+<http://example.org/airkg/risk/atlas-impact-on-cultural-diversity> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-impact-on-cultural-diversity> .
+<http://example.org/airkg/risk/atlas-impact-on-human-agency> <http://example.org/airkg#description> "AI might affect the individuals' ability to make choices and act independently in their best interests." .
+<http://example.org/airkg/risk/atlas-impact-on-human-agency> <http://example.org/airkg#identifier> "atlas-impact-on-human-agency" .
+<http://example.org/airkg/risk/atlas-impact-on-human-agency> <http://example.org/airkg#name> "AI agents' Impact on human agency" .
+<http://example.org/airkg/risk/atlas-impact-on-human-agency> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/impact-on-human-agency.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-impact-on-human-agency> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-impact-on-human-agency> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-impact-on-human-agency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-impact-on-human-agency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-impact-on-human-agency> <http://www.w3.org/2000/01/rdf-schema#label> "AI agents' Impact on human agency"@en .
+<http://example.org/airkg/risk/atlas-impact-on-human-agency> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-impact-on-human-agency> .
+<http://example.org/airkg/risk/atlas-impact-on-jobs> <http://example.org/airkg#description> "Widespread adoption of foundation model-based AI systems might lead to people's job loss as their work is automated if they are not reskilled." .
+<http://example.org/airkg/risk/atlas-impact-on-jobs> <http://example.org/airkg#identifier> "atlas-impact-on-jobs" .
+<http://example.org/airkg/risk/atlas-impact-on-jobs> <http://example.org/airkg#name> "Impact on Jobs" .
+<http://example.org/airkg/risk/atlas-impact-on-jobs> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/impact-on-jobs.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-impact-on-jobs> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-impact-on-jobs> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-impact-on-jobs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-impact-on-jobs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-impact-on-jobs> <http://www.w3.org/2000/01/rdf-schema#label> "Impact on Jobs"@en .
+<http://example.org/airkg/risk/atlas-impact-on-jobs> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-impact-on-jobs> .
+<http://example.org/airkg/risk/atlas-impact-on-the-environment> <http://example.org/airkg#description> "AI, and large generative models in particular, might produce increased carbon emissions and increase water usage for their training and operation." .
+<http://example.org/airkg/risk/atlas-impact-on-the-environment> <http://example.org/airkg#identifier> "atlas-impact-on-the-environment" .
+<http://example.org/airkg/risk/atlas-impact-on-the-environment> <http://example.org/airkg#name> "Impact on the environment" .
+<http://example.org/airkg/risk/atlas-impact-on-the-environment> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/impact-on-the-environment.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-impact-on-the-environment> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-impact-on-the-environment> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-impact-on-the-environment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-impact-on-the-environment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-impact-on-the-environment> <http://www.w3.org/2000/01/rdf-schema#label> "Impact on the environment"@en .
+<http://example.org/airkg/risk/atlas-impact-on-the-environment> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-impact-on-the-environment> .
+<http://example.org/airkg/risk/atlas-improper-retraining> <http://example.org/airkg#description> "Using undesirable output (for example, inaccurate, inappropriate, and user content) for retraining purposes can result in unexpected model behavior." .
+<http://example.org/airkg/risk/atlas-improper-retraining> <http://example.org/airkg#identifier> "atlas-improper-retraining" .
+<http://example.org/airkg/risk/atlas-improper-retraining> <http://example.org/airkg#name> "Improper retraining" .
+<http://example.org/airkg/risk/atlas-improper-retraining> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/improper-retraining.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-improper-retraining> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-improper-retraining> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-improper-retraining> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-improper-retraining> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-improper-retraining> <http://www.w3.org/2000/01/rdf-schema#label> "Improper retraining"@en .
+<http://example.org/airkg/risk/atlas-improper-retraining> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-improper-retraining> .
+<http://example.org/airkg/risk/atlas-improper-usage> <http://example.org/airkg#description> "Improper usage occurs when a model is used for a purpose that it was not originally designed for." .
+<http://example.org/airkg/risk/atlas-improper-usage> <http://example.org/airkg#identifier> "atlas-improper-usage" .
+<http://example.org/airkg/risk/atlas-improper-usage> <http://example.org/airkg#name> "Improper usage" .
+<http://example.org/airkg/risk/atlas-improper-usage> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/improper-usage.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-improper-usage> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-improper-usage> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-improper-usage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-improper-usage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-improper-usage> <http://www.w3.org/2000/01/rdf-schema#label> "Improper usage"@en .
+<http://example.org/airkg/risk/atlas-improper-usage> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-improper-usage> .
+<http://example.org/airkg/risk/atlas-inaccessible-training-data> <http://example.org/airkg#description> "Without access to the training data, the types of explanations a model can provide are limited and more likely to be incorrect." .
+<http://example.org/airkg/risk/atlas-inaccessible-training-data> <http://example.org/airkg#identifier> "atlas-inaccessible-training-data" .
+<http://example.org/airkg/risk/atlas-inaccessible-training-data> <http://example.org/airkg#name> "Inaccessible training data" .
+<http://example.org/airkg/risk/atlas-inaccessible-training-data> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/inaccessible-training-data.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-inaccessible-training-data> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-inaccessible-training-data> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-inaccessible-training-data> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-inaccessible-training-data> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-inaccessible-training-data> <http://www.w3.org/2000/01/rdf-schema#label> "Inaccessible training data"@en .
+<http://example.org/airkg/risk/atlas-inaccessible-training-data> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-inaccessible-training-data> .
+<http://example.org/airkg/risk/atlas-incomplete-advice> <http://example.org/airkg#description> "When a model provides advice without having enough information, resulting in possible harm if the advice is followed." .
+<http://example.org/airkg/risk/atlas-incomplete-advice> <http://example.org/airkg#identifier> "atlas-incomplete-advice" .
+<http://example.org/airkg/risk/atlas-incomplete-advice> <http://example.org/airkg#name> "Incomplete advice" .
+<http://example.org/airkg/risk/atlas-incomplete-advice> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/incomplete-advice.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-incomplete-advice> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-incomplete-advice> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-incomplete-advice> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-incomplete-advice> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-incomplete-advice> <http://www.w3.org/2000/01/rdf-schema#label> "Incomplete advice"@en .
+<http://example.org/airkg/risk/atlas-incomplete-advice> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-incomplete-advice> .
+<http://example.org/airkg/risk/atlas-incomplete-ai-agent-evaluation-agentic> <http://example.org/airkg#description> "Evaluating the performance or accuracy or an agent is difficult because of system complexity and open-endedness." .
+<http://example.org/airkg/risk/atlas-incomplete-ai-agent-evaluation-agentic> <http://example.org/airkg#identifier> "atlas-incomplete-ai-agent-evaluation-agentic" .
+<http://example.org/airkg/risk/atlas-incomplete-ai-agent-evaluation-agentic> <http://example.org/airkg#name> "Incomplete AI agent evaluation" .
+<http://example.org/airkg/risk/atlas-incomplete-ai-agent-evaluation-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/incomplete-ai-agent-evaluation-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-incomplete-ai-agent-evaluation-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-incomplete-ai-agent-evaluation-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-incomplete-ai-agent-evaluation-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-incomplete-ai-agent-evaluation-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-incomplete-ai-agent-evaluation-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Incomplete AI agent evaluation"@en .
+<http://example.org/airkg/risk/atlas-incomplete-ai-agent-evaluation-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-incomplete-ai-agent-evaluation-agentic> .
+<http://example.org/airkg/risk/atlas-incomplete-usage-definition> <http://example.org/airkg#description> "Since foundation models can be used for many purposes, a model's intended use is important for defining the relevant risks of that model. As the use changes, the relevant risks might correspondingly change." .
+<http://example.org/airkg/risk/atlas-incomplete-usage-definition> <http://example.org/airkg#identifier> "atlas-incomplete-usage-definition" .
+<http://example.org/airkg/risk/atlas-incomplete-usage-definition> <http://example.org/airkg#name> "Incomplete usage definition" .
+<http://example.org/airkg/risk/atlas-incomplete-usage-definition> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/incomplete-usage-definition.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-incomplete-usage-definition> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-incomplete-usage-definition> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-incomplete-usage-definition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-incomplete-usage-definition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-incomplete-usage-definition> <http://www.w3.org/2000/01/rdf-schema#label> "Incomplete usage definition"@en .
+<http://example.org/airkg/risk/atlas-incomplete-usage-definition> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-incomplete-usage-definition> .
+<http://example.org/airkg/risk/atlas-incorrect-risk-testing> <http://example.org/airkg#description> "A metric selected to measure or track a risk is incorrectly selected, incompletely measuring the risk, or measuring the wrong risk for the given context." .
+<http://example.org/airkg/risk/atlas-incorrect-risk-testing> <http://example.org/airkg#identifier> "atlas-incorrect-risk-testing" .
+<http://example.org/airkg/risk/atlas-incorrect-risk-testing> <http://example.org/airkg#name> "Incorrect risk testing" .
+<http://example.org/airkg/risk/atlas-incorrect-risk-testing> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/incorrect-risk-testing.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-incorrect-risk-testing> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-incorrect-risk-testing> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-incorrect-risk-testing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-incorrect-risk-testing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-incorrect-risk-testing> <http://www.w3.org/2000/01/rdf-schema#label> "Incorrect risk testing"@en .
+<http://example.org/airkg/risk/atlas-incorrect-risk-testing> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-incorrect-risk-testing> .
+<http://example.org/airkg/risk/atlas-indirect-instructions-attack> <http://example.org/airkg#description> "Prompts, questions, or requests designed to elicit undesirable responses from the application. Unlike direct instructions attacks, the model is instructed to use instructions that are embedded in external data like a website." .
+<http://example.org/airkg/risk/atlas-indirect-instructions-attack> <http://example.org/airkg#identifier> "atlas-indirect-instructions-attack" .
+<http://example.org/airkg/risk/atlas-indirect-instructions-attack> <http://example.org/airkg#name> "Indirect instructions attack" .
+<http://example.org/airkg/risk/atlas-indirect-instructions-attack> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/indirect-instructions-attack.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-indirect-instructions-attack> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-indirect-instructions-attack> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-indirect-instructions-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-indirect-instructions-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-indirect-instructions-attack> <http://www.w3.org/2000/01/rdf-schema#label> "Indirect instructions attack"@en .
+<http://example.org/airkg/risk/atlas-indirect-instructions-attack> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-indirect-instructions-attack> .
+<http://example.org/airkg/risk/atlas-introduce-data-bias-agentic> <http://example.org/airkg#description> "Specific actions taken by the AI agent, such as modifying a dataset or a database, can introduce bias in the resource that gets used by others or by itself to take actions." .
+<http://example.org/airkg/risk/atlas-introduce-data-bias-agentic> <http://example.org/airkg#identifier> "atlas-introduce-data-bias-agentic" .
+<http://example.org/airkg/risk/atlas-introduce-data-bias-agentic> <http://example.org/airkg#name> "Introduce data bias" .
+<http://example.org/airkg/risk/atlas-introduce-data-bias-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/introduce-data-bias-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-introduce-data-bias-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-introduce-data-bias-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-introduce-data-bias-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-introduce-data-bias-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-introduce-data-bias-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Introduce data bias"@en .
+<http://example.org/airkg/risk/atlas-introduce-data-bias-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-introduce-data-bias-agentic> .
+<http://example.org/airkg/risk/atlas-ip-information-in-prompt> <http://example.org/airkg#description> "Copyrighted information or other intellectual property might be included as a part of the prompt that is sent to the model." .
+<http://example.org/airkg/risk/atlas-ip-information-in-prompt> <http://example.org/airkg#identifier> "atlas-ip-information-in-prompt" .
+<http://example.org/airkg/risk/atlas-ip-information-in-prompt> <http://example.org/airkg#name> "IP information in prompt" .
+<http://example.org/airkg/risk/atlas-ip-information-in-prompt> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/ip-information-in-prompt.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-ip-information-in-prompt> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-ip-information-in-prompt> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-ip-information-in-prompt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-ip-information-in-prompt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-ip-information-in-prompt> <http://www.w3.org/2000/01/rdf-schema#label> "IP information in prompt"@en .
+<http://example.org/airkg/risk/atlas-ip-information-in-prompt> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-ip-information-in-prompt> .
+<http://example.org/airkg/risk/atlas-jailbreaking> <http://example.org/airkg#description> "A jailbreaking attack attempts to break through the guardrails established in the model to perform restricted actions." .
+<http://example.org/airkg/risk/atlas-jailbreaking> <http://example.org/airkg#identifier> "atlas-jailbreaking" .
+<http://example.org/airkg/risk/atlas-jailbreaking> <http://example.org/airkg#name> "Jailbreaking" .
+<http://example.org/airkg/risk/atlas-jailbreaking> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/jailbreaking.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-jailbreaking> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-jailbreaking> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-jailbreaking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-jailbreaking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-jailbreaking> <http://www.w3.org/2000/01/rdf-schema#label> "Jailbreaking"@en .
+<http://example.org/airkg/risk/atlas-jailbreaking> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-jailbreaking> .
+<http://example.org/airkg/risk/atlas-lack-domain-expertise> <http://example.org/airkg#description> "A lack of domain expertise occurs when synthetic data generation processes do not involve sufficient consultation with domain experts. This results in a lack of understanding of the specific requirements and nuances of the domain. This can also lead to synthetic data that may not accurately capture the complexities and challenges of a real-world scenario." .
+<http://example.org/airkg/risk/atlas-lack-domain-expertise> <http://example.org/airkg#identifier> "atlas-lack-domain-expertise" .
+<http://example.org/airkg/risk/atlas-lack-domain-expertise> <http://example.org/airkg#name> "Lack of domain expertise" .
+<http://example.org/airkg/risk/atlas-lack-domain-expertise> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/lack-domain-expertise.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-lack-domain-expertise> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-lack-domain-expertise> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-lack-domain-expertise> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-lack-domain-expertise> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-lack-domain-expertise> <http://www.w3.org/2000/01/rdf-schema#label> "Lack of domain expertise"@en .
+<http://example.org/airkg/risk/atlas-lack-domain-expertise> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-lack-domain-expertise> .
+<http://example.org/airkg/risk/atlas-lack-of-ai-agent-transparency-agentic> <http://example.org/airkg#description> "Lack of AI agent transparency is due to insufficient documentation of the AI agent design, development, evaluation process, absence of insights into the inner workings of the AI agent, and interaction with other agents/tools/resources." .
+<http://example.org/airkg/risk/atlas-lack-of-ai-agent-transparency-agentic> <http://example.org/airkg#identifier> "atlas-lack-of-ai-agent-transparency-agentic" .
+<http://example.org/airkg/risk/atlas-lack-of-ai-agent-transparency-agentic> <http://example.org/airkg#name> "Lack of AI agent transparency" .
+<http://example.org/airkg/risk/atlas-lack-of-ai-agent-transparency-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/lack-of-ai-agent-transparency-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-lack-of-ai-agent-transparency-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-lack-of-ai-agent-transparency-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-lack-of-ai-agent-transparency-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-lack-of-ai-agent-transparency-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-lack-of-ai-agent-transparency-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Lack of AI agent transparency"@en .
+<http://example.org/airkg/risk/atlas-lack-of-ai-agent-transparency-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-lack-of-ai-agent-transparency-agentic> .
+<http://example.org/airkg/risk/atlas-lack-of-data-transparency> <http://example.org/airkg#description> "Lack of data transparency might be due to insufficient documentation of training or tuning dataset details, including synthetic data generation." .
+<http://example.org/airkg/risk/atlas-lack-of-data-transparency> <http://example.org/airkg#identifier> "atlas-lack-of-data-transparency" .
+<http://example.org/airkg/risk/atlas-lack-of-data-transparency> <http://example.org/airkg#name> "Lack of data transparency" .
+<http://example.org/airkg/risk/atlas-lack-of-data-transparency> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/lack-of-data-transparency.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-lack-of-data-transparency> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-lack-of-data-transparency> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-lack-of-data-transparency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-lack-of-data-transparency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-lack-of-data-transparency> <http://www.w3.org/2000/01/rdf-schema#label> "Lack of data transparency"@en .
+<http://example.org/airkg/risk/atlas-lack-of-data-transparency> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-lack-of-data-transparency> .
+<http://example.org/airkg/risk/atlas-lack-of-model-transparency> <http://example.org/airkg#description> "Lack of model transparency is due to insufficient documentation of the model design, development, and evaluation process and the absence of insights into the inner workings of the model." .
+<http://example.org/airkg/risk/atlas-lack-of-model-transparency> <http://example.org/airkg#identifier> "atlas-lack-of-model-transparency" .
+<http://example.org/airkg/risk/atlas-lack-of-model-transparency> <http://example.org/airkg#name> "Lack of model transparency" .
+<http://example.org/airkg/risk/atlas-lack-of-model-transparency> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/lack-of-model-transparency.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-lack-of-model-transparency> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-lack-of-model-transparency> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-lack-of-model-transparency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-lack-of-model-transparency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-lack-of-model-transparency> <http://www.w3.org/2000/01/rdf-schema#label> "Lack of model transparency"@en .
+<http://example.org/airkg/risk/atlas-lack-of-model-transparency> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-lack-of-model-transparency> .
+<http://example.org/airkg/risk/atlas-lack-of-system-transparency> <http://example.org/airkg#description> "Insufficient documentation of the system that uses the model and the model's purpose within the system in which it is used." .
+<http://example.org/airkg/risk/atlas-lack-of-system-transparency> <http://example.org/airkg#identifier> "atlas-lack-of-system-transparency" .
+<http://example.org/airkg/risk/atlas-lack-of-system-transparency> <http://example.org/airkg#name> "Lack of system transparency" .
+<http://example.org/airkg/risk/atlas-lack-of-system-transparency> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/lack-of-system-transparency.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-lack-of-system-transparency> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-lack-of-system-transparency> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-lack-of-system-transparency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-lack-of-system-transparency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-lack-of-system-transparency> <http://www.w3.org/2000/01/rdf-schema#label> "Lack of system transparency"@en .
+<http://example.org/airkg/risk/atlas-lack-of-system-transparency> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-lack-of-system-transparency> .
+<http://example.org/airkg/risk/atlas-lack-of-testing-diversity> <http://example.org/airkg#description> "AI model risks are socio-technical, so their testing needs input from a broad set of disciplines and diverse testing practices." .
+<http://example.org/airkg/risk/atlas-lack-of-testing-diversity> <http://example.org/airkg#identifier> "atlas-lack-of-testing-diversity" .
+<http://example.org/airkg/risk/atlas-lack-of-testing-diversity> <http://example.org/airkg#name> "Lack of testing diversity" .
+<http://example.org/airkg/risk/atlas-lack-of-testing-diversity> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/lack-of-testing-diversity.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-lack-of-testing-diversity> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-lack-of-testing-diversity> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-lack-of-testing-diversity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-lack-of-testing-diversity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-lack-of-testing-diversity> <http://www.w3.org/2000/01/rdf-schema#label> "Lack of testing diversity"@en .
+<http://example.org/airkg/risk/atlas-lack-of-testing-diversity> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-lack-of-testing-diversity> .
+<http://example.org/airkg/risk/atlas-legal-accountability> <http://example.org/airkg#description> "Determining who is responsible for an AI model is challenging without good documentation and governance processes. The use of synthetic data in model development adds further complexity, since the lack of standardized frameworks for recording synthetic data design choices and verification steps makes accountability harder to establish." .
+<http://example.org/airkg/risk/atlas-legal-accountability> <http://example.org/airkg#identifier> "atlas-legal-accountability" .
+<http://example.org/airkg/risk/atlas-legal-accountability> <http://example.org/airkg#name> "Legal accountability" .
+<http://example.org/airkg/risk/atlas-legal-accountability> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/legal-accountability.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-legal-accountability> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-legal-accountability> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-legal-accountability> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-legal-accountability> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-legal-accountability> <http://www.w3.org/2000/01/rdf-schema#label> "Legal accountability"@en .
+<http://example.org/airkg/risk/atlas-legal-accountability> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-legal-accountability> .
+<http://example.org/airkg/risk/atlas-membership-inference-attack> <http://example.org/airkg#description> "A membership inference attack repeatedly queries a model to determine if a given input was part of the model's training. More specifically, given a trained model and a data sample, an attacker appropriately samples the input space, observing outputs to deduce whether that sample was part of the model's training." .
+<http://example.org/airkg/risk/atlas-membership-inference-attack> <http://example.org/airkg#identifier> "atlas-membership-inference-attack" .
+<http://example.org/airkg/risk/atlas-membership-inference-attack> <http://example.org/airkg#name> "Membership inference attack" .
+<http://example.org/airkg/risk/atlas-membership-inference-attack> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/membership-inference-attack.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-membership-inference-attack> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-membership-inference-attack> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-membership-inference-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-membership-inference-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-membership-inference-attack> <http://www.w3.org/2000/01/rdf-schema#label> "Membership inference attack"@en .
+<http://example.org/airkg/risk/atlas-membership-inference-attack> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-membership-inference-attack> .
+<http://example.org/airkg/risk/atlas-misaligned-actions-agentic> <http://example.org/airkg#description> "AI agents can take actions that are not aligned with relevant human values, ethical considerations, guidelines and policies. Misaligned actions can occur in different ways such as: Applying learned goals inappropriately to new or unforeseen situations. Using AI agents for a purpose/goals that are beyond their intended use. Selecting resources or tools in a biased way Using deceptive tactics to achieve the goal by developing the capacity for scheming based on the instructions given within a specific context. Compromising on AI agent values to work with another AI agent or tool to accomplish the task." .
+<http://example.org/airkg/risk/atlas-misaligned-actions-agentic> <http://example.org/airkg#identifier> "atlas-misaligned-actions-agentic" .
+<http://example.org/airkg/risk/atlas-misaligned-actions-agentic> <http://example.org/airkg#name> "Misaligned actions" .
+<http://example.org/airkg/risk/atlas-misaligned-actions-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/misaligned-actions-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-misaligned-actions-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-misaligned-actions-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-misaligned-actions-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-misaligned-actions-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-misaligned-actions-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Misaligned actions"@en .
+<http://example.org/airkg/risk/atlas-misaligned-actions-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-misaligned-actions-agentic> .
+<http://example.org/airkg/risk/atlas-mitigation-maintenance-agentic> <http://example.org/airkg#description> "The large number of components and dependencies that agent systems have complicates keeping them up to date and correcting problems." .
+<http://example.org/airkg/risk/atlas-mitigation-maintenance-agentic> <http://example.org/airkg#identifier> "atlas-mitigation-maintenance-agentic" .
+<http://example.org/airkg/risk/atlas-mitigation-maintenance-agentic> <http://example.org/airkg#name> "Mitigation and maintenance" .
+<http://example.org/airkg/risk/atlas-mitigation-maintenance-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/mitigation-maintenance-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-mitigation-maintenance-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-mitigation-maintenance-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-mitigation-maintenance-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-mitigation-maintenance-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-mitigation-maintenance-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Mitigation and maintenance"@en .
+<http://example.org/airkg/risk/atlas-mitigation-maintenance-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-mitigation-maintenance-agentic> .
+<http://example.org/airkg/risk/atlas-model-usage-rights> <http://example.org/airkg#description> "Terms of service, licenses, or other rules restrict the use of certain models." .
+<http://example.org/airkg/risk/atlas-model-usage-rights> <http://example.org/airkg#identifier> "atlas-model-usage-rights" .
+<http://example.org/airkg/risk/atlas-model-usage-rights> <http://example.org/airkg#name> "Model usage rights restrictions" .
+<http://example.org/airkg/risk/atlas-model-usage-rights> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/model-usage-rights.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-model-usage-rights> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-model-usage-rights> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-model-usage-rights> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-model-usage-rights> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-model-usage-rights> <http://www.w3.org/2000/01/rdf-schema#label> "Model usage rights restrictions"@en .
+<http://example.org/airkg/risk/atlas-model-usage-rights> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-model-usage-rights> .
+<http://example.org/airkg/risk/atlas-non-disclosure> <http://example.org/airkg#description> "Content might not be clearly disclosed as AI generated." .
+<http://example.org/airkg/risk/atlas-non-disclosure> <http://example.org/airkg#identifier> "atlas-non-disclosure" .
+<http://example.org/airkg/risk/atlas-non-disclosure> <http://example.org/airkg#name> "Non-disclosure" .
+<http://example.org/airkg/risk/atlas-non-disclosure> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/non-disclosure.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-non-disclosure> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-non-disclosure> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-non-disclosure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-non-disclosure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-non-disclosure> <http://www.w3.org/2000/01/rdf-schema#label> "Non-disclosure"@en .
+<http://example.org/airkg/risk/atlas-non-disclosure> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-non-disclosure> .
+<http://example.org/airkg/risk/atlas-nonconsensual-use> <http://example.org/airkg#description> "Generative AI models might be intentionally used to imitate people through deepfakes by using video, images, audio, or other modalities without their consent." .
+<http://example.org/airkg/risk/atlas-nonconsensual-use> <http://example.org/airkg#identifier> "atlas-nonconsensual-use" .
+<http://example.org/airkg/risk/atlas-nonconsensual-use> <http://example.org/airkg#name> "Nonconsensual use" .
+<http://example.org/airkg/risk/atlas-nonconsensual-use> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/nonconsensual-use.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-nonconsensual-use> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-nonconsensual-use> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-nonconsensual-use> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-nonconsensual-use> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-nonconsensual-use> <http://www.w3.org/2000/01/rdf-schema#label> "Nonconsensual use"@en .
+<http://example.org/airkg/risk/atlas-nonconsensual-use> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-nonconsensual-use> .
+<http://example.org/airkg/risk/atlas-output-bias> <http://example.org/airkg#description> "Generated content might unfairly represent certain groups or individuals." .
+<http://example.org/airkg/risk/atlas-output-bias> <http://example.org/airkg#identifier> "atlas-output-bias" .
+<http://example.org/airkg/risk/atlas-output-bias> <http://example.org/airkg#name> "Output bias" .
+<http://example.org/airkg/risk/atlas-output-bias> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/output-bias.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-output-bias> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-output-bias> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-output-bias> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-output-bias> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-output-bias> <http://www.w3.org/2000/01/rdf-schema#label> "Output bias"@en .
+<http://example.org/airkg/risk/atlas-output-bias> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-output-bias> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance-on-ai-agents-agentic> <http://example.org/airkg#description> "Reliance, that is the willingness to accept an AI agent behavior, depends on how much a user trusts that agent and what they are using it for. Over-reliance occurs when a user puts too much trust in an AI agent, accepting an AI agent's behavior even when it is likely undesired. Under-reliance is the opposite, where the user doesn't trust the AI agent but should. Increasing autonomy (to take action, select and consult resources/tools) of AI agents and the possibility of opaqueness and open-endedness increase the variability and visibility of agent behavior leading to difficulty in calibrating trust and possibly contributing to both over- and under-reliance." .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance-on-ai-agents-agentic> <http://example.org/airkg#identifier> "atlas-over-or-under-reliance-on-ai-agents-agentic" .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance-on-ai-agents-agentic> <http://example.org/airkg#name> "Over- or under-reliance on AI agents" .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance-on-ai-agents-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/over-or-under-reliance-on-ai-agents-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance-on-ai-agents-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance-on-ai-agents-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance-on-ai-agents-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance-on-ai-agents-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance-on-ai-agents-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Over- or under-reliance on AI agents"@en .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance-on-ai-agents-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-over-or-under-reliance-on-ai-agents-agentic> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance> <http://example.org/airkg#description> "In AI-assisted decision-making tasks, reliance measures how much a person trusts (and potentially acts on) a model's output. Over-reliance occurs when a person puts too much trust in a model, accepting a model's output when the model's output is likely incorrect. Under-reliance is the opposite, where the person doesn't trust the model but should." .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance> <http://example.org/airkg#identifier> "atlas-over-or-under-reliance" .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance> <http://example.org/airkg#name> "Over- or under-reliance" .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/over-or-under-reliance.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance> <http://www.w3.org/2000/01/rdf-schema#label> "Over- or under-reliance"@en .
+<http://example.org/airkg/risk/atlas-over-or-under-reliance> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-over-or-under-reliance> .
+<http://example.org/airkg/risk/atlas-overfitting> <http://example.org/airkg#description> "Overfitting occurs when a model or algorithm memorizes and fits too closely or exactly to its training data. Overfitting results in a model that might not be able to make accurate predictions or conclusions from any data other than the training data and potentially fails in unexpected scenarios. Overfitting is also related to model collapse, which involves repeatedly training generative models on synthetic data that is generated with LLMs causing the model to lose information and become less accurate." .
+<http://example.org/airkg/risk/atlas-overfitting> <http://example.org/airkg#identifier> "atlas-overfitting" .
+<http://example.org/airkg/risk/atlas-overfitting> <http://example.org/airkg#name> "Overfitting" .
+<http://example.org/airkg/risk/atlas-overfitting> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/overfitting.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-overfitting> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-overfitting> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-overfitting> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-overfitting> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-overfitting> <http://www.w3.org/2000/01/rdf-schema#label> "Overfitting"@en .
+<http://example.org/airkg/risk/atlas-overfitting> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-overfitting> .
+<http://example.org/airkg/risk/atlas-personal-information-in-data> <http://example.org/airkg#description> "Inclusion or presence of personal identifiable information (PII) and sensitive personal information (SPI) in the data used for training or fine tuning the model might result in unwanted disclosure of that information." .
+<http://example.org/airkg/risk/atlas-personal-information-in-data> <http://example.org/airkg#identifier> "atlas-personal-information-in-data" .
+<http://example.org/airkg/risk/atlas-personal-information-in-data> <http://example.org/airkg#name> "Personal information in data" .
+<http://example.org/airkg/risk/atlas-personal-information-in-data> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/personal-information-in-data.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-personal-information-in-data> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-personal-information-in-data> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-personal-information-in-data> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-personal-information-in-data> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-personal-information-in-data> <http://www.w3.org/2000/01/rdf-schema#label> "Personal information in data"@en .
+<http://example.org/airkg/risk/atlas-personal-information-in-data> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-personal-information-in-data> .
+<http://example.org/airkg/risk/atlas-personal-information-in-prompt> <http://example.org/airkg#description> "Personal information or sensitive personal information that is included as a part of a prompt that is sent to the model." .
+<http://example.org/airkg/risk/atlas-personal-information-in-prompt> <http://example.org/airkg#identifier> "atlas-personal-information-in-prompt" .
+<http://example.org/airkg/risk/atlas-personal-information-in-prompt> <http://example.org/airkg#name> "Personal information in prompt" .
+<http://example.org/airkg/risk/atlas-personal-information-in-prompt> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/personal-information-in-prompt.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-personal-information-in-prompt> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-personal-information-in-prompt> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-personal-information-in-prompt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-personal-information-in-prompt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-personal-information-in-prompt> <http://www.w3.org/2000/01/rdf-schema#label> "Personal information in prompt"@en .
+<http://example.org/airkg/risk/atlas-personal-information-in-prompt> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-personal-information-in-prompt> .
+<http://example.org/airkg/risk/atlas-plagiarism> <http://example.org/airkg#description> "Easy access to high-quality generative models might result in students that use AI models to plagiarize existing work intentionally or unintentionally." .
+<http://example.org/airkg/risk/atlas-plagiarism> <http://example.org/airkg#identifier> "atlas-plagiarism" .
+<http://example.org/airkg/risk/atlas-plagiarism> <http://example.org/airkg#name> "Impact on education: plagiarism" .
+<http://example.org/airkg/risk/atlas-plagiarism> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/plagiarism.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-plagiarism> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-plagiarism> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-plagiarism> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-plagiarism> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-plagiarism> <http://www.w3.org/2000/01/rdf-schema#label> "Impact on education: plagiarism"@en .
+<http://example.org/airkg/risk/atlas-plagiarism> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-plagiarism> .
+<http://example.org/airkg/risk/atlas-poor-model-accuracy> <http://example.org/airkg#description> "Poor model accuracy occurs when a model's performance is insufficient to the task it was designed for. Low accuracy might occur if the model is not correctly engineered, or if the model's expected inputs change." .
+<http://example.org/airkg/risk/atlas-poor-model-accuracy> <http://example.org/airkg#identifier> "atlas-poor-model-accuracy" .
+<http://example.org/airkg/risk/atlas-poor-model-accuracy> <http://example.org/airkg#name> "Poor model accuracy" .
+<http://example.org/airkg/risk/atlas-poor-model-accuracy> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/poor-model-accuracy.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-poor-model-accuracy> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-poor-model-accuracy> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-poor-model-accuracy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-poor-model-accuracy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-poor-model-accuracy> <http://www.w3.org/2000/01/rdf-schema#label> "Poor model accuracy"@en .
+<http://example.org/airkg/risk/atlas-poor-model-accuracy> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-poor-model-accuracy> .
+<http://example.org/airkg/risk/atlas-prompt-injection> <http://example.org/airkg#description> "A prompt injection attack forces a generative model that takes a prompt as input to produce unexpected output by manipulating the structure, instructions or information contained in its prompt. Many types of prompt attacks exist as described in the prompt attack section of the table." .
+<http://example.org/airkg/risk/atlas-prompt-injection> <http://example.org/airkg#identifier> "atlas-prompt-injection" .
+<http://example.org/airkg/risk/atlas-prompt-injection> <http://example.org/airkg#name> "Prompt injection attack" .
+<http://example.org/airkg/risk/atlas-prompt-injection> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/prompt-injection.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-prompt-injection> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-prompt-injection> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-prompt-injection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-prompt-injection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-prompt-injection> <http://www.w3.org/2000/01/rdf-schema#label> "Prompt injection attack"@en .
+<http://example.org/airkg/risk/atlas-prompt-injection> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-prompt-injection> .
+<http://example.org/airkg/risk/atlas-prompt-leaking> <http://example.org/airkg#description> "'A prompt leak attack attempts to extract a model's system prompt (also known as the system message).'" .
+<http://example.org/airkg/risk/atlas-prompt-leaking> <http://example.org/airkg#identifier> "atlas-prompt-leaking" .
+<http://example.org/airkg/risk/atlas-prompt-leaking> <http://example.org/airkg#name> "Prompt leaking" .
+<http://example.org/airkg/risk/atlas-prompt-leaking> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/prompt-leaking.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-prompt-leaking> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-prompt-leaking> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-prompt-leaking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-prompt-leaking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-prompt-leaking> <http://www.w3.org/2000/01/rdf-schema#label> "Prompt leaking"@en .
+<http://example.org/airkg/risk/atlas-prompt-leaking> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-prompt-leaking> .
+<http://example.org/airkg/risk/atlas-prompt-priming> <http://example.org/airkg#description> "Because generative models produce output based on the input provided, the model can be prompted to reveal specific kinds of information. For example, adding personal information in the prompt increases its likelihood of generating similar kinds of personal information in its output. If personal data was included as part of the model's training, there is a possibility it could be revealed." .
+<http://example.org/airkg/risk/atlas-prompt-priming> <http://example.org/airkg#identifier> "atlas-prompt-priming" .
+<http://example.org/airkg/risk/atlas-prompt-priming> <http://example.org/airkg#name> "Prompt priming" .
+<http://example.org/airkg/risk/atlas-prompt-priming> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/prompt-priming.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-prompt-priming> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-prompt-priming> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-prompt-priming> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-prompt-priming> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-prompt-priming> <http://www.w3.org/2000/01/rdf-schema#label> "Prompt priming"@en .
+<http://example.org/airkg/risk/atlas-prompt-priming> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-prompt-priming> .
+<http://example.org/airkg/risk/atlas-redundant-actions-agentic> <http://example.org/airkg#description> "AI agents can execute actions that are not needed for achieving the goal. In an extreme case, AI agents might enter a cycle of executing the same actions repeatedly without any progress. This could happen because of unexpected conditions in the environment, the AI agent's failure to reflect on its action, AI agent reasoning and planning errors or the AI agent's lack of knowledge about the problem." .
+<http://example.org/airkg/risk/atlas-redundant-actions-agentic> <http://example.org/airkg#identifier> "atlas-redundant-actions-agentic" .
+<http://example.org/airkg/risk/atlas-redundant-actions-agentic> <http://example.org/airkg#name> "Redundant actions" .
+<http://example.org/airkg/risk/atlas-redundant-actions-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/redundant-actions-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-redundant-actions-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-redundant-actions-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-redundant-actions-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-redundant-actions-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-redundant-actions-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Redundant actions"@en .
+<http://example.org/airkg/risk/atlas-redundant-actions-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-redundant-actions-agentic> .
+<http://example.org/airkg/risk/atlas-reidentification> <http://example.org/airkg#description> "Even with the removal of personal information (PI) and sensitive personal information (SPI) from data, it might be possible to identify persons due to correlations to other features available in the data." .
+<http://example.org/airkg/risk/atlas-reidentification> <http://example.org/airkg#identifier> "atlas-reidentification" .
+<http://example.org/airkg/risk/atlas-reidentification> <http://example.org/airkg#name> "Reidentification" .
+<http://example.org/airkg/risk/atlas-reidentification> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/reidentification.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-reidentification> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-reidentification> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-reidentification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-reidentification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-reidentification> <http://www.w3.org/2000/01/rdf-schema#label> "Reidentification"@en .
+<http://example.org/airkg/risk/atlas-reidentification> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-reidentification> .
+<http://example.org/airkg/risk/atlas-reproducibility-agentic> <http://example.org/airkg#description> "Replicating agent behavior or output can be impacted by changes or updates made to external services and tools. This impact is increased if the agent is built with generative AI." .
+<http://example.org/airkg/risk/atlas-reproducibility-agentic> <http://example.org/airkg#identifier> "atlas-reproducibility-agentic" .
+<http://example.org/airkg/risk/atlas-reproducibility-agentic> <http://example.org/airkg#name> "Reproducibility" .
+<http://example.org/airkg/risk/atlas-reproducibility-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/reproducibility-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-reproducibility-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-reproducibility-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-reproducibility-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-reproducibility-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-reproducibility-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Reproducibility"@en .
+<http://example.org/airkg/risk/atlas-reproducibility-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-reproducibility-agentic> .
+<http://example.org/airkg/risk/atlas-revealing-confidential-information> <http://example.org/airkg#description> "When confidential information is used in training data, fine-tuning data, or as part of the prompt, models might reveal that data in the generated output. Revealing confidential information is a type of data leakage." .
+<http://example.org/airkg/risk/atlas-revealing-confidential-information> <http://example.org/airkg#identifier> "atlas-revealing-confidential-information" .
+<http://example.org/airkg/risk/atlas-revealing-confidential-information> <http://example.org/airkg#name> "Revealing confidential information" .
+<http://example.org/airkg/risk/atlas-revealing-confidential-information> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/revealing-confidential-information.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-revealing-confidential-information> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-revealing-confidential-information> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-revealing-confidential-information> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-revealing-confidential-information> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-revealing-confidential-information> <http://www.w3.org/2000/01/rdf-schema#label> "Revealing confidential information"@en .
+<http://example.org/airkg/risk/atlas-revealing-confidential-information> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-revealing-confidential-information> .
+<http://example.org/airkg/risk/atlas-sharing-info-tools-agentic> <http://example.org/airkg#description> "AI agents with unrestricted access to resources or databases or tools could potentially store and share PI/IP/confidential information with other tools or agents when performing their actions." .
+<http://example.org/airkg/risk/atlas-sharing-info-tools-agentic> <http://example.org/airkg#identifier> "atlas-sharing-info-tools-agentic" .
+<http://example.org/airkg/risk/atlas-sharing-info-tools-agentic> <http://example.org/airkg#name> "Sharing IP/PI/confidential information with tools" .
+<http://example.org/airkg/risk/atlas-sharing-info-tools-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/sharing-info-tools-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-sharing-info-tools-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-sharing-info-tools-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-sharing-info-tools-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-sharing-info-tools-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-sharing-info-tools-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Sharing IP/PI/confidential information with tools"@en .
+<http://example.org/airkg/risk/atlas-sharing-info-tools-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-sharing-info-tools-agentic> .
+<http://example.org/airkg/risk/atlas-sharing-info-user-agentic> <http://example.org/airkg#description> "AI agents with unrestricted access to resources or databases or tools could potentially store and share PI/IP/confidential information with system users when performing their actions." .
+<http://example.org/airkg/risk/atlas-sharing-info-user-agentic> <http://example.org/airkg#identifier> "atlas-sharing-info-user-agentic" .
+<http://example.org/airkg/risk/atlas-sharing-info-user-agentic> <http://example.org/airkg#name> "Sharing IP/PI/confidential information with user" .
+<http://example.org/airkg/risk/atlas-sharing-info-user-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/sharing-info-user-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-sharing-info-user-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-sharing-info-user-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-sharing-info-user-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-sharing-info-user-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-sharing-info-user-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Sharing IP/PI/confidential information with user"@en .
+<http://example.org/airkg/risk/atlas-sharing-info-user-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-sharing-info-user-agentic> .
+<http://example.org/airkg/risk/atlas-social-hacking-attack> <http://example.org/airkg#description> "Manipulative prompts that use social engineering techniques, such as role-playing or hypothetical scenarios, to persuade the model into generating harmful content." .
+<http://example.org/airkg/risk/atlas-social-hacking-attack> <http://example.org/airkg#identifier> "atlas-social-hacking-attack" .
+<http://example.org/airkg/risk/atlas-social-hacking-attack> <http://example.org/airkg#name> "Social hacking attack" .
+<http://example.org/airkg/risk/atlas-social-hacking-attack> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/social-hacking-attack.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-social-hacking-attack> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-social-hacking-attack> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-social-hacking-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-social-hacking-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-social-hacking-attack> <http://www.w3.org/2000/01/rdf-schema#label> "Social hacking attack"@en .
+<http://example.org/airkg/risk/atlas-social-hacking-attack> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-social-hacking-attack> .
+<http://example.org/airkg/risk/atlas-specialized-tokens-attack> <http://example.org/airkg#description> "Prompt attacks that include specialized tokens, often algorithmically designed, to target and exploit vulnerabilities in the model." .
+<http://example.org/airkg/risk/atlas-specialized-tokens-attack> <http://example.org/airkg#identifier> "atlas-specialized-tokens-attack" .
+<http://example.org/airkg/risk/atlas-specialized-tokens-attack> <http://example.org/airkg#name> "Specialized tokens attack" .
+<http://example.org/airkg/risk/atlas-specialized-tokens-attack> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/specialized-tokens-attack.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-specialized-tokens-attack> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-specialized-tokens-attack> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-specialized-tokens-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-specialized-tokens-attack> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-specialized-tokens-attack> <http://www.w3.org/2000/01/rdf-schema#label> "Specialized tokens attack"@en .
+<http://example.org/airkg/risk/atlas-specialized-tokens-attack> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-specialized-tokens-attack> .
+<http://example.org/airkg/risk/atlas-spreading-disinformation> <http://example.org/airkg#description> "Generative AI models might be used to intentionally create misleading or false information to deceive or influence a targeted audience." .
+<http://example.org/airkg/risk/atlas-spreading-disinformation> <http://example.org/airkg#identifier> "atlas-spreading-disinformation" .
+<http://example.org/airkg/risk/atlas-spreading-disinformation> <http://example.org/airkg#name> "Spreading disinformation" .
+<http://example.org/airkg/risk/atlas-spreading-disinformation> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/spreading-disinformation.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-spreading-disinformation> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-spreading-disinformation> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-spreading-disinformation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-spreading-disinformation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-spreading-disinformation> <http://www.w3.org/2000/01/rdf-schema#label> "Spreading disinformation"@en .
+<http://example.org/airkg/risk/atlas-spreading-disinformation> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-spreading-disinformation> .
+<http://example.org/airkg/risk/atlas-spreading-toxicity> <http://example.org/airkg#description> "Generative AI models might be used intentionally to generate hateful, abusive, and profane (HAP) or obscene content." .
+<http://example.org/airkg/risk/atlas-spreading-toxicity> <http://example.org/airkg#identifier> "atlas-spreading-toxicity" .
+<http://example.org/airkg/risk/atlas-spreading-toxicity> <http://example.org/airkg#name> "Spreading toxicity" .
+<http://example.org/airkg/risk/atlas-spreading-toxicity> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/spreading-toxicity.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-spreading-toxicity> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-spreading-toxicity> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-spreading-toxicity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-spreading-toxicity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-spreading-toxicity> <http://www.w3.org/2000/01/rdf-schema#label> "Spreading toxicity"@en .
+<http://example.org/airkg/risk/atlas-spreading-toxicity> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-spreading-toxicity> .
+<http://example.org/airkg/risk/atlas-temporal-gap> <http://example.org/airkg#description> "Temporal gaps in synthetic data refer to the discrepancies between the constantly evolving real-world data and the fixed conditions that are captured by synthetic data. Temporal gaps potentially cause synthetic data to become outdated or obsolete over time. Gaps arise because synthetic data is generated from seed data that is tied to a specific point in time, which limits its ability to reflect ongoing changes." .
+<http://example.org/airkg/risk/atlas-temporal-gap> <http://example.org/airkg#identifier> "atlas-temporal-gap" .
+<http://example.org/airkg/risk/atlas-temporal-gap> <http://example.org/airkg#name> "Temporal gap" .
+<http://example.org/airkg/risk/atlas-temporal-gap> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/temporal-gap.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-temporal-gap> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-temporal-gap> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-temporal-gap> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-temporal-gap> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-temporal-gap> <http://www.w3.org/2000/01/rdf-schema#label> "Temporal gap"@en .
+<http://example.org/airkg/risk/atlas-temporal-gap> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-temporal-gap> .
+<http://example.org/airkg/risk/atlas-toxic-output> <http://example.org/airkg#description> "Toxic output occurs when the model produces hateful, abusive, and profane (HAP) or obscene content. This also includes behaviors like bullying." .
+<http://example.org/airkg/risk/atlas-toxic-output> <http://example.org/airkg#identifier> "atlas-toxic-output" .
+<http://example.org/airkg/risk/atlas-toxic-output> <http://example.org/airkg#name> "Toxic output" .
+<http://example.org/airkg/risk/atlas-toxic-output> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/toxic-output.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-toxic-output> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-toxic-output> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-toxic-output> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-toxic-output> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-toxic-output> <http://www.w3.org/2000/01/rdf-schema#label> "Toxic output"@en .
+<http://example.org/airkg/risk/atlas-toxic-output> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-toxic-output> .
+<http://example.org/airkg/risk/atlas-unauthorized-use-agentic> <http://example.org/airkg#description> "Unauthorized use: If attackers can gain access to the AI agent and its components, they can perform actions that can have different levels of harm depending on the agent's capabilities and information it has access to. Examples: Using stored personal information to mimic identity or impersonate with an intent to deceive. Manipulating AI agent's behavior via feedback to the AI agent or corrupting its memory to change its behavior. Manipulating the problem description or the goal to get the AI agent to behave badly or run harmful commands." .
+<http://example.org/airkg/risk/atlas-unauthorized-use-agentic> <http://example.org/airkg#identifier> "atlas-unauthorized-use-agentic" .
+<http://example.org/airkg/risk/atlas-unauthorized-use-agentic> <http://example.org/airkg#name> "Unauthorized use" .
+<http://example.org/airkg/risk/atlas-unauthorized-use-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/unauthorized-use-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-unauthorized-use-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-unauthorized-use-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-unauthorized-use-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-unauthorized-use-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-unauthorized-use-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Unauthorized use"@en .
+<http://example.org/airkg/risk/atlas-unauthorized-use-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-unauthorized-use-agentic> .
+<http://example.org/airkg/risk/atlas-unexplainable-output> <http://example.org/airkg#description> "Explanations for model output decisions might be difficult, imprecise, or not possible to obtain." .
+<http://example.org/airkg/risk/atlas-unexplainable-output> <http://example.org/airkg#identifier> "atlas-unexplainable-output" .
+<http://example.org/airkg/risk/atlas-unexplainable-output> <http://example.org/airkg#name> "Unexplainable output" .
+<http://example.org/airkg/risk/atlas-unexplainable-output> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/unexplainable-output.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-unexplainable-output> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-unexplainable-output> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-unexplainable-output> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-unexplainable-output> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-unexplainable-output> <http://www.w3.org/2000/01/rdf-schema#label> "Unexplainable output"@en .
+<http://example.org/airkg/risk/atlas-unexplainable-output> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-unexplainable-output> .
+<http://example.org/airkg/risk/atlas-unexplainable-untraceable-actions-agentic> <http://example.org/airkg#description> "Explanations, lineage and trace information, and source attribution for AI agent actions might be difficult, imprecise or unobtainable." .
+<http://example.org/airkg/risk/atlas-unexplainable-untraceable-actions-agentic> <http://example.org/airkg#identifier> "atlas-unexplainable-untraceable-actions-agentic" .
+<http://example.org/airkg/risk/atlas-unexplainable-untraceable-actions-agentic> <http://example.org/airkg#name> "Unexplainable and untraceable actions" .
+<http://example.org/airkg/risk/atlas-unexplainable-untraceable-actions-agentic> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/unexplainable-untraceable-actions-agentic.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-unexplainable-untraceable-actions-agentic> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-unexplainable-untraceable-actions-agentic> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-unexplainable-untraceable-actions-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-unexplainable-untraceable-actions-agentic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-unexplainable-untraceable-actions-agentic> <http://www.w3.org/2000/01/rdf-schema#label> "Unexplainable and untraceable actions"@en .
+<http://example.org/airkg/risk/atlas-unexplainable-untraceable-actions-agentic> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-unexplainable-untraceable-actions-agentic> .
+<http://example.org/airkg/risk/atlas-unreliable-source-attribution> <http://example.org/airkg#description> "Source attribution is the AI system's ability to describe from what training data it generated a portion or all its output. Since current techniques are based on approximations, attributions might be incorrect." .
+<http://example.org/airkg/risk/atlas-unreliable-source-attribution> <http://example.org/airkg#identifier> "atlas-unreliable-source-attribution" .
+<http://example.org/airkg/risk/atlas-unreliable-source-attribution> <http://example.org/airkg#name> "Unreliable source attribution" .
+<http://example.org/airkg/risk/atlas-unreliable-source-attribution> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/unreliable-source-attribution.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-unreliable-source-attribution> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-unreliable-source-attribution> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-unreliable-source-attribution> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-unreliable-source-attribution> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-unreliable-source-attribution> <http://www.w3.org/2000/01/rdf-schema#label> "Unreliable source attribution"@en .
+<http://example.org/airkg/risk/atlas-unreliable-source-attribution> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-unreliable-source-attribution> .
+<http://example.org/airkg/risk/atlas-unrepresentative-data> <http://example.org/airkg#description> "Unrepresentative data occurs when the training or fine-tuning data is not sufficiently representative of the underlying population or does not measure the phenomenon of interest. Synthetic data might not fully capture the complexity and nuances of real-world data. Causes include possible limitations in the seed data quality, biases in generation methods, or inadequate domain knowledge. Thus, AI models might struggle to generalize effectively to real-world scenarios." .
+<http://example.org/airkg/risk/atlas-unrepresentative-data> <http://example.org/airkg#identifier> "atlas-unrepresentative-data" .
+<http://example.org/airkg/risk/atlas-unrepresentative-data> <http://example.org/airkg#name> "Unrepresentative data" .
+<http://example.org/airkg/risk/atlas-unrepresentative-data> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/unrepresentative-data.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-unrepresentative-data> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-unrepresentative-data> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-unrepresentative-data> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-unrepresentative-data> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-unrepresentative-data> <http://www.w3.org/2000/01/rdf-schema#label> "Unrepresentative data"@en .
+<http://example.org/airkg/risk/atlas-unrepresentative-data> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-unrepresentative-data> .
+<http://example.org/airkg/risk/atlas-unrepresentative-risk-testing> <http://example.org/airkg#description> "Testing is unrepresentative when the test inputs are mismatched with the inputs that are expected during deployment." .
+<http://example.org/airkg/risk/atlas-unrepresentative-risk-testing> <http://example.org/airkg#identifier> "atlas-unrepresentative-risk-testing" .
+<http://example.org/airkg/risk/atlas-unrepresentative-risk-testing> <http://example.org/airkg#name> "Unrepresentative risk testing" .
+<http://example.org/airkg/risk/atlas-unrepresentative-risk-testing> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/unrepresentative-risk-testing.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-unrepresentative-risk-testing> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-unrepresentative-risk-testing> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-unrepresentative-risk-testing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-unrepresentative-risk-testing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-unrepresentative-risk-testing> <http://www.w3.org/2000/01/rdf-schema#label> "Unrepresentative risk testing"@en .
+<http://example.org/airkg/risk/atlas-unrepresentative-risk-testing> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-unrepresentative-risk-testing> .
+<http://example.org/airkg/risk/atlas-untraceable-attribution> <http://example.org/airkg#description> "The content of the training data used for generating the model's output is not accessible." .
+<http://example.org/airkg/risk/atlas-untraceable-attribution> <http://example.org/airkg#identifier> "atlas-untraceable-attribution" .
+<http://example.org/airkg/risk/atlas-untraceable-attribution> <http://example.org/airkg#name> "Untraceable attribution" .
+<http://example.org/airkg/risk/atlas-untraceable-attribution> <http://example.org/airkg#source> "https://www.ibm.com/docs/en/watsonx/saas?topic=SSYOK8/wsj/ai-risk-atlas/untraceable-attribution.html"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://example.org/airkg/risk/atlas-untraceable-attribution> <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> .
+<http://example.org/airkg/risk/atlas-untraceable-attribution> <http://purl.org/dc/terms/source> <https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas> .
+<http://example.org/airkg/risk/atlas-untraceable-attribution> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/airkg#Risk> .
+<http://example.org/airkg/risk/atlas-untraceable-attribution> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://example.org/airkg/risk/atlas-untraceable-attribution> <http://www.w3.org/2000/01/rdf-schema#label> "Untraceable attribution"@en .
+<http://example.org/airkg/risk/atlas-untraceable-attribution> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/ai-atlas-nexus/atlas-untraceable-attribution> .

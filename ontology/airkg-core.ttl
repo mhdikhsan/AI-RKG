@@ -1,0 +1,1329 @@
+@prefix : <http://example.org/airkg/core#> .
+@prefix ai: <https://w3id.org/dpv/ai#> .
+@prefix ak: <http://example.org/airkg#> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix airo: <https://w3id.org/airo#> .
+@prefix beam: <http://w3id.org/beam/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix beamr: <http://w3id.org/beam/risk#> .
+@prefix sbpmn: <https://sBPMN.github.io/2.0/classes#> .
+@base <http://example.org/airkg/core#> .
+
+<http://example.org/airkg/core> rdf:type owl:Ontology ;
+                                 rdfs:comment "AI Risk knowledge consist of risk taken from catalogues, motifs, risk patterns, conditions,consequences, mitigation, and mitigation patterns"@en ;
+                                 rdfs:label "AI Risk Ontology - core module"@en ;
+                                 owl:versionInfo 1.0 .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+skos:closeMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#exactMatch
+skos:exactMatch rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/airkg#addressesRisk
+ak:addressesRisk rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain ak:MitigationPattern ;
+                 rdfs:range ak:Risk .
+
+
+###  http://example.org/airkg#affectsRole
+ak:affectsRole rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain ak:Consequence ;
+               rdfs:range ak:StakeholderRole .
+
+
+###  http://example.org/airkg#appliesInContext
+ak:appliesInContext rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( ak:MitigationPattern
+                                                ak:RiskPattern
+                                              )
+                                ] ;
+                    rdfs:range ak:ContextElement .
+
+
+###  http://example.org/airkg#appliesMitigation
+ak:appliesMitigation rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdfs:domain ak:MitigationPattern ;
+                     rdfs:range ak:Mitigation .
+
+
+###  http://example.org/airkg#concernsRole
+ak:concernsRole rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain ak:Condition ;
+                rdfs:range ak:Role .
+
+
+###  http://example.org/airkg#handles
+ak:handles rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain ak:MitigationPattern ;
+           rdfs:range ak:RiskPattern .
+
+
+###  http://example.org/airkg#hasConsequence
+ak:hasConsequence rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain ak:Risk ;
+                  rdfs:range ak:Consequence .
+
+
+###  http://example.org/airkg#hasMotif
+ak:hasMotif rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( ak:MitigationPattern
+                                        ak:RiskPattern
+                                      )
+                        ] ;
+            rdfs:range ak:Motif .
+
+
+###  http://example.org/airkg#indicatesRisk
+ak:indicatesRisk rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain ak:RiskPattern ;
+                 rdfs:range ak:Risk .
+
+
+###  http://example.org/airkg#involvesRole
+ak:involvesRole rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain ak:Motif ;
+                rdfs:range ak:Role .
+
+
+###  http://example.org/airkg#mitigatedBy
+ak:mitigatedBy rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               owl:inverseOf ak:mitigates ;
+               rdfs:domain ak:Risk ;
+               rdfs:range ak:Mitigation .
+
+
+###  http://example.org/airkg#mitigates
+ak:mitigates rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain ak:Mitigation ;
+             rdfs:range ak:Risk .
+
+
+###  http://example.org/airkg#requiresCondition
+ak:requiresCondition rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdfs:domain ak:RiskPattern ;
+                     rdfs:range ak:Condition .
+
+
+###  http://example.org/airkg#specialises
+ak:specialises rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( ak:Motif
+                                           ak:Role
+                                         )
+                           ] ;
+               rdfs:range [ rdf:type owl:Class ;
+                            owl:unionOf ( ak:Motif
+                                          ak:Role
+                                        )
+                          ] .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/airkg#description
+ak:description rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:range xsd:string .
+
+
+###  http://example.org/airkg#identifier
+ak:identifier rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:range xsd:string .
+
+
+###  http://example.org/airkg#level
+ak:level rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty ;
+         rdfs:range xsd:integer .
+
+
+###  http://example.org/airkg#name
+ak:name rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf owl:topDataProperty ;
+        rdfs:range xsd:string .
+
+
+###  http://example.org/airkg#source
+ak:source rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:range xsd:anyURI .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/airkg#AutonomyLevel
+ak:AutonomyLevel rdf:type owl:Class ;
+                 rdfs:subClassOf ak:ContextElement ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty ak:level ;
+                                   owl:cardinality "1"^^xsd:nonNegativeInteger
+                                 ] ;
+                 rdfs:comment "How much a workflow acts without a human"@en ;
+                 rdfs:label "Autonomy Level"@en ;
+                 rdfs:seeAlso dpv:AutomationLevel .
+
+
+###  http://example.org/airkg#ComponentRole
+ak:ComponentRole rdf:type owl:Class ;
+                 rdfs:subClassOf ak:Role ;
+                 rdfs:comment "Controlled list: the function a component has"@en ;
+                 rdfs:label "Component Role"@en .
+
+
+###  http://example.org/airkg#Condition
+ak:Condition rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty ak:description ;
+                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty ak:name ;
+                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                             ] ;
+             rdfs:comment "a state of the system itself that makes a risk possible"@en ;
+             rdfs:label "Condition"@en .
+
+
+###  http://example.org/airkg#Consequence
+ak:Consequence rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty ak:affectsRole ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass ak:StakeholderRole
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty ak:description ;
+                                 owl:minCardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty ak:name ;
+                                 owl:minCardinality "1"^^xsd:nonNegativeInteger
+                               ] ;
+               rdfs:comment "Outcome of a risk that has occurred, affecting objectives, the organization, people or the environment."@en ;
+               rdfs:label "Consequence"@en ;
+               rdfs:seeAlso beamr:Consequence ,
+                            airo:Consequence .
+
+
+###  http://example.org/airkg#ContextElement
+ak:ContextElement rdf:type owl:Class ;
+                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty ak:name ;
+                                    owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                  ] ;
+                  rdfs:comment "A general value that describes the setting in which a system is used. Each sub-class is a controlled list."@en ;
+                  rdfs:label "Context Element"@en .
+
+
+###  http://example.org/airkg#DataType
+ak:DataType rdf:type owl:Class ;
+            rdfs:subClassOf ak:ContextElement ;
+            rdfs:comment "The category of data"@en ;
+            rdfs:label "Data Type"@en ;
+            rdfs:seeAlso dpv:Data .
+
+
+###  http://example.org/airkg#DeploymentEnvironment
+ak:DeploymentEnvironment rdf:type owl:Class ;
+                         rdfs:subClassOf ak:ContextElement ;
+                         rdfs:comment "Where a system and workflow runs and who can reach it."@en ;
+                         rdfs:label "Deployment Environment"@en .
+
+
+###  http://example.org/airkg#Domain
+ak:Domain rdf:type owl:Class ;
+          rdfs:subClassOf ak:ContextElement ;
+          rdfs:comment "The sector in which the system is used."@en ;
+          rdfs:label "Domain"@en ;
+          rdfs:seeAlso airo:Domain ,
+                       dpv:Sector .
+
+
+###  http://example.org/airkg#Mitigation
+ak:Mitigation rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty ak:mitigates ;
+                                owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass ak:Risk
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty ak:description ;
+                                owl:minCardinality "1"^^xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty ak:name ;
+                                owl:minCardinality "1"^^xsd:nonNegativeInteger
+                              ] ;
+              rdfs:comment "A measure that prevents a risk, detects it, or reduces its consequences."@en ;
+              rdfs:label "Mitigation"@en ;
+              rdfs:seeAlso beamr:RiskControl ,
+                           airo:RiskControl .
+
+
+###  http://example.org/airkg#MitigationPattern
+ak:MitigationPattern rdf:type owl:Class ;
+                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                       owl:onProperty ak:addressesRisk ;
+                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                       owl:onClass ak:Risk
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty ak:appliesMitigation ;
+                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                       owl:onClass ak:Mitigation
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty ak:description ;
+                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty ak:name ;
+                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                     ] ;
+                     rdfs:comment "A general description of how a mitigation handles a risk or a risk pattern"@en ;
+                     rdfs:label "Mitigation Pattern"@en .
+
+
+###  http://example.org/airkg#Motif
+ak:Motif rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty ak:involvesRole ;
+                           owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                           owl:onClass ak:Role
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty ak:specialises ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass ak:Motif
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty ak:description ;
+                           owl:minCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty ak:name ;
+                           owl:minCardinality "1"^^xsd:nonNegativeInteger
+                         ] ;
+         rdfs:comment "recurring structural arrangement of roles in an AI system or its settings"@en ;
+         rdfs:label "Motif"@en .
+
+
+###  http://example.org/airkg#OrganisationalMitigation
+ak:OrganisationalMitigation rdf:type owl:Class ;
+                            rdfs:subClassOf ak:Mitigation ;
+                            rdfs:comment "A mitigation that works through people, rules or procedures."@en ;
+                            rdfs:label "Organisational Mitigation"@en ;
+                            rdfs:seeAlso dpv:OrganisationalMeasure .
+
+
+###  http://example.org/airkg#Purpose
+ak:Purpose rdf:type owl:Class ;
+           rdfs:subClassOf ak:ContextElement ;
+           rdfs:comment "What the system is used for."@en ;
+           rdfs:label "Purpose"@en ;
+           rdfs:seeAlso dpv:Purpose .
+
+
+###  http://example.org/airkg#Risk
+ak:Risk rdf:type owl:Class ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty ak:hasConsequence ;
+                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass ak:Consequence
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty ak:description ;
+                          owl:minCardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty ak:name ;
+                          owl:minCardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty ak:source ;
+                          owl:minCardinality "1"^^xsd:nonNegativeInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty ak:identifier ;
+                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                        ] ;
+        rdfs:comment "a named kind of possible harm or failure of an AI system. Listed in several published taxonomies. Likelihood and severity are excluded."@en ;
+        rdfs:label "Risk"@en ;
+        rdfs:seeAlso beamr:Risk ,
+                     airo:Risk .
+
+
+###  http://example.org/airkg#RiskPattern
+ak:RiskPattern rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty ak:hasMotif ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass ak:Motif
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty ak:indicatesRisk ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass ak:Risk
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty ak:description ;
+                                 owl:minCardinality "1"^^xsd:nonNegativeInteger
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty ak:name ;
+                                 owl:minCardinality "1"^^xsd:nonNegativeInteger
+                               ] ;
+               rdfs:comment "A general, reusable description of how a risk can arise, i.e., which kinds of components are involved, under which conditions, in which context."@en ;
+               rdfs:label "Risk Pattern"@en .
+
+
+###  http://example.org/airkg#Role
+ak:Role rdf:type owl:Class ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty ak:specialises ;
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onClass ak:Role
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty ak:name ;
+                          owl:minCardinality "1"^^xsd:nonNegativeInteger
+                        ] ;
+        rdfs:comment "a general function that describes independently something in AI system and it settings. It gives a general and uniform way to refer to components and stakeholders"@en ;
+        rdfs:label "Role"@en .
+
+
+###  http://example.org/airkg#StakeholderRole
+ak:StakeholderRole rdf:type owl:Class ;
+                   rdfs:subClassOf ak:Role ;
+                   rdfs:comment "Controlled list of stakeholder roles from ISO/IEC 22989."@en ;
+                   rdfs:label "Stakeholder Role"@en .
+
+
+###  http://example.org/airkg#Task
+ak:Task rdf:type owl:Class ;
+        rdfs:subClassOf ak:ContextElement ;
+        rdfs:comment "The kind of job the AI does"@en ;
+        rdfs:label "Task"@en ;
+        rdfs:seeAlso ai:Capability .
+
+
+###  http://example.org/airkg#TechnicalMitigation
+ak:TechnicalMitigation rdf:type owl:Class ;
+                       rdfs:subClassOf ak:Mitigation ;
+                       rdfs:comment "A mitigation that works through the system itself"@en ;
+                       rdfs:label "Technical Mitigation"@en ;
+                       rdfs:seeAlso dpv:TechnicalMeasure .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.org/airkg#AIContentLabelling
+ak:AIContentLabelling rdf:type owl:NamedIndividual ,
+                               ak:TechnicalMitigation ;
+                      ak:mitigates ak:NonDisclosure ;
+                      ak:description "Tell the recipient that the content was generated." ;
+                      ak:name "AI content labelling" .
+
+
+###  http://example.org/airkg#AICustomer
+ak:AICustomer rdf:type owl:NamedIndividual ,
+                       ak:StakeholderRole ;
+              ak:description "Uses the AI product or service." ;
+              ak:name "AI customer (user)" .
+
+
+###  http://example.org/airkg#AIPartner
+ak:AIPartner rdf:type owl:NamedIndividual ,
+                      ak:StakeholderRole ;
+             ak:description "Supplies services, data or components for the AI system." ;
+             ak:name "AI partner" .
+
+
+###  http://example.org/airkg#AIProducer
+ak:AIProducer rdf:type owl:NamedIndividual ,
+                       ak:StakeholderRole ;
+              ak:description "Designs, develops and tests the AI system." ;
+              ak:name "AI producer (developer)" .
+
+
+###  http://example.org/airkg#AIProvider
+ak:AIProvider rdf:type owl:NamedIndividual ,
+                       ak:StakeholderRole ;
+              ak:description "Provides a product or service that uses an AI system." ;
+              ak:name "AI provider" .
+
+
+###  http://example.org/airkg#AISubject
+ak:AISubject rdf:type owl:NamedIndividual ,
+                      ak:StakeholderRole ;
+             ak:description "Is affected by the AI system, e.g. the person whose data is processed." ;
+             ak:name "AI subject" .
+
+
+###  http://example.org/airkg#AssessModelSupplierPattern
+ak:AssessModelSupplierPattern rdf:type owl:NamedIndividual ,
+                                       ak:MitigationPattern ;
+                              ak:addressesRisk ak:SupplyChain ;
+                              ak:appliesMitigation ak:SupplierAssessment ;
+                              ak:handles ak:OpaqueThirdPartyModelPattern ;
+                              ak:description "Before a supplied model is adopted, and for each new version, the organization checks the supplier and the model documentation against its requirements." ;
+                              ak:name "Assess the model supplier before adoption" .
+
+
+###  http://example.org/airkg#ContentGenerationTask
+ak:ContentGenerationTask rdf:type owl:NamedIndividual ,
+                                  ak:Task ;
+                         ak:description "Producing text or other content." ;
+                         ak:name "Content generation" .
+
+
+###  http://example.org/airkg#ContentPolicyForKnowledgeSourcePattern
+ak:ContentPolicyForKnowledgeSourcePattern rdf:type owl:NamedIndividual ,
+                                                   ak:MitigationPattern ;
+                                          ak:addressesRisk ak:SensitiveInformationDisclosure ;
+                                          ak:appliesMitigation ak:KnowledgeBaseContentPolicy ;
+                                          ak:handles ak:PersonalDataDisclosureThroughRetrievalPattern ;
+                                          ak:description "Staff follow a rule on what may be stored in the knowledge source; a regular check removes what does not belong there." ;
+                                          ak:name "Content policy for the knowledge source" .
+
+
+###  http://example.org/airkg#ContentScreening
+ak:ContentScreening rdf:type owl:NamedIndividual ,
+                             ak:TechnicalMitigation ;
+                    ak:mitigates ak:PromptInjection ;
+                    ak:description "Check text for injected instructions before it is given to the model." ;
+                    ak:name "Content screening" .
+
+
+###  http://example.org/airkg#ControlStepRole
+ak:ControlStepRole rdf:type owl:NamedIndividual ,
+                            ak:ComponentRole ;
+                   ak:description "A process that checks, filters or approves data before it is used further. Not in BEAM." ;
+                   ak:name "Control" .
+
+
+###  http://example.org/airkg#CustomerSupportPurpose
+ak:CustomerSupportPurpose rdf:type owl:NamedIndividual ,
+                                   ak:Purpose ;
+                          ak:description "Answering questions of customers." ;
+                          ak:name "Customer support" .
+
+
+###  http://example.org/airkg#DataControlMotif
+ak:DataControlMotif rdf:type owl:NamedIndividual ,
+                             ak:Motif ;
+                    ak:involvesRole ak:ControlStepRole ,
+                                    ak:DerivedDataRole ;
+                    ak:description "A control step checks data before it becomes the derived data that a later step uses." ;
+                    ak:name "Control of data before use" .
+
+
+###  http://example.org/airkg#DerivedDataRole
+ak:DerivedDataRole rdf:type owl:NamedIndividual ,
+                            ak:ComponentRole ;
+                   ak:description "Data that a step of the workflow produces from other data, for use by a later step." ;
+                   ak:name "Derived data" .
+
+
+###  http://example.org/airkg#DirectPromptInjectionPattern
+ak:DirectPromptInjectionPattern rdf:type owl:NamedIndividual ,
+                                         ak:RiskPattern ;
+                                ak:appliesInContext ak:PublicFacingService ;
+                                ak:hasMotif ak:UserPromptedGenerationMotif ;
+                                ak:indicatesRisk ak:PromptInjection ;
+                                ak:requiresCondition ak:UserInputIncludedInPrompt ;
+                                ak:description "A user writes instructions into the input. Because the input is part of the prompt, the model may follow them. This matters when anyone outside the organization can reach the service." ;
+                                ak:name "Direct prompt injection through user input" .
+
+
+###  http://example.org/airkg#DocumentIndexingMotif
+ak:DocumentIndexingMotif rdf:type owl:NamedIndividual ,
+                                  ak:Motif ;
+                         ak:involvesRole ak:EmbeddingModelRole ,
+                                         ak:IndexingStepRole ,
+                                         ak:KnowledgeSourceRole ,
+                                         ak:VectorIndexRole ;
+                         ak:specialises ak:SourceDataRepresentationMotif ;
+                         ak:description "An indexing step uses an embedding model to turn a knowledge source into a vector index." ;
+                         ak:name "Document indexing" .
+
+
+###  http://example.org/airkg#EmbeddingModelRole
+ak:EmbeddingModelRole rdf:type owl:NamedIndividual ,
+                               ak:ComponentRole ;
+                      ak:specialises ak:RepresentationModelRole ;
+                      ak:description "A model that turns text into vectors." ;
+                      ak:name "Embedding model" .
+
+
+###  http://example.org/airkg#EngineerStepRole
+ak:EngineerStepRole rdf:type owl:NamedIndividual ,
+                             ak:ComponentRole ;
+                    ak:description "A process in which people build a model by hand (BEAM: Engineer)." ;
+                    ak:name "Engineer step" ;
+                    rdfs:seeAlso beam:Engineer .
+
+
+###  http://example.org/airkg#GeneratedOutputRole
+ak:GeneratedOutputRole rdf:type owl:NamedIndividual ,
+                                ak:ComponentRole ;
+                       ak:specialises ak:OutputDataRole ;
+                       ak:description "Content produced by a generative model." ;
+                       ak:name "Generated output" .
+
+
+###  http://example.org/airkg#GeneratedOutputToCustomerMotif
+ak:GeneratedOutputToCustomerMotif rdf:type owl:NamedIndividual ,
+                                           ak:Motif ;
+                                  ak:involvesRole ak:AICustomer ,
+                                                  ak:GeneratedOutputRole ;
+                                  ak:specialises ak:OutputToCustomerMotif ;
+                                  ak:description "Content produced by a generative model reaches the people who use the AI product or service." ;
+                                  ak:name "Generated output to customers" .
+
+
+###  http://example.org/airkg#GenerationOnDerivedDataMotif
+ak:GenerationOnDerivedDataMotif rdf:type owl:NamedIndividual ,
+                                         ak:Motif ;
+                                ak:involvesRole ak:DerivedDataRole ,
+                                                ak:GenerativeModelRole ,
+                                                ak:InferStepRole ,
+                                                ak:TransformStepRole ;
+                                ak:description "A transform step produces derived data; an infer step gives it to a generative model." ;
+                                ak:name "Generation on derived data" .
+
+
+###  http://example.org/airkg#GenerationStepRole
+ak:GenerationStepRole rdf:type owl:NamedIndividual ,
+                               ak:ComponentRole ;
+                      ak:specialises ak:InferStepRole ;
+                      ak:description "A process in which a generative model produces output. In BEAM terms this is Infer, not Generate." ;
+                      ak:name "Generation step" .
+
+
+###  http://example.org/airkg#GenerativeInferenceMotif
+ak:GenerativeInferenceMotif rdf:type owl:NamedIndividual ,
+                                     ak:Motif ;
+                            ak:involvesRole ak:GenerativeModelRole ,
+                                            ak:InferStepRole ,
+                                            ak:OutputDataRole ;
+                            ak:description "An infer step applies a generative model and produces output." ;
+                            ak:name "Generative inference" .
+
+
+###  http://example.org/airkg#GenerativeModelRole
+ak:GenerativeModelRole rdf:type owl:NamedIndividual ,
+                                ak:ComponentRole ;
+                       ak:description "A model that produces content." ;
+                       ak:name "Generative model" .
+
+
+###  http://example.org/airkg#HealthcareDomain
+ak:HealthcareDomain rdf:type owl:NamedIndividual ,
+                             ak:Domain ;
+                    ak:name "Healthcare" .
+
+
+###  http://example.org/airkg#HumanApprovalBeforeSendingPattern
+ak:HumanApprovalBeforeSendingPattern rdf:type owl:NamedIndividual ,
+                                              ak:MitigationPattern ;
+                                     ak:addressesRisk ak:Misinformation ;
+                                     ak:appliesInContext ak:CustomerSupportPurpose ;
+                                     ak:appliesMitigation ak:HumanReviewOfAnswers ;
+                                     ak:handles ak:UnreviewedAnswerPattern ;
+                                     ak:description "A support agent reads each generated answer and approves or corrects it before the customer sees it." ;
+                                     ak:name "Human approval before an answer is sent" .
+
+
+###  http://example.org/airkg#HumanApproves
+ak:HumanApproves rdf:type owl:NamedIndividual ,
+                          ak:AutonomyLevel ;
+                 ak:description "A human approves each output before it takes effect." ;
+                 ak:level 2 ;
+                 ak:name "Human approves" .
+
+
+###  http://example.org/airkg#HumanDecides
+ak:HumanDecides rdf:type owl:NamedIndividual ,
+                         ak:AutonomyLevel ;
+                ak:description "The system only advises; a human takes every decision." ;
+                ak:level 1 ;
+                ak:name "Human decides" .
+
+
+###  http://example.org/airkg#HumanOperatorRole
+ak:HumanOperatorRole rdf:type owl:NamedIndividual ,
+                              ak:ComponentRole ;
+                     ak:specialises ak:OperatorRole ;
+                     ak:description "A person who takes part in a process." ;
+                     ak:name "Human operator" .
+
+
+###  http://example.org/airkg#HumanReviewOfAnswers
+ak:HumanReviewOfAnswers rdf:type owl:NamedIndividual ,
+                                 ak:OrganisationalMitigation ;
+                        ak:mitigates ak:Misinformation ;
+                        ak:description "A person checks an answer before it is sent." ;
+                        ak:name "Human review of answers" .
+
+
+###  http://example.org/airkg#HumanSupervises
+ak:HumanSupervises rdf:type owl:NamedIndividual ,
+                            ak:AutonomyLevel ;
+                   ak:description "The system acts; a human watches and can step in." ;
+                   ak:level 3 ;
+                   ak:name "Human supervises" .
+
+
+###  http://example.org/airkg#IndexingStepRole
+ak:IndexingStepRole rdf:type owl:NamedIndividual ,
+                             ak:ComponentRole ;
+                    ak:specialises ak:TransformStepRole ;
+                    ak:description "A process that builds an index from a knowledge source." ;
+                    ak:name "Indexing step" .
+
+
+###  http://example.org/airkg#IndirectPromptInjectionPattern
+ak:IndirectPromptInjectionPattern rdf:type owl:NamedIndividual ,
+                                           ak:RiskPattern ;
+                                  ak:hasMotif ak:RetrievalAugmentedGenerationMotif ;
+                                  ak:indicatesRisk ak:PromptInjection ;
+                                  ak:requiresCondition ak:KnowledgeSourceEditableByOutsiders ,
+                                                       ak:RetrievedContentIncludedInPrompt ;
+                                  ak:description "An outsider plants instructions in the knowledge source. The retrieval step fetches them and they enter the prompt, where the model may follow them." ;
+                                  ak:name "Indirect prompt injection through retrieved content" .
+
+
+###  http://example.org/airkg#InferStepRole
+ak:InferStepRole rdf:type owl:NamedIndividual ,
+                          ak:ComponentRole ;
+                 ak:description "A process that applies a model to data to produce a result (BEAM: Infer)." ;
+                 ak:name "Infer step" ;
+                 rdfs:seeAlso beam:Infer .
+
+
+###  http://example.org/airkg#InformationRetrievalTask
+ak:InformationRetrievalTask rdf:type owl:NamedIndividual ,
+                                     ak:Task ;
+                            ak:description "Finding relevant content for a request." ;
+                            ak:name "Information retrieval" .
+
+
+###  http://example.org/airkg#InheritedWeakness
+ak:InheritedWeakness rdf:type owl:NamedIndividual ,
+                              ak:Consequence ;
+                     ak:affectsRole ak:AICustomer ,
+                                    ak:AIProvider ;
+                     ak:description "A flaw or tampering in a supplied model or dataset becomes a flaw of the system." ;
+                     ak:name "Weakness inherited from a supplier" .
+
+
+###  http://example.org/airkg#InputDataRole
+ak:InputDataRole rdf:type owl:NamedIndividual ,
+                          ak:ComponentRole ;
+                 ak:description "Data that enters the workflow from outside it." ;
+                 ak:name "Input data" .
+
+
+###  http://example.org/airkg#InputScreeningMotif
+ak:InputScreeningMotif rdf:type owl:NamedIndividual ,
+                                ak:Motif ;
+                       ak:involvesRole ak:PromptRole ,
+                                       ak:ScreeningStepRole ,
+                                       ak:UserInputRole ;
+                       ak:specialises ak:DataControlMotif ;
+                       ak:description "A screening step checks user input before it goes into the prompt." ;
+                       ak:name "Input screening" .
+
+
+###  http://example.org/airkg#InternalKnowledgeSearchPurpose
+ak:InternalKnowledgeSearchPurpose rdf:type owl:NamedIndividual ,
+                                           ak:Purpose ;
+                                  ak:description "Helping employees find internal information." ;
+                                  ak:name "Internal knowledge search" .
+
+
+###  http://example.org/airkg#InternalTool
+ak:InternalTool rdf:type owl:NamedIndividual ,
+                         ak:DeploymentEnvironment ;
+                ak:description "Runs inside the organization and is reachable only by its staff." ;
+                ak:name "Internal tool" .
+
+
+###  http://example.org/airkg#KnowledgeBaseContentPolicy
+ak:KnowledgeBaseContentPolicy rdf:type owl:NamedIndividual ,
+                                       ak:OrganisationalMitigation ;
+                              ak:mitigates ak:PromptInjection ,
+                                           ak:SensitiveInformationDisclosure ;
+                              ak:description "A rule for staff on what may be stored in the knowledge source, with regular checks." ;
+                              ak:name "Knowledge base content policy" .
+
+
+###  http://example.org/airkg#KnowledgeSourceEditableByOutsiders
+ak:KnowledgeSourceEditableByOutsiders rdf:type owl:NamedIndividual ,
+                                               ak:Condition ;
+                                      ak:concernsRole ak:KnowledgeSourceRole ;
+                                      ak:description "People outside the organization can add or change content in the knowledge source." ;
+                                      ak:name "Knowledge source can be edited by outsiders" .
+
+
+###  http://example.org/airkg#KnowledgeSourceRole
+ak:KnowledgeSourceRole rdf:type owl:NamedIndividual ,
+                                ak:ComponentRole ;
+                       ak:specialises ak:SourceDataRole ;
+                       ak:description "A collection of documents or records the system draws on." ;
+                       ak:name "Knowledge source" .
+
+
+###  http://example.org/airkg#LabelGeneratedContentPattern
+ak:LabelGeneratedContentPattern rdf:type owl:NamedIndividual ,
+                                         ak:MitigationPattern ;
+                                ak:addressesRisk ak:NonDisclosure ;
+                                ak:appliesMitigation ak:AIContentLabelling ;
+                                ak:handles ak:UndisclosedGeneratedCommunicationPattern ;
+                                ak:description "Every generated message carries a notice that it was generated, so the recipient is told." ;
+                                ak:name "Label generated content for the recipient" .
+
+
+###  http://example.org/airkg#ManipulatedSystemBehaviour
+ak:ManipulatedSystemBehaviour rdf:type owl:NamedIndividual ,
+                                       ak:Consequence ;
+                              ak:affectsRole ak:AICustomer ,
+                                             ak:AIProvider ;
+                              ak:description "The system follows instructions planted by someone else instead of its intended instructions." ;
+                              ak:name "Manipulated system behaviour" .
+
+
+###  http://example.org/airkg#Misinformation
+ak:Misinformation rdf:type owl:NamedIndividual ,
+                           ak:Risk ;
+                  ak:hasConsequence ak:WrongInformationActedOn ;
+                  ak:description "The system produces false or misleading content that appears credible." ;
+                  ak:identifier "LLM09:2025" ;
+                  ak:name "Misinformation" ;
+                  ak:source "https://genai.owasp.org/llm-top-10/"^^xsd:anyURI .
+
+
+###  http://example.org/airkg#NoHumanInvolved
+ak:NoHumanInvolved rdf:type owl:NamedIndividual ,
+                            ak:AutonomyLevel ;
+                   ak:description "The system acts without a human." ;
+                   ak:level 4 ;
+                   ak:name "No human involved" .
+
+
+###  http://example.org/airkg#NonDisclosure
+ak:NonDisclosure rdf:type owl:NamedIndividual ,
+                          ak:Risk ;
+                 ak:hasConsequence ak:PeopleMisledAboutSource ;
+                 ak:description "Content is not clearly disclosed as AI generated." ;
+                 ak:identifier "atlas-non-disclosure" ;
+                 ak:name "Non-disclosure" ;
+                 ak:source "https://arxiv.org/abs/2503.05780"^^xsd:anyURI .
+
+
+###  http://example.org/airkg#NonPersonalData
+ak:NonPersonalData rdf:type owl:NamedIndividual ,
+                            ak:DataType ;
+                   ak:description "Data that is not about a person (dpv:NonPersonalData)." ;
+                   ak:name "Non-personal data" .
+
+
+###  http://example.org/airkg#OpaqueThirdPartyModelPattern
+ak:OpaqueThirdPartyModelPattern rdf:type owl:NamedIndividual ,
+                                         ak:RiskPattern ;
+                                ak:hasMotif ak:ThirdPartyModelSupplyMotif ;
+                                ak:indicatesRisk ak:SupplyChain ;
+                                ak:requiresCondition ak:SuppliedModelNotInspectable ;
+                                ak:description "The organization builds its service on a model from a partner and cannot examine it. A flaw, bias or tampering in the model reaches the service unnoticed." ;
+                                ak:name "Service built on a third-party model that cannot be inspected" .
+
+
+###  http://example.org/airkg#OperatorRole
+ak:OperatorRole rdf:type owl:NamedIndividual ,
+                         ak:ComponentRole ;
+                ak:description "A person or software agent that carries out a step." ;
+                ak:name "Operator" .
+
+
+###  http://example.org/airkg#OutputDataRole
+ak:OutputDataRole rdf:type owl:NamedIndividual ,
+                           ak:ComponentRole ;
+                  ak:description "Data that leaves the workflow as its result." ;
+                  ak:name "Output data" .
+
+
+###  http://example.org/airkg#OutputShownToEndUser
+ak:OutputShownToEndUser rdf:type owl:NamedIndividual ,
+                                 ak:Condition ;
+                        ak:concernsRole ak:GeneratedOutputRole ;
+                        ak:description "The generated output reaches the person who asked." ;
+                        ak:name "Generated output is shown to the end user" .
+
+
+###  http://example.org/airkg#OutputToCustomerMotif
+ak:OutputToCustomerMotif rdf:type owl:NamedIndividual ,
+                                  ak:Motif ;
+                         ak:involvesRole ak:AICustomer ,
+                                         ak:OutputDataRole ;
+                         ak:description "Output of the workflow reaches the people who use the AI product or service." ;
+                         ak:name "AI output to customers" .
+
+
+###  http://example.org/airkg#PeopleMisledAboutSource
+ak:PeopleMisledAboutSource rdf:type owl:NamedIndividual ,
+                                    ak:Consequence ;
+                           ak:affectsRole ak:AICustomer ;
+                           ak:description "A person believes content was written by a human when it was generated." ;
+                           ak:name "People misled about the source" .
+
+
+###  http://example.org/airkg#PersonalData
+ak:PersonalData rdf:type owl:NamedIndividual ,
+                         ak:DataType ;
+                ak:description "Data about an identified or identifiable person (dpv:PersonalData)." ;
+                ak:name "Personal data" .
+
+
+###  http://example.org/airkg#PersonalDataDisclosureThroughRetrievalPattern
+ak:PersonalDataDisclosureThroughRetrievalPattern rdf:type owl:NamedIndividual ,
+                                                          ak:RiskPattern ;
+                                                 ak:appliesInContext ak:PersonalData ;
+                                                 ak:hasMotif ak:GenerationOnDerivedDataMotif ;
+                                                 ak:indicatesRisk ak:SensitiveInformationDisclosure ;
+                                                 ak:requiresCondition ak:OutputShownToEndUser ,
+                                                                      ak:RetrievedContentIncludedInPrompt ;
+                                                 ak:description "Retrieved passages contain personal data of other people. They enter the prompt and the model may repeat them in its answer." ;
+                                                 ak:name "Personal data disclosed through retrieval" .
+
+
+###  http://example.org/airkg#PersonalDataExposed
+ak:PersonalDataExposed rdf:type owl:NamedIndividual ,
+                                ak:Consequence ;
+                       ak:affectsRole ak:AIProvider ,
+                                      ak:AISubject ;
+                       ak:description "Personal data reaches people who should not see it." ;
+                       ak:name "Personal data exposed" .
+
+
+###  http://example.org/airkg#PersonalDataInThirdPartyIndexPattern
+ak:PersonalDataInThirdPartyIndexPattern rdf:type owl:NamedIndividual ,
+                                                 ak:RiskPattern ;
+                                        ak:appliesInContext ak:PersonalData ,
+                                                            ak:ThirdPartyCloud ;
+                                        ak:hasMotif ak:SourceDataRepresentationMotif ;
+                                        ak:indicatesRisk ak:SensitiveInformationDisclosure ;
+                                        ak:description "Records with personal data are embedded and the index is stored on infrastructure of another organization." ;
+                                        ak:name "Personal data embedded in a third-party index" .
+
+
+###  http://example.org/airkg#PersonalDataRedaction
+ak:PersonalDataRedaction rdf:type owl:NamedIndividual ,
+                                  ak:TechnicalMitigation ;
+                         ak:mitigates ak:SensitiveInformationDisclosure ;
+                         ak:description "Remove or mask personal data before it is stored or used." ;
+                         ak:name "Personal data redaction" .
+
+
+###  http://example.org/airkg#PredictiveModelRole
+ak:PredictiveModelRole rdf:type owl:NamedIndividual ,
+                                ak:ComponentRole ;
+                       ak:description "A model that assigns a label, score or value to its input." ;
+                       ak:name "Predictive model" .
+
+
+###  http://example.org/airkg#PromptAssemblyStepRole
+ak:PromptAssemblyStepRole rdf:type owl:NamedIndividual ,
+                                   ak:ComponentRole ;
+                          ak:specialises ak:TransformStepRole ;
+                          ak:description "A process that builds the prompt." ;
+                          ak:name "Prompt assembly step" .
+
+
+###  http://example.org/airkg#PromptInjection
+ak:PromptInjection rdf:type owl:NamedIndividual ,
+                            ak:Risk ;
+                   ak:hasConsequence ak:ManipulatedSystemBehaviour ,
+                                     ak:PersonalDataExposed ;
+                   ak:description "Crafted input changes the behaviour or output of the model in unintended ways." ;
+                   ak:identifier "LLM01:2025" ;
+                   ak:name "Prompt injection" ;
+                   ak:source "https://genai.owasp.org/llm-top-10/"^^xsd:anyURI ;
+                   skos:closeMatch <https://atlas.mitre.org/techniques/AML.T0051> .
+
+
+###  http://example.org/airkg#PromptRole
+ak:PromptRole rdf:type owl:NamedIndividual ,
+                       ak:ComponentRole ;
+              ak:specialises ak:DerivedDataRole ;
+              ak:description "The assembled text given to a generative model." ;
+              ak:name "Prompt" .
+
+
+###  http://example.org/airkg#PublicFacingService
+ak:PublicFacingService rdf:type owl:NamedIndividual ,
+                                ak:DeploymentEnvironment ;
+                       ak:description "Reachable by people outside the organization." ;
+                       ak:name "Public-facing service" .
+
+
+###  http://example.org/airkg#RecipientNotToldContentIsGenerated
+ak:RecipientNotToldContentIsGenerated rdf:type owl:NamedIndividual ,
+                                               ak:Condition ;
+                                      ak:concernsRole ak:AICustomer ,
+                                                      ak:GeneratedOutputRole ;
+                                      ak:description "Nothing tells the person who receives the content that it was generated." ;
+                                      ak:name "Recipient is not told the content is AI generated" .
+
+
+###  http://example.org/airkg#RedactBeforeIndexingPattern
+ak:RedactBeforeIndexingPattern rdf:type owl:NamedIndividual ,
+                                        ak:MitigationPattern ;
+                               ak:addressesRisk ak:SensitiveInformationDisclosure ;
+                               ak:appliesInContext ak:PersonalData ;
+                               ak:appliesMitigation ak:PersonalDataRedaction ;
+                               ak:handles ak:PersonalDataDisclosureThroughRetrievalPattern ,
+                                          ak:PersonalDataInThirdPartyIndexPattern ;
+                               ak:hasMotif ak:RedactionBeforeIndexingMotif ;
+                               ak:description "A redaction step removes personal data from records before they are embedded, so retrieved passages no longer contain it." ;
+                               ak:name "Redact personal data before indexing" .
+
+
+###  http://example.org/airkg#RedactionBeforeIndexingMotif
+ak:RedactionBeforeIndexingMotif rdf:type owl:NamedIndividual ,
+                                         ak:Motif ;
+                                ak:involvesRole ak:IndexingStepRole ,
+                                                ak:KnowledgeSourceRole ,
+                                                ak:RedactionStepRole ;
+                                ak:specialises ak:SourceDataPreparationMotif ;
+                                ak:description "A redaction step removes personal data from a knowledge source before it is indexed." ;
+                                ak:name "Redaction before indexing" .
+
+
+###  http://example.org/airkg#RedactionStepRole
+ak:RedactionStepRole rdf:type owl:NamedIndividual ,
+                              ak:ComponentRole ;
+                     ak:specialises ak:TransformStepRole ;
+                     ak:description "A process that removes personal data from content." ;
+                     ak:name "Redaction step" .
+
+
+###  http://example.org/airkg#RelevantAuthority
+ak:RelevantAuthority rdf:type owl:NamedIndividual ,
+                              ak:StakeholderRole ;
+                     ak:description "Regulator or policy maker with authority over the AI system." ;
+                     ak:name "Relevant authority" .
+
+
+###  http://example.org/airkg#RepresentationModelRole
+ak:RepresentationModelRole rdf:type owl:NamedIndividual ,
+                                    ak:ComponentRole ;
+                           ak:description "A model that turns data into another representation." ;
+                           ak:name "Representation model" .
+
+
+###  http://example.org/airkg#RetrievalAugmentedGenerationMotif
+ak:RetrievalAugmentedGenerationMotif rdf:type owl:NamedIndividual ,
+                                              ak:Motif ;
+                                     ak:involvesRole ak:GenerationStepRole ,
+                                                     ak:GenerativeModelRole ,
+                                                     ak:PromptRole ,
+                                                     ak:RetrievalStepRole ,
+                                                     ak:RetrievedContentRole ;
+                                     ak:specialises ak:GenerationOnDerivedDataMotif ;
+                                     ak:description "A retrieval step fetches content; the content goes into the prompt of a generative model." ;
+                                     ak:name "Retrieval-augmented generation" .
+
+
+###  http://example.org/airkg#RetrievalStepRole
+ak:RetrievalStepRole rdf:type owl:NamedIndividual ,
+                              ak:ComponentRole ;
+                     ak:specialises ak:TransformStepRole ;
+                     ak:description "A process that fetches content for a request." ;
+                     ak:name "Retrieval step" .
+
+
+###  http://example.org/airkg#RetrievedContentIncludedInPrompt
+ak:RetrievedContentIncludedInPrompt rdf:type owl:NamedIndividual ,
+                                             ak:Condition ;
+                                    ak:concernsRole ak:PromptRole ,
+                                                    ak:RetrievedContentRole ;
+                                    ak:description "Retrieved passages become part of the prompt." ;
+                                    ak:name "Retrieved content is included in the prompt" .
+
+
+###  http://example.org/airkg#RetrievedContentRole
+ak:RetrievedContentRole rdf:type owl:NamedIndividual ,
+                                 ak:ComponentRole ;
+                        ak:specialises ak:DerivedDataRole ;
+                        ak:description "Passages fetched from a knowledge source for one request." ;
+                        ak:name "Retrieved content" .
+
+
+###  http://example.org/airkg#RetrievedContentScreeningMotif
+ak:RetrievedContentScreeningMotif rdf:type owl:NamedIndividual ,
+                                           ak:Motif ;
+                                  ak:involvesRole ak:PromptRole ,
+                                                  ak:RetrievedContentRole ,
+                                                  ak:ScreeningStepRole ;
+                                  ak:specialises ak:DataControlMotif ;
+                                  ak:description "A screening step checks retrieved content before it goes into the prompt." ;
+                                  ak:name "Retrieved content screening" .
+
+
+###  http://example.org/airkg#ReviewerRole
+ak:ReviewerRole rdf:type owl:NamedIndividual ,
+                         ak:ComponentRole ;
+                ak:description "A person who checks a result before it is used." ;
+                ak:name "Reviewer" .
+
+
+###  http://example.org/airkg#ScreenRetrievedContentPattern
+ak:ScreenRetrievedContentPattern rdf:type owl:NamedIndividual ,
+                                          ak:MitigationPattern ;
+                                 ak:addressesRisk ak:PromptInjection ;
+                                 ak:appliesMitigation ak:ContentScreening ;
+                                 ak:handles ak:IndirectPromptInjectionPattern ;
+                                 ak:hasMotif ak:RetrievedContentScreeningMotif ;
+                                 ak:description "A screening step checks retrieved passages for planted instructions before they enter the prompt." ;
+                                 ak:name "Screen retrieved content before the prompt" .
+
+
+###  http://example.org/airkg#ScreenUserInputPattern
+ak:ScreenUserInputPattern rdf:type owl:NamedIndividual ,
+                                   ak:MitigationPattern ;
+                          ak:addressesRisk ak:PromptInjection ;
+                          ak:appliesMitigation ak:ContentScreening ;
+                          ak:handles ak:DirectPromptInjectionPattern ;
+                          ak:hasMotif ak:InputScreeningMotif ;
+                          ak:description "A screening step sits between the user input and the prompt and blocks input that contains instructions to the model." ;
+                          ak:name "Screen user input before the prompt" .
+
+
+###  http://example.org/airkg#ScreeningStepRole
+ak:ScreeningStepRole rdf:type owl:NamedIndividual ,
+                              ak:ComponentRole ;
+                     ak:specialises ak:ControlStepRole ;
+                     ak:description "A process that checks or filters content before it is used." ;
+                     ak:name "Screening step" .
+
+
+###  http://example.org/airkg#SensitiveInformationDisclosure
+ak:SensitiveInformationDisclosure rdf:type owl:NamedIndividual ,
+                                           ak:Risk ;
+                                  ak:hasConsequence ak:PersonalDataExposed ;
+                                  ak:description "The system reveals personal or confidential information in its output." ;
+                                  ak:identifier "LLM02:2025" ;
+                                  ak:name "Sensitive information disclosure" ;
+                                  ak:source "https://genai.owasp.org/llm-top-10/"^^xsd:anyURI .
+
+
+###  http://example.org/airkg#SourceDataPreparationMotif
+ak:SourceDataPreparationMotif rdf:type owl:NamedIndividual ,
+                                       ak:Motif ;
+                              ak:involvesRole ak:SourceDataRole ,
+                                              ak:TransformStepRole ;
+                              ak:description "A transform step changes source data before the workflow uses it further." ;
+                              ak:name "Preparation of source data" .
+
+
+###  http://example.org/airkg#SourceDataRepresentationMotif
+ak:SourceDataRepresentationMotif rdf:type owl:NamedIndividual ,
+                                          ak:Motif ;
+                                 ak:involvesRole ak:DerivedDataRole ,
+                                                 ak:RepresentationModelRole ,
+                                                 ak:SourceDataRole ,
+                                                 ak:TransformStepRole ;
+                                 ak:description "A transform step uses a representation model to turn source data into derived data." ;
+                                 ak:name "Representation of source data" .
+
+
+###  http://example.org/airkg#SourceDataRole
+ak:SourceDataRole rdf:type owl:NamedIndividual ,
+                           ak:ComponentRole ;
+                  ak:description "A stored collection of data that the workflow draws on." ;
+                  ak:name "Source data" .
+
+
+###  http://example.org/airkg#SuppliedModelNotInspectable
+ak:SuppliedModelNotInspectable rdf:type owl:NamedIndividual ,
+                                        ak:Condition ;
+                               ak:concernsRole ak:AIPartner ,
+                                               ak:GenerativeModelRole ;
+                               ak:description "The organization that offers the system cannot examine how the supplied model was built, trained or changed." ;
+                               ak:name "Supplied model cannot be inspected" .
+
+
+###  http://example.org/airkg#SupplierAssessment
+ak:SupplierAssessment rdf:type owl:NamedIndividual ,
+                               ak:OrganisationalMitigation ;
+                      ak:mitigates ak:SupplyChain ;
+                      ak:description "Check a supplier and the documentation of its model against set requirements before adoption, and again for each new version." ;
+                      ak:name "Supplier assessment" .
+
+
+###  http://example.org/airkg#SupplyChain
+ak:SupplyChain rdf:type owl:NamedIndividual ,
+                        ak:Risk ;
+               ak:hasConsequence ak:InheritedWeakness ;
+               ak:description "Third-party models, data or components bring in vulnerabilities, bias or tampering." ;
+               ak:identifier "LLM03:2025" ;
+               ak:name "Supply chain" ;
+               ak:source "https://genai.owasp.org/llm-top-10/"^^xsd:anyURI .
+
+
+###  http://example.org/airkg#TelecommunicationsDomain
+ak:TelecommunicationsDomain rdf:type owl:NamedIndividual ,
+                                     ak:Domain ;
+                            ak:name "Telecommunications" .
+
+
+###  http://example.org/airkg#ThirdPartyCloud
+ak:ThirdPartyCloud rdf:type owl:NamedIndividual ,
+                            ak:DeploymentEnvironment ;
+                   ak:description "Runs on infrastructure operated by another organization." ;
+                   ak:name "Third-party cloud" .
+
+
+###  http://example.org/airkg#ThirdPartyModelSupplyMotif
+ak:ThirdPartyModelSupplyMotif rdf:type owl:NamedIndividual ,
+                                       ak:Motif ;
+                              ak:involvesRole ak:AIPartner ,
+                                              ak:AIProvider ,
+                                              ak:GenerativeModelRole ;
+                              ak:description "An AI partner supplies the generative model on which the AI provider builds its service." ;
+                              ak:name "Third-party model supply" .
+
+
+###  http://example.org/airkg#TrainStepRole
+ak:TrainStepRole rdf:type owl:NamedIndividual ,
+                          ak:ComponentRole ;
+                 ak:description "A process that produces a model from data (BEAM: Train)." ;
+                 ak:name "Train step" ;
+                 rdfs:seeAlso beam:Train .
+
+
+###  http://example.org/airkg#TrainingDataRole
+ak:TrainingDataRole rdf:type owl:NamedIndividual ,
+                             ak:ComponentRole ;
+                    ak:description "Data from which a model is produced." ;
+                    ak:name "Training data" .
+
+
+###  http://example.org/airkg#TransformStepRole
+ak:TransformStepRole rdf:type owl:NamedIndividual ,
+                              ak:ComponentRole ;
+                     ak:description "A process that changes data from one form into another (BEAM: Transform)." ;
+                     ak:name "Transform step" ;
+                     rdfs:seeAlso beam:Transform .
+
+
+###  http://example.org/airkg#UndisclosedGeneratedCommunicationPattern
+ak:UndisclosedGeneratedCommunicationPattern rdf:type owl:NamedIndividual ,
+                                                     ak:RiskPattern ;
+                                            ak:hasMotif ak:GeneratedOutputToCustomerMotif ;
+                                            ak:indicatesRisk ak:NonDisclosure ;
+                                            ak:requiresCondition ak:RecipientNotToldContentIsGenerated ;
+                                            ak:description "Customers receive generated content in the organization's name and nothing tells them it was generated." ;
+                                            ak:name "Generated content sent to customers without disclosure" .
+
+
+###  http://example.org/airkg#UnreviewedAnswerPattern
+ak:UnreviewedAnswerPattern rdf:type owl:NamedIndividual ,
+                                    ak:RiskPattern ;
+                           ak:appliesInContext ak:CustomerSupportPurpose ,
+                                               ak:NoHumanInvolved ;
+                           ak:hasMotif ak:GenerativeInferenceMotif ;
+                           ak:indicatesRisk ak:Misinformation ;
+                           ak:requiresCondition ak:OutputShownToEndUser ;
+                           ak:description "A generated answer goes to a customer without a human seeing it first, so a false answer is not caught." ;
+                           ak:name "Unreviewed generated answer to a customer" .
+
+
+###  http://example.org/airkg#UserInputIncludedInPrompt
+ak:UserInputIncludedInPrompt rdf:type owl:NamedIndividual ,
+                                      ak:Condition ;
+                             ak:concernsRole ak:PromptRole ,
+                                             ak:UserInputRole ;
+                             ak:description "The text a user types becomes part of the prompt." ;
+                             ak:name "User input is included in the prompt" .
+
+
+###  http://example.org/airkg#UserInputRole
+ak:UserInputRole rdf:type owl:NamedIndividual ,
+                          ak:ComponentRole ;
+                 ak:specialises ak:InputDataRole ;
+                 ak:description "Text or data a user gives to the system." ;
+                 ak:name "User input" .
+
+
+###  http://example.org/airkg#UserPromptedGenerationMotif
+ak:UserPromptedGenerationMotif rdf:type owl:NamedIndividual ,
+                                        ak:Motif ;
+                               ak:involvesRole ak:GeneratedOutputRole ,
+                                               ak:GenerationStepRole ,
+                                               ak:GenerativeModelRole ,
+                                               ak:PromptRole ,
+                                               ak:UserInputRole ;
+                               ak:specialises ak:GenerativeInferenceMotif ;
+                               ak:description "User input goes into a prompt; a generation step gives the prompt to a generative model and produces output." ;
+                               ak:name "User-prompted generation" .
+
+
+###  http://example.org/airkg#VectorIndexRole
+ak:VectorIndexRole rdf:type owl:NamedIndividual ,
+                            ak:ComponentRole ;
+                   ak:specialises ak:DerivedDataRole ;
+                   ak:description "Stored embeddings used for retrieval." ;
+                   ak:name "Vector index" .
+
+
+###  http://example.org/airkg#WrongInformationActedOn
+ak:WrongInformationActedOn rdf:type owl:NamedIndividual ,
+                                    ak:Consequence ;
+                           ak:affectsRole ak:AICustomer ,
+                                          ak:AIProvider ;
+                           ak:description "A person relies on an answer that is false." ;
+                           ak:name "Wrong information acted on" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

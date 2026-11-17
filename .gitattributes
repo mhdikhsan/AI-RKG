@@ -1,0 +1,8 @@
+# Keep RDF/data files byte-identical across platforms (reproducibility, checksum checks)
+*.ttl  -text
+*.nt   -text
+*.csv  -text
+*.tsv  -text
+*.json -text
+*.rq   -text
+*.yaml -text

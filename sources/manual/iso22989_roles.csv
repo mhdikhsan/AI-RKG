@@ -1,0 +1,19 @@
+id,name,parent_id,clause
+ai-provider,AI provider,,5.19
+ai-platform-provider,AI platform provider,ai-provider,5.19
+ai-service-or-product-provider,AI service or product provider,ai-provider,5.19
+ai-producer,AI producer,,5.19
+ai-developer,AI developer,ai-producer,5.19
+ai-customer,AI customer,,5.19
+ai-user,AI user,ai-customer,5.19
+ai-partner,AI partner,,5.19
+ai-system-integrator,AI system integrator,ai-partner,5.19
+data-provider,Data provider,ai-partner,5.19
+ai-auditor,AI auditor,ai-partner,5.19
+ai-evaluator,AI evaluator,ai-partner,5.19
+ai-subject,AI subject,,5.19
+data-subject,Data subject,ai-subject,5.19
+other-subjects,Other subjects,ai-subject,5.19
+relevant-authorities,Relevant authorities,,5.19
+policy-makers,Policy makers,relevant-authorities,5.19
+regulators,Regulators,relevant-authorities,5.19

@@ -1,0 +1,19 @@
+id,name,clause,parent_id,source,iri,parent_iri
+ai-auditor,AI auditor,5.19,ai-partner,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-auditor,http://example.org/airkg/role/iso22989/ai-partner
+ai-customer,AI customer,5.19,,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-customer,
+ai-developer,AI developer,5.19,ai-producer,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-developer,http://example.org/airkg/role/iso22989/ai-producer
+ai-evaluator,AI evaluator,5.19,ai-partner,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-evaluator,http://example.org/airkg/role/iso22989/ai-partner
+ai-partner,AI partner,5.19,,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-partner,
+ai-platform-provider,AI platform provider,5.19,ai-provider,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-platform-provider,http://example.org/airkg/role/iso22989/ai-provider
+ai-producer,AI producer,5.19,,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-producer,
+ai-provider,AI provider,5.19,,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-provider,
+ai-service-or-product-provider,AI service or product provider,5.19,ai-provider,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-service-or-product-provider,http://example.org/airkg/role/iso22989/ai-provider
+ai-subject,AI subject,5.19,,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-subject,
+ai-system-integrator,AI system integrator,5.19,ai-partner,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-system-integrator,http://example.org/airkg/role/iso22989/ai-partner
+ai-user,AI user,5.19,ai-customer,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/ai-user,http://example.org/airkg/role/iso22989/ai-customer
+data-provider,Data provider,5.19,ai-partner,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/data-provider,http://example.org/airkg/role/iso22989/ai-partner
+data-subject,Data subject,5.19,ai-subject,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/data-subject,http://example.org/airkg/role/iso22989/ai-subject
+other-subjects,Other subjects,5.19,ai-subject,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/other-subjects,http://example.org/airkg/role/iso22989/ai-subject
+policy-makers,Policy makers,5.19,relevant-authorities,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/policy-makers,http://example.org/airkg/role/iso22989/relevant-authorities
+regulators,Regulators,5.19,relevant-authorities,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/regulators,http://example.org/airkg/role/iso22989/relevant-authorities
+relevant-authorities,Relevant authorities,5.19,,https://www.iso.org/standard/74296.html,http://example.org/airkg/role/iso22989/relevant-authorities,
