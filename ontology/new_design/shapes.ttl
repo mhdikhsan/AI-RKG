@@ -1,0 +1,150 @@
+@prefix :    <http://example.org/airkg#> .
+@prefix sh:  <http://www.w3.org/ns/shacl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+### -- SHACL Example
+
+
+:RiskShape a sh:NodeShape ;
+    sh:targetClass :Risk ;
+    sh:property [
+        sh:path :affects ;
+        sh:class :Stakeholder
+    ] .
+
+:RiskMotifShape a sh:NodeShape ;
+    sh:targetClass :RiskMotif ;
+    sh:property [
+        sh:path :indicatesRisk ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class :Risk ;
+    ] ;
+    sh:property [
+        sh:path :hasManifestCondition ;
+        sh:maxCount 1 ;
+        sh:class :Element ;
+    ] ;
+    sh:property [
+        sh:path :inContext ;
+        sh:minCount 1 ;
+        sh:class :Context ;
+    ] ;
+    sh:sparql [
+        sh:message " Location {?value} is not an element of this motif's context {$this}." ;
+        sh:prefixes :airkgPrefixes ;
+        sh:select """
+            SELECT $this ?value
+            WHERE {
+                $this :hasManifestCondition ?value .
+                FILTER NOT EXISTS {
+                    $this :inContext ?context .
+                    ?context a :ArchitecturalContext ;
+                             :hasElement $value .
+                }
+            }
+        """ ;
+    ] .
+
+
+:ArchitecturalContextShape a sh:NodeShape ;
+    sh:targetClass :ArchitecturalContext ;
+    sh:property [
+        sh:path :hasElement ;
+        sh:minCount 2 ;
+        sh:class :Element
+    ] .
+
+
+:AIWorkflowShape a sh:NodeShape ;
+    sh:targetClass :AIWorkflow ;
+    sh:property [ sh:path :hasArchitecturalContext ; sh:minCount 1 ; sh:maxCount 1 ; sh:class :ArchitecturalContext ] ;
+    sh:property [ sh:path :hasApplicationContext ; sh:class :ApplicationContext ] ;
+    sh:property [ sh:path :isWorkflowOf ; sh:minCount 1 ; sh:maxCount 1 ; sh:class :AISystem ] .
+
+
+### Motif Shapes
+
+:PromptInjectionMotifShape a sh:NodeShape ;
+    sh:targetClass :AIWorkflow ;
+    sh:severity sh:Info ;
+    sh:message "Risk manifests: prompt injection" ;
+    :forMotif :prompt_injection_motif ;
+    sh:not [
+        sh:property [
+            sh:path ( :hasArchitecturalContext :hasElement ) ;
+            sh:qualifiedValueShape [
+                sh:class :Infer ;
+                sh:property [ sh:path :uses ;
+                              sh:qualifiedValueShape [ sh:class :Data ] ;
+                              sh:qualifiedMinCount 1 ] ;
+                sh:property [ sh:path :uses ;
+                              sh:qualifiedValueShape [ sh:class :StatisticalModel ] ;
+                              sh:qualifiedMinCount 1 ]
+            ] ;
+            sh:qualifiedMinCount 1
+        ]
+    ] .
+
+:SensitiveInformationDisclosureMotifShape a sh:NodeShape ;
+    sh:targetClass :AIWorkflow ;
+    sh:severity sh:Info ;
+    sh:message "Risk manifests: personal information leakage, at the Infer step" ;
+    :forMotif :sensitive_information_disclosure_motif ;
+    sh:not [
+        sh:property [
+            sh:path :hasApplicationContext ;
+            sh:hasValue :PersonalData
+        ] ;
+        sh:property [
+            sh:path ( :hasArchitecturalContext :hasElement ) ;
+            sh:qualifiedValueShape [
+                sh:class :Infer ;
+                sh:property [ sh:path :uses ;
+                              sh:qualifiedValueShape [ sh:class :Data ] ;
+                              sh:qualifiedMinCount 1 ] ;
+                sh:property [ sh:path :uses ;
+                              sh:qualifiedValueShape [ sh:class :StatisticalModel ] ;
+                              sh:qualifiedMinCount 1 ] ;
+                sh:property [ sh:path :produces ;
+                              sh:qualifiedValueShape [ sh:class :Data ] ;
+                              sh:qualifiedMinCount 1 ]
+            ] ;
+            sh:qualifiedMinCount 1
+        ]
+    ] .
+
+:UnexplainableDecisionsMotifShape a sh:NodeShape ;
+    sh:targetClass :AIWorkflow ;
+    sh:severity sh:Info ;
+    sh:message "Risk manifests: unexplainable decisions, at the text produced by the Infer step" ;
+    :forMotif :unexplainable_decisions_motif ;
+    sh:not [
+        sh:property [
+            sh:path :hasApplicationContext ;
+            sh:hasValue :FinancialServices
+        ] ;
+        sh:property [
+            sh:path :hasApplicationContext ;
+            sh:hasValue :text_generation
+        ] ;
+        sh:property [
+            sh:path ( :hasArchitecturalContext :hasElement ) ;
+            sh:qualifiedValueShape [
+                sh:class :Infer ;
+                sh:property [ sh:path :uses ;
+                              sh:qualifiedValueShape [ sh:class :StatisticalModel ] ;
+                              sh:qualifiedMinCount 1 ] ;
+                sh:property [ sh:path :produces ;
+                              sh:qualifiedValueShape [ sh:class :Data ] ;
+                              sh:qualifiedMinCount 1 ]
+            ] ;
+            sh:qualifiedMinCount 1
+        ]
+    ] .
+
+:airkgPrefixes a owl:Ontology ;
+    sh:declare [ sh:prefix "" ; sh:namespace "http://example.org/airkg#"^^xsd:anyURI ] .
+
+

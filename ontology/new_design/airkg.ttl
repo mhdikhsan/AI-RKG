@@ -1,0 +1,551 @@
+@prefix : <http://example.org/airkg#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@base <http://example.org/airkg#> .
+
+<http://example.org/airkg> rdf:type owl:Ontology ;
+                            rdfs:label "AI Risk Pattern Ontology"@en ;
+                            owl:versionInfo "1.0"@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/airkg#dependsOn
+:dependsOn rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain :AIWorkflow ;
+           rdfs:range :AIWorkflow .
+
+
+###  http://example.org/airkg#handles
+:handles rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:domain :Mitigation ;
+         rdfs:range :Risk .
+
+
+###  http://example.org/airkg#hasApplicationContext
+:hasApplicationContext rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :hasContext ;
+                       rdfs:domain :AIWorkflow ;
+                       rdfs:range :ApplicationContext .
+
+
+###  http://example.org/airkg#hasArchitecturalContext
+:hasArchitecturalContext rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :hasContext ;
+                         rdfs:domain :AIWorkflow ;
+                         rdfs:range :ArchitecturalContext .
+
+
+###  http://example.org/airkg#hasConsequence
+:hasConsequence rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain :Risk ;
+                rdfs:range :Risk .
+
+
+###  http://example.org/airkg#hasContext
+:hasContext rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :AISystem
+                                        :AIWorkflow
+                                      )
+                        ] ;
+            rdfs:range :Context .
+
+
+###  http://example.org/airkg#hasElement
+:hasElement rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain :ArchitecturalContext ;
+            rdfs:range :Element .
+
+
+###  http://example.org/airkg#hasMitigation
+:hasMitigation rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain :AIWorkflow ;
+               rdfs:range :Mitigation .
+
+
+###  http://example.org/airkg#hasRiskMotif
+:hasRiskMotif rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain :AIWorkflow ;
+              rdfs:range :RiskMotif .
+
+
+###  http://example.org/airkg#hasWorkflow
+:hasWorkflow rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :AISystem ;
+             rdfs:range :AIWorkflow .
+
+
+###  http://example.org/airkg#inContext
+:inContext rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( :Mitigation
+                                       :RiskMotif
+                                     )
+                       ] ;
+           rdfs:range :Context .
+
+
+###  http://example.org/airkg#indicatesRisk
+:indicatesRisk rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain :RiskMotif ;
+               rdfs:range :Risk .
+
+
+###  http://example.org/airkg#isWorkflowOf
+:isWorkflowOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain :AIWorkflow ;
+              rdfs:range :AISystem .
+
+
+###  http://example.org/airkg#mitigatedBy
+:mitigatedBy rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             owl:inverseOf :mitigates ;
+             rdfs:domain :Risk ;
+             rdfs:range :Mitigation .
+
+
+###  http://example.org/airkg#mitigates
+:mitigates rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain :Mitigation ;
+           rdfs:range :Risk .
+
+
+###  http://example.org/airkg#produces
+:produces rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain :Process ;
+          rdfs:range [ rdf:type owl:Class ;
+                       owl:unionOf ( :Data
+                                     :Model
+                                   )
+                     ] .
+
+
+###  http://example.org/airkg#uses
+:uses rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf owl:topObjectProperty ;
+      rdfs:domain :Process ;
+      rdfs:range [ rdf:type owl:Class ;
+                   owl:unionOf ( :Data
+                                 :Model
+                               )
+                 ] .
+
+### http://example.org/airkg#affects
+:affects a owl:ObjectProperty ;
+         rdfs:domain :Risk ;
+         rdfs:range :Stakeholder .
+
+### http://example.org/airkg#hasManifestCondition
+:hasManifestCondition a owl:ObjectProperty ;
+        rdfs:domain :RiskMotif ;
+        rdfs:range :Element .
+
+
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/airkg#description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:range xsd:string .
+
+
+###  http://example.org/airkg#identifier
+:identifier rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:range xsd:string .
+
+
+###  http://example.org/airkg#level
+:level rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf owl:topDataProperty ;
+       rdfs:range xsd:integer .
+
+
+###  http://example.org/airkg#metric
+:metric rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf owl:topDataProperty ;
+        rdfs:range xsd:string .
+
+
+###  http://example.org/airkg#name
+:name rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdfs:range xsd:string .
+
+
+###  http://example.org/airkg#source
+:source rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf owl:topDataProperty ;
+        rdfs:range xsd:anyURI .
+
+
+###  http://example.org/airkg#targetValue
+:targetValue rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:range xsd:decimal .
+
+
+###  http://example.org/airkg#unit
+:unit rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdfs:range xsd:string .
+
+
+###  http://example.org/airkg#version
+:version rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty ;
+         rdfs:range xsd:string .
+
+
+# Annotation properties
+:forMotif a owl:AnnotationProperty .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/airkg#AISystem
+:AISystem rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasContext ;
+                            owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Context
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasWorkflow ;
+                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :AIWorkflow
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :description ;
+                            owl:cardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :name ;
+                            owl:cardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :version ;
+                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                          ] .
+
+
+###  http://example.org/airkg#AIWorkflow
+:AIWorkflow rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasArchitecturalContext ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :ArchitecturalContext
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :isWorkflowOf ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :AISystem
+                            ] .
+
+
+###  http://example.org/airkg#Agent
+:Agent rdf:type owl:Class ;
+       rdfs:subClassOf :Element .
+
+
+###  http://example.org/airkg#ApplicationContext
+:ApplicationContext rdf:type owl:Class ;
+                    rdfs:subClassOf :Context .
+
+### http://example.org/airkg#Task
+:Task a owl:Class ;
+      rdfs:subClassOf :ApplicationContext .
+
+###  http://example.org/airkg#ArchitecturalContext
+:ArchitecturalContext rdf:type owl:Class ;
+                      rdfs:subClassOf :Context ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasElement ;
+                                        owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                        owl:onClass :Element
+                                      ] .
+
+
+###  http://example.org/airkg#AutonomyLevel
+:AutonomyLevel rdf:type owl:Class ;
+               rdfs:subClassOf :ApplicationContext ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :level ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger
+                               ] .
+
+
+###  http://example.org/airkg#Context
+:Context rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :description ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :name ;
+                           owl:cardinality "1"^^xsd:nonNegativeInteger
+                         ] .
+
+
+###  http://example.org/airkg#Data
+:Data rdf:type owl:Class ;
+      rdfs:subClassOf :Element .
+
+
+###  http://example.org/airkg#DataCategory
+:DataCategory rdf:type owl:Class ;
+              rdfs:subClassOf :ApplicationContext .
+
+
+###  http://example.org/airkg#DeploymentEnvironment
+:DeploymentEnvironment rdf:type owl:Class ;
+                       rdfs:subClassOf :ApplicationContext .
+
+
+###  http://example.org/airkg#Domain
+:Domain rdf:type owl:Class ;
+        rdfs:subClassOf :ApplicationContext .
+
+
+###  http://example.org/airkg#Element
+:Element rdf:type owl:Class .
+
+
+###  http://example.org/airkg#Engineer
+:Engineer rdf:type owl:Class ;
+          rdfs:subClassOf :Generate .
+
+
+###  http://example.org/airkg#Generate
+:Generate rdf:type owl:Class ;
+          rdfs:subClassOf :Process .
+
+
+###  http://example.org/airkg#Infer
+:Infer rdf:type owl:Class ;
+       rdfs:subClassOf :Process .
+
+
+###  http://example.org/airkg#LifecycleStage
+:LifecycleStage rdf:type owl:Class ;
+                rdfs:subClassOf :ApplicationContext .
+
+
+###  http://example.org/airkg#Mitigation
+:Mitigation rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :mitigates ;
+                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :Risk
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :source ;
+                              owl:minCardinality "1"^^xsd:nonNegativeInteger
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :name ;
+                              owl:cardinality "1"^^xsd:nonNegativeInteger
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :description ;
+                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :identifier ;
+                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                            ] .
+
+
+###  http://example.org/airkg#Model
+:Model rdf:type owl:Class ;
+       rdfs:subClassOf :Element .
+
+
+###  http://example.org/airkg#Objective
+:Objective rdf:type owl:Class ;
+           rdfs:subClassOf :ApplicationContext ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :metric ;
+                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :targetValue ;
+                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :unit ;
+                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                           ] .
+
+
+###  http://example.org/airkg#OrganisationalMitigation
+:OrganisationalMitigation rdf:type owl:Class ;
+                          rdfs:subClassOf :Mitigation .
+
+
+###  http://example.org/airkg#Process
+:Process rdf:type owl:Class ;
+         rdfs:subClassOf :Element .
+
+
+###  http://example.org/airkg#RegulatoryContext
+:RegulatoryContext rdf:type owl:Class ;
+                   rdfs:subClassOf :ApplicationContext .
+
+
+###  http://example.org/airkg#Risk
+:Risk rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :source ;
+                        owl:minCardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :name ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :description ;
+                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :identifier ;
+                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                      ] .
+
+
+###  http://example.org/airkg#RiskMotif
+:RiskMotif rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :inContext ;
+                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :Context
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :indicatesRisk ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :Risk
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :description ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :identifier ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :name ;
+                             owl:cardinality "1"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasManifestCondition ;
+                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :Element
+                           ] .
+
+
+###  http://example.org/airkg#SemanticModel
+:SemanticModel rdf:type owl:Class ;
+               rdfs:subClassOf :Model .
+
+
+###  http://example.org/airkg#Stakeholder
+:Stakeholder rdf:type owl:Class ;
+             rdfs:subClassOf :ApplicationContext .
+
+
+###  http://example.org/airkg#StatisticalModel
+:StatisticalModel rdf:type owl:Class ;
+                  rdfs:subClassOf :Model .
+
+
+###  http://example.org/airkg#TechnicalMitigation
+:TechnicalMitigation rdf:type owl:Class ;
+                     rdfs:subClassOf :Mitigation .
+
+
+###  http://example.org/airkg#Train
+:Train rdf:type owl:Class ;
+       rdfs:subClassOf :Generate .
+
+
+###  http://example.org/airkg#Transform
+:Transform rdf:type owl:Class ;
+           rdfs:subClassOf :Process .
+
+
+### Instances
+
+:prompt_injection a :Risk .
+
+:personal_information_leakage a :Risk ;
+    :affects :Customer .
+
+:unexplainable_decisions a :Risk ;
+    :affects :Customer .
+
+:FinancialServices a :Domain .
+:PersonalData a :DataCategory .
+:Customer a :Stakeholder .
+
+:user_input a :Data .
+:stored_data a :Data .
+:LLM a :StatisticalModel .
+:infer_generation a :Infer ;
+        :uses :stored_data , :LLM ;
+        :produces :generated_text .
+:generated_text a :Data .
+:text_generation a :Task .
+
+:prompt_injection_motif a :RiskMotif ;
+    :indicatesRisk :prompt_injection ;
+    :hasManifestCondition :infer_generation ;
+    :inContext [
+        a :ArchitecturalContext ;
+        :hasElement :user_input, :LLM , :infer_generation
+    ] .
+
+:sensitive_information_disclosure_motif a :RiskMotif ;
+    :indicatesRisk :personal_information_leakage ;
+    :hasManifestCondition :generated_text ;
+    :inContext :PersonalData, [
+        a :ArchitecturalContext ;
+        :hasElement :stored_data, :LLM , :infer_generation, :generated_text
+    ] .
+
+:unexplainable_decisions_motif a :RiskMotif ;
+    :indicatesRisk :unexplainable_decisions ;
+    :hasManifestCondition :generated_text ;
+    :inContext :FinancialServices, :text_generation, [
+        a :ArchitecturalContext ;
+        :hasElement :LLM , :infer_generation, :generated_text
+    ] .
+
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

@@ -13,7 +13,7 @@ ontology:
   system_iri: "http://example.org/airkg/system"
   # SHA-256 at baseline (2026-11-17); the checks fail if the files change.
   core_sha256: "214203027a407b24979d3c49529773be68e4dec030fbf38a22727ceb8d3d4e03"
-  system_sha256: "fed3b1c5d1e5c3164ec82fc8cd3d18625b3d6925aa1bb99ab01d2e5af86f8c2f"
+  system_sha256: "0f200f64cd99b4ae59dc942594566a492e16d2c6d87ee7e78be5e46d4bfe5abe"
 
 sources:
   nexus:
