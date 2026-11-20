@@ -68,7 +68,7 @@
     sh:severity sh:Info ;
     sh:sparql[
         sh:message "Workflow matches risk motif {?value}, which indicates risk {?risk}." ;
-        sh:prefixes :motifDetectionPrefixes ;
+        sh:prefixes :airkgPrefixes;
         sh:select """
             SELECT $this ?value ?risk
             WHERE {
@@ -121,6 +121,6 @@
 
 
 :airkgPrefixes a owl:Ontology ;
-    sh:declare [ sh:prefix "" ; sh:namespace "http://example.org/airkg#"^^xsd:anyURI ] .
-
+    sh:declare [ sh:prefix "" ;     sh:namespace "http://example.org/airkg#"^^xsd:anyURI ] ,
+               [ sh:prefix "rdfs" ; sh:namespace "http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI ] .
 
