@@ -67,10 +67,10 @@
     sh:targetClass :AIWorkflow ;
     sh:severity sh:Info ;
     sh:sparql[
-        sh:message "Workflow matches risk motif {?value}, which indicates risk {?risk}." ;
+        sh:message "Workflow matches risk motif {?value}, which indicates risk {?risk}; it manifests at {?location}." ;
         sh:prefixes :airkgPrefixes;
         sh:select """
-            SELECT $this ?value ?risk
+            SELECT $this ?value ?risk ?location
             WHERE {
                 ?value a :RiskMotif ;
                        :indicatesRisk ?risk .
@@ -113,6 +113,35 @@
                         ?e1 ?p ?e2 .
                         ?e1 a/rdfs:subClassOf* ?t1Type .
                         ?e2 a/rdfs:subClassOf* ?t2Type .
+                    }
+                }
+
+                # 4. LOCATION: the workflow element(s) where the risk manifests.
+                OPTIONAL {
+                    ?value :hasManifestCondition ?mc .
+                    ?mc a ?mcType .
+                    ?mcType rdfs:subClassOf* :Element .
+                    $this :hasArchitecturalContext/:hasElement ?location .
+                    ?location a/rdfs:subClassOf* ?mcType .
+                    FILTER NOT EXISTS {
+                        ?mc ?q ?n .
+                        FILTER (?q IN (:uses, :produces))
+                        ?n a ?nType . ?nType rdfs:subClassOf* :Element .
+                        FILTER NOT EXISTS {
+                            $this :hasArchitecturalContext/:hasElement ?ln .
+                            ?location ?q ?ln .
+                            ?ln a/rdfs:subClassOf* ?nType .
+                        }
+                    }
+                    FILTER NOT EXISTS {
+                        ?n2 ?q2 ?mc .
+                        FILTER (?q2 IN (:uses, :produces))
+                        ?n2 a ?n2Type . ?n2Type rdfs:subClassOf* :Element .
+                        FILTER NOT EXISTS {
+                            $this :hasArchitecturalContext/:hasElement ?ln2 .
+                            ?ln2 ?q2 ?location .
+                            ?ln2 a/rdfs:subClassOf* ?n2Type .
+                        }
                     }
                 }
             }
