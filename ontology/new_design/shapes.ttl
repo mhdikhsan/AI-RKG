@@ -23,7 +23,6 @@
     ] ;
     sh:property [
         sh:path :hasManifestCondition ;
-        sh:maxCount 1 ;
         sh:class :Element ;
     ] ;
     sh:property [
@@ -64,85 +63,62 @@
     sh:property [ sh:path :isWorkflowOf ; sh:minCount 1 ; sh:maxCount 1 ; sh:class :AISystem ] .
 
 
-### Motif Shapes
-
-:PromptInjectionMotifShape a sh:NodeShape ;
+:MotifDetectionShape a sh:NodeShape ;
     sh:targetClass :AIWorkflow ;
     sh:severity sh:Info ;
-    sh:message "Risk manifests: prompt injection" ;
-    :forMotif :prompt_injection_motif ;
-    sh:not [
-        sh:property [
-            sh:path ( :hasArchitecturalContext :hasElement ) ;
-            sh:qualifiedValueShape [
-                sh:class :Infer ;
-                sh:property [ sh:path :uses ;
-                              sh:qualifiedValueShape [ sh:class :Data ] ;
-                              sh:qualifiedMinCount 1 ] ;
-                sh:property [ sh:path :uses ;
-                              sh:qualifiedValueShape [ sh:class :StatisticalModel ] ;
-                              sh:qualifiedMinCount 1 ]
-            ] ;
-            sh:qualifiedMinCount 1
-        ]
+    sh:sparql[
+        sh:message "Workflow matches risk motif {?value}, which indicates risk {?risk}." ;
+        sh:prefixes :motifDetectionPrefixes ;
+        sh:select """
+            SELECT $this ?value ?risk
+            WHERE {
+                ?value a :RiskMotif ;
+                       :indicatesRisk ?risk .
+
+                # 1. CONTEXT: no required application context is missing
+                FILTER NOT EXISTS {
+                    ?value :inContext ?ctx .
+                    ?ctx a/rdfs:subClassOf* :ApplicationContext .
+                    FILTER NOT EXISTS {
+                        { $this :hasApplicationContext ?ctx }
+                        UNION
+                        { $this :isWorkflowOf/:hasContext ?ctx }
+                    }
+                }
+
+                # 2. ELEMENTS: no template element without a matching workflow element
+                FILTER NOT EXISTS {
+                    ?value :inContext ?arch .
+                    ?arch a :ArchitecturalContext ;
+                          :hasElement ?t .
+                    ?t a ?tType .
+                    ?tType rdfs:subClassOf* :Element .
+                    FILTER NOT EXISTS {
+                        $this :hasArchitecturalContext/:hasElement ?e .
+                        ?e a/rdfs:subClassOf* ?tType .
+                    }
+                }
+
+                # 3. FLOWS: no template uses/produces relation without a matching workflow relation
+                FILTER NOT EXISTS {
+                    ?value :inContext ?arch2 .
+                    ?arch2 a :ArchitecturalContext ;
+                           :hasElement ?t1 , ?t2 .
+                    ?t1 ?p ?t2 .
+                    FILTER (?p IN (:uses, :produces))
+                    ?t1 a ?t1Type . ?t1Type rdfs:subClassOf* :Element .
+                    ?t2 a ?t2Type . ?t2Type rdfs:subClassOf* :Element .
+                    FILTER NOT EXISTS {
+                        $this :hasArchitecturalContext/:hasElement ?e1 , ?e2 .
+                        ?e1 ?p ?e2 .
+                        ?e1 a/rdfs:subClassOf* ?t1Type .
+                        ?e2 a/rdfs:subClassOf* ?t2Type .
+                    }
+                }
+            }
+        """ ;
     ] .
 
-:SensitiveInformationDisclosureMotifShape a sh:NodeShape ;
-    sh:targetClass :AIWorkflow ;
-    sh:severity sh:Info ;
-    sh:message "Risk manifests: personal information leakage, at the Infer step" ;
-    :forMotif :sensitive_information_disclosure_motif ;
-    sh:not [
-        sh:property [
-            sh:path :hasApplicationContext ;
-            sh:hasValue :PersonalData
-        ] ;
-        sh:property [
-            sh:path ( :hasArchitecturalContext :hasElement ) ;
-            sh:qualifiedValueShape [
-                sh:class :Infer ;
-                sh:property [ sh:path :uses ;
-                              sh:qualifiedValueShape [ sh:class :Data ] ;
-                              sh:qualifiedMinCount 1 ] ;
-                sh:property [ sh:path :uses ;
-                              sh:qualifiedValueShape [ sh:class :StatisticalModel ] ;
-                              sh:qualifiedMinCount 1 ] ;
-                sh:property [ sh:path :produces ;
-                              sh:qualifiedValueShape [ sh:class :Data ] ;
-                              sh:qualifiedMinCount 1 ]
-            ] ;
-            sh:qualifiedMinCount 1
-        ]
-    ] .
-
-:UnexplainableDecisionsMotifShape a sh:NodeShape ;
-    sh:targetClass :AIWorkflow ;
-    sh:severity sh:Info ;
-    sh:message "Risk manifests: unexplainable decisions, at the text produced by the Infer step" ;
-    :forMotif :unexplainable_decisions_motif ;
-    sh:not [
-        sh:property [
-            sh:path :hasApplicationContext ;
-            sh:hasValue :FinancialServices
-        ] ;
-        sh:property [
-            sh:path :hasApplicationContext ;
-            sh:hasValue :text_generation
-        ] ;
-        sh:property [
-            sh:path ( :hasArchitecturalContext :hasElement ) ;
-            sh:qualifiedValueShape [
-                sh:class :Infer ;
-                sh:property [ sh:path :uses ;
-                              sh:qualifiedValueShape [ sh:class :StatisticalModel ] ;
-                              sh:qualifiedMinCount 1 ] ;
-                sh:property [ sh:path :produces ;
-                              sh:qualifiedValueShape [ sh:class :Data ] ;
-                              sh:qualifiedMinCount 1 ]
-            ] ;
-            sh:qualifiedMinCount 1
-        ]
-    ] .
 
 :airkgPrefixes a owl:Ontology ;
     sh:declare [ sh:prefix "" ; sh:namespace "http://example.org/airkg#"^^xsd:anyURI ] .

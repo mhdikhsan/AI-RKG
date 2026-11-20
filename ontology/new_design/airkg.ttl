@@ -484,6 +484,14 @@
                   rdfs:subClassOf :Model .
 
 
+### http://example.org/airkg#NeuralNetwork
+:NeuralNetwork a owl:Class ;
+               rdfs:subClassOf :Model .
+
+### http://example.org/airkg#LLM
+:LLM a owl:Class ;
+     rdfs:subClassOf :NeuralNetwork .
+
 ###  http://example.org/airkg#TechnicalMitigation
 :TechnicalMitigation rdf:type owl:Class ;
                      rdfs:subClassOf :Mitigation .
@@ -501,51 +509,177 @@
 
 ### Instances
 
-:prompt_injection a :Risk .
 
-:personal_information_leakage a :Risk ;
-    :affects :Customer .
+# ----Risks---
 
-:unexplainable_decisions a :Risk ;
-    :affects :Customer .
+:prompt_injection a :Risk ;
+    :name "Prompt Injection" .
 
-:FinancialServices a :Domain .
-:PersonalData a :DataCategory .
-:Customer a :Stakeholder .
+:sensitive_data_exposure a :Risk ;
+    :name "Sensitive Data Exposure" .
 
-:user_input a :Data .
-:stored_data a :Data .
-:LLM a :StatisticalModel .
-:infer_generation a :Infer ;
-        :uses :stored_data , :LLM ;
-        :produces :generated_text .
-:generated_text a :Data .
-:text_generation a :Task .
+:unexplainable_output a :Risk ;
+    :name "Unexplainable Output" .
 
-:prompt_injection_motif a :RiskMotif ;
+
+# ---Mitigations---
+
+:content_filtering a :TechnicalMitigation ;
+    :name "Content Filtering" ;
+    :mitigates :prompt_injection .
+
+:human_oversight a :OrganisationalMitigation ;
+    :name "Human Oversight" ;
+    :mitigates :unexplainable_output .
+
+
+# --- Application Contexts ---
+
+:financial_services a :Domain ;
+    :name "Financial Services" .
+
+:public_website a :DeploymentEnvironment ;
+    :name "Public Website" .
+
+:question_answering a :Task ;
+    :name "Question Answering" .
+
+:fraud_detection a :Task ;
+    :name "Fraud Detection" .
+
+:personal_data a :DataCategory ;
+    :name "Personal Data" .
+
+:operation a :LifecycleStage ;
+    :name "Operation" .
+
+:assistive a :AutonomyLevel ;
+    :name "Assistive" ;
+    :level 1 .
+
+:ai_customer a :Stakeholder ;
+    :name "AI Customer" .
+
+:ai_subject a :Stakeholder ;
+    :name "AI Subject" .
+
+
+# --- Risk Motif ---
+
+:motif1 a :RiskMotif ;
+    :name "LLLM infer on supplied data" ;
+    :identifier "M-001" ;
+    :description "A large language model (LLM) is used to infer on data supplied by a user";
     :indicatesRisk :prompt_injection ;
-    :hasManifestCondition :infer_generation ;
-    :inContext [
-        a :ArchitecturalContext ;
-        :hasElement :user_input, :LLM , :infer_generation
-    ] .
+    :hasManifestCondition :motif1_input;
+    :inContext :motif1_architeture .
 
-:sensitive_information_disclosure_motif a :RiskMotif ;
-    :indicatesRisk :personal_information_leakage ;
-    :hasManifestCondition :generated_text ;
-    :inContext :PersonalData, [
-        a :ArchitecturalContext ;
-        :hasElement :stored_data, :LLM , :infer_generation, :generated_text
-    ] .
+:motif1_architeture a :ArchitecturalContext ;
+    :name "Motif 1 Architecture" ;
+    :hasElement :motif1_input , :motif1_llm , :motif1_output , :motif1_infer .
 
-:unexplainable_decisions_motif a :RiskMotif ;
-    :indicatesRisk :unexplainable_decisions ;
-    :hasManifestCondition :generated_text ;
-    :inContext :FinancialServices, :text_generation, [
-        a :ArchitecturalContext ;
-        :hasElement :LLM , :infer_generation, :generated_text
-    ] .
+:motif1_input a :Data .
+:motif1_llm a :LLM .
+:motif1_output a :Data .
+:motif1_infer a :Infer ;
+    :uses :motif1_input , :motif1_llm ;
+    :produces :motif1_output .
 
 
+# same structure but use personal data
+:motif2 a :RiskMotif ;
+    :name "LLLM infer on supplied personal data" ;
+    :identifier "M-002" ;
+    :description "A large language model (LLM) is used to infer on personal data supplied by a user";
+    :indicatesRisk :sensitive_data_exposure ;
+    :hasManifestCondition :motif2_output, :motif2_stored ;
+    :inContext :motif2_architeture .
+
+:motif2_architeture a :ArchitecturalContext ;
+    :name "Motif 2 Architecture" ;
+    :hasElement :motif2_stored , :motif2_llm, :motif2_output , :motif2_infer .
+
+:motif2_stored a :Data .
+:motif2_llm a :LLM .
+:motif2_output a :Data .
+:motif2_infer a :Infer ;
+    :uses :motif2_stored , :motif2_llm ;
+    :produces :motif2_output .
+
+
+# initialize domain
+
+:motif3 a :RiskMotif;
+  :name "LLM use in financial services domain" ;
+  :identifier "M-003" ;
+  :description "required explainable for decision from LLM output in financial domain" ;
+  :indicatesRisk :unexplainable_output ;
+  :hasManifestCondition :motif3_output ;
+  :inContext :financial_services , :motif3_architecture .
+
+:motif3_architecture a :ArchitecturalContext ;
+  :name "Motif3 Architecture" ;
+  :hasElement :motif3_llm, :motif3_infer , :motif3_output .
+
+:motif3_llm a :LLM .
+:motif3_output a :Data .
+:motif3_infer a :Infer ;
+    :uses :motif3_llm ;
+    :produces :motif3_output .
+
+
+# AI system example
+
+:bank_support_assistant a :AISystem ;
+  :name "Bank AI Asisstant" ;
+  :hasContext :financial_services , :public_web ;
+  :hasWorkflow :question_answering_workflow, :fraud_scoring_workflow .
+
+
+# Workflow 1
+
+:question_answering_workflow a :AIWorkflow ;
+  :isWorkflowOf :bank_support_assistant;
+  :hasArchitecturalContext :qa_architecture;
+  :hasApplicationContext :financial_services, :question_answering , :personal_data, :operation , :assistive , :ai_customer, :ai_subject .
+
+
+:qa_architecture a :ArchitecturalContext ;
+  :hasElement :customer_question , :account_records , :retrieved_records , :retrieved_records , :gpt-4o, :generate_answer , :answer .
+
+:gpt-4o a :LLM .
+
+:customer_question a :Data.
+:account_records a :Data.
+:retrieved_records a :Data.
+:answer a :Data .
+
+:retrieve_records a :Transform ; 
+  :uses :customer_question , :account_records ;
+  :produces :retrieved_records . 
+
+:generate_answer a :Infer ;
+  :uses :customer_question , :retrieved_context , :gpt-4o ;
+  :produces :answer .
+
+
+# Workflow 2
+
+:fraud_scoring_workflow a :AIWorkflow ;
+    :isWorkflowOf :bank_support_assistant ;
+    :hasArchitecturalContext :fraud_architecture ;
+    :hasApplicationContext :financial_services , :fraud_detection , :personal_data , :operation .
+
+:fraud_architecture a :ArchitecturalContext ;
+    :hasElement :transactions , :fraud_model , :score_transactions , :fraud_score .
+
+:fraud_model  a :StatisticalModel ; 
+  :name "Transaction fraud classifier" .
+:transactions a :Data .
+:fraud_score  a :Data .
+
+:score_transactions a :Infer ;
+    :uses :transactions , :fraud_model ;
+    :produces :fraud_score .
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
