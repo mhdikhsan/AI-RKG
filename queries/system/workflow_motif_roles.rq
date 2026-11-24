@@ -1,7 +1,0 @@
-# Baseline (pipeline-authored): workflow -> motif -> involved role
-PREFIX ak: <http://example.org/airkg#>
-SELECT ?workflow ?motif ?role WHERE {
-  ?workflow ak:containsMotif ?motif .
-  ?motif ak:involvesRole ?role .
-}
-ORDER BY ?workflow ?motif ?role

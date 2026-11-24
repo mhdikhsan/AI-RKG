@@ -1,8 +1,0 @@
-# Baseline (pipeline-authored): workflow -> risk pattern -> risk, with risk name
-PREFIX ak: <http://example.org/airkg#>
-SELECT ?workflow ?pattern ?risk ?riskName WHERE {
-  ?workflow ak:hasRiskPattern ?pattern .
-  ?pattern ak:indicatesRisk ?risk .
-  OPTIONAL { ?risk ak:name ?riskName }
-}
-ORDER BY ?workflow ?pattern ?risk

@@ -1,7 +1,0 @@
-# Baseline (pipeline-authored): workflow -> mitigation pattern -> mitigation / addressed risk
-PREFIX ak: <http://example.org/airkg#>
-SELECT ?workflow ?mpattern ?mitigation ?risk WHERE {
-  ?workflow ak:hasMitigationPattern ?mpattern .
-  ?mpattern ak:appliesMitigation ?mitigation ; ak:addressesRisk ?risk .
-}
-ORDER BY ?workflow ?mpattern ?mitigation ?risk
