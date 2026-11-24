@@ -1,6 +1,0 @@
-id,name,beam_iri,parent_id,iri,parent_iri
-engineer,Engineer step,http://w3id.org/beam/core#Engineer,generate,http://example.org/airkg/role/beam/engineer,http://example.org/airkg/role/beam/generate
-generate,Generate step,http://w3id.org/beam/core#Generate,,http://example.org/airkg/role/beam/generate,
-infer,Infer step,http://w3id.org/beam/core#Infer,,http://example.org/airkg/role/beam/infer,
-train,Train step,http://w3id.org/beam/core#Train,generate,http://example.org/airkg/role/beam/train,http://example.org/airkg/role/beam/generate
-transform,Transform step,http://w3id.org/beam/core#Transform,,http://example.org/airkg/role/beam/transform,
