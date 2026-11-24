@@ -1,19 +1,14 @@
-# Core AI Risk KG construction pipeline - configuration.
-# Every IRI the pipeline mints is built from base_iri. Change it and rerun `make all`.
+
 base_iri: "http://example.org/airkg/"
-
-# Namespace of the ontology terms (ak:). Not minted by the pipeline; read from the core module.
 ak_namespace: "http://example.org/airkg#"
-
-# Existing ontology modules (read-only for this pipeline).
 ontology:
-  core: ontology/airkg-core.ttl
-  system: ontology/airkg-system.ttl
-  core_iri: "http://example.org/airkg/core"
-  system_iri: "http://example.org/airkg/system"
-  # SHA-256 at baseline (2026-11-17); the checks fail if the files change.
-  core_sha256: "214203027a407b24979d3c49529773be68e4dec030fbf38a22727ceb8d3d4e03"
-  system_sha256: "0f200f64cd99b4ae59dc942594566a492e16d2c6d87ee7e78be5e46d4bfe5abe"
+  core: ontology/new_design/airkg.ttl
+  core_iri: "http://example.org/airkg"
+  contexts: ontology/new_design/contexts.ttl
+  shapes: ontology/new_design/shapes.ttl
+  core_sha256: "4b2b7cc0b54e4c4823e83e41e43fe2b3e30334d7a2766d19b2aec09179df267c"
+  contexts_sha256: "ee3469fb226e8d9804f142929c4bd4078a24e159cb44b464d69f815cbfb08d84"
+  shapes_sha256: "04e0336db7fc97d23c80f8e23029096c2b06d2cd92ecd98755def32bd53896b8"
 
 sources:
   nexus:
@@ -31,21 +26,43 @@ sources:
       - mappings/ibm2ibm.tsv
       - mappings/mit-ai-risk-repository_ibm-risk-atlas.tsv
       - mappings/mit_ai_risk_mitigation_mappings.tsv
-    # IRI pattern of Nexus entries (used for skos:exactMatch; does not dereference yet)
     entry_iri: "https://w3id.org/ai-atlas-nexus/{nexus_id}"
   dpv:
     repo: "https://github.com/w3c/dpv.git"
     commit: "c85ffacc97041b90a7a3afb3b6417f0b4d9fafbc"   # HEAD on 2026-11-17 (commit date 2026-08-06)
-    version: "2.3"         # release folder used; only to check that linked DPV IRIs exist
+    version: "2.3"         
+    files:
+      - "2.3/dpv/dpv.ttl"
+      - "2.3/ai/ai.ttl"
+      - "2.3/legal/eu/aiact/eu-aiact.ttl"
   beam:
     url: "https://semsys.ai.wu.ac.at/beam/beam_core.ttl"
     manual_file: sources/manual/beam_core.ttl
   iso22989:
     manual_file: sources/manual/iso22989_roles.csv
-    # ak:source for ISO roles: the standard's URL; the clause goes to ak:identifier
     standard_url: "https://www.iso.org/standard/74296.html"
 
-# Catalogues in scope (key = short code used in file names)
+  # --- Incident / vulnerability sources for risk-motif population (extractor/llm_motif/) ---
+  aiid:
+    url: "https://pub-72b2b2fc36ec423189843747af98f80e.r2.dev/{snapshot}"
+    snapshot: "backup-20261123100712.tar.bz2"
+    snapshot_date: "2026-11-23"
+    sha256: "bee2fd7abfbec31e7c79852f39e13c51086f403556491c1d62718541776b3776"
+    extract: [incidents.csv, classifications_MIT.csv, classifications_GMF.csv, classifications_CSETv1.csv, license.txt]
+    incident_url: "https://incidentdatabase.ai/cite/{incident_id}/"
+    license: "https://creativecommons.org/licenses/by-sa/4.0/"
+  avid:
+    repo: "https://github.com/avidml/avid-db.git"
+    commit: "8eda5f4e6f74a3738eb980b795c4f813c6e52ca8"  
+    paths: [vulnerabilities, reports/2022, reports/2023, reports/2025, reports/2026]
+    license: "https://opensource.org/licenses/MIT"
+
+incidents:
+  aiid:
+    gmf_published_only: false
+  avid:
+    exclude_classof: ["CVE Entry", "AIID Incident"]
+
 catalogues:
   ibm:
     nexus_file: knowledge_graph/risk_atlas_data.yaml
@@ -85,8 +102,6 @@ mit_mitigations:
   # Deterministic typing rule: this top category -> ak:TechnicalMitigation, others -> ak:OrganisationalMitigation
   technical_category_name: "Technical & Security Controls"
 
-# The 33 "Risk" entries of the MIT file are 24 domain-taxonomy subdomains + 9 causal-taxonomy
-# facets (isDefinedByTaxonomy: mit-ai-risk-repository-causal). Facets are not risks;
 # set true to import them anyway.
 mit_include_causal_facets: false
 
@@ -104,37 +119,13 @@ copy_descriptions:
   mit: true
   owasp: false
 
-# Reused-role IRIs: {base_iri}role/{scheme}/{id}
-roles:
-  # BEAM process classes -> ak:ComponentRole individuals {base_iri}role/beam/{id}
-  # core = generate/transform/infer; train/engineer specialise generate
-  beam:
-    - {id: generate,  name: "Generate step",  beam_class: Generate,  parent: ""}
-    - {id: transform, name: "Transform step", beam_class: Transform, parent: ""}
-    - {id: infer,     name: "Infer step",     beam_class: Infer,     parent: ""}
-    - {id: train,     name: "Train step",     beam_class: Train,     parent: generate}
-    - {id: engineer,  name: "Engineer step",  beam_class: Engineer,  parent: generate}
-  beam_namespace: "http://w3id.org/beam/core#"
-  # Hand-written grounding of authored roles to external vocabularies. Filled by hand;
-  # validated and mapped by scripts/roles.py -> build/role_grounding.nt (core module unchanged).
-  grounding_file: sources/manual/role_grounding.csv
-  grounding_predicates: [seeAlso, exactMatch, closeMatch, broadMatch, narrowMatch, relatedMatch]
-  # CURIE prefixes accepted in the 'target' column; vocabularies with a local file are checked for existence.
-  grounding_prefixes:
-    beam: "http://w3id.org/beam/core#"
-    dpv:  "https://w3id.org/dpv#"
-    ai:   "https://w3id.org/dpv/ai#"
-    airo: "https://w3id.org/airo#"
-    ak:   "http://example.org/airkg#"
-
-# Where IBM Risk Atlas says a risk arises (risk_type) -> authored roles a pattern for it would
-# likely involve. Editable HINTS, used only in build/reports/pattern_coverage.md (nothing is asserted).
-risk_type_hints:
-  training-data: {roles: [TrainingDataRole, TrainStepRole], note: "risk arises in the data used to produce a model"}
-  inference:     {roles: [InferStepRole, InputDataRole], note: "risk arises when a model is applied to input"}
-  output:        {roles: [OutputDataRole, GeneratedOutputRole], note: "risk arises in or through the output"}
-  agentic:       {roles: [OperatorRole], note: "risk arises from an AI agent acting; consider ak:AutonomyLevel context"}
-  non-technical: {roles: [], stakeholder_roles: true, note: "governance/societal risk; patterns mainly involve stakeholder roles"}
+manual_mitigation_links:
+  file: sources/mapping/Final_Mapped_Taxonomy_Table_Output.csv
+  reviewer: "authors"
+  id_fixes:
+    - {find: " ", replace: "_"}
+    - {find: "Gipikis", replace: "Gipiskis"}
+  license: "https://creativecommons.org/licenses/by/4.0/"
 
 # Morph-KGC
 mapping_engine: morph-kgc
