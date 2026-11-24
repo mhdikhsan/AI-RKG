@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/airkg/llm_motif/profile.schema.json",
+  "title": "Architecture profile of one incident (enums are filled in per call from the ontology and shortlist)",
+  "type": "object",
+  "properties": {
+    "elements": {
+      "type": "array", "maxItems": 8,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "pattern": "^e[0-9]+$" },
+          "class": { "type": "string" },
+          "label": { "type": "string", "minLength": 1, "maxLength": 120 },
+          "evidence": { "type": "string", "maxLength": 200 }
+        },
+        "required": ["id", "class", "label", "evidence"],
+        "additionalProperties": false
+      }
+    },
+    "flows": {
+      "type": "array", "maxItems": 12,
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": { "type": "string" },
+          "relation": { "type": "string", "enum": ["uses", "produces"] },
+          "to": { "type": "string" }
+        },
+        "required": ["from", "relation", "to"],
+        "additionalProperties": false
+      }
+    },
+    "contexts": {
+      "type": "array", "maxItems": 6,
+      "items": {
+        "type": "object",
+        "properties": {
+          "class": { "type": "string" },
+          "existing": { "type": "string" },
+          "value": { "type": "string", "minLength": 1, "maxLength": 80 }
+        },
+        "required": ["class", "existing", "value"],
+        "additionalProperties": false
+      }
+    },
+    "failure_point": { "type": "string" },
+    "risks": {
+      "type": "array", "maxItems": 3,
+      "items": {
+        "type": "object",
+        "properties": {
+          "risk_id": { "type": "string" },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+          "rationale": { "type": "string", "minLength": 1, "maxLength": 300 }
+        },
+        "required": ["risk_id", "confidence", "rationale"],
+        "additionalProperties": false
+      }
+    },
+    "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+    "issues": { "type": "array", "maxItems": 8, "items": { "type": "string", "minLength": 1, "maxLength": 300 } }
+  },
+  "required": ["elements", "flows", "contexts", "failure_point", "risks", "confidence", "issues"],
+  "additionalProperties": false
+}
