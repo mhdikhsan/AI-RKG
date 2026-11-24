@@ -27,10 +27,24 @@
     "relatedMatch": 77
   },
   "fetched": "2026-11-17",
+  "incidents": {
+    "aiid": 1834,
+    "aiid_unresolved_mit_labels": 0,
+    "aiid_with_cset": 214,
+    "aiid_with_gmf": 326,
+    "aiid_with_mit": 1497,
+    "avid": 669,
+    "avid_excluded": 1116
+  },
   "issues": [
     "OWASP `llm042025-data-and-model-poisoning`: name token `LLM04:` has no year; identifier `LLM04:2025` derived from the id.",
     "MIT controls cite documentation ids without a url in `mit_ai_risk_mitigation_data.yaml` (taxonomy url used as `ak:source`): {'NIST.AI.600-1': 203}."
   ],
+  "manual_mitigation_links": 156,
+  "manual_mitigation_links_per_catalogue": {
+    "ibm": 90,
+    "owasp": 66
+  },
   "mit_categorisation_rows": 820,
   "mit_control_groups": 27,
   "mit_controls": 831,
