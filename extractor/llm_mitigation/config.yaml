@@ -1,0 +1,49 @@
+# llm-mitigation configuration. Paths are relative to this file's folder.
+
+provider: anthropic            
+model: claude-sonnet-5-5       
+effort: medium                
+
+temperature: null
+max_tokens: 16000              # covers adaptive thinking + the short JSON answer
+
+server_side_fallback: true
+retries_on_invalid: 1          # retry once on invalid JSON / schema violation, then log and skip
+
+scope:
+  catalogues: [ibm, mit, owasp]   # risks in scope (from staging/risks.csv)
+
+shortlist:
+  k: 20                          # controls offered to the LLM per risk
+  # Text of a control used for TF-IDF. "description" is included to raise recall; set to
+  # [name, group] to use names only.
+
+  control_fields: [name, group, description]
+  exclude_links: [../../staging/manual_mitigation_links.csv]
+
+# Ontology terms shown to the model (rendered from the ontology file named in config/pipeline.yaml).
+ontology_terms: [Risk, Mitigation, TechnicalMitigation, OrganisationalMitigation, mitigates, mitigatedBy]
+
+answer:
+  max_links_per_risk: 5
+  rationale_max_chars: 400
+
+paths:
+  risks: ../../staging/risks.csv
+  controls: ../../staging/mit_controls.csv
+  groups: ../../staging/mit_control_groups.csv
+  prompt: prompts/link_mitigations.md
+  schema: schema/response.schema.json
+  output_dir: output
+  cache_dir: cache
+  accepted_out: ../../staging/accepted_mitigation_links.csv
+
+pricing:
+  claude-opus-5-5:   {input: 4.00, output: 20.00}
+  claude-sonnet-5-5: {input: 2.00, output: 10.00}
+  claude-haiku-5-5:  {input: 0.10, output: 0.50}   # prompts up to 100K tokens
+
+estimate:
+  chars_per_token: 3.5
+  answer_tokens_per_call: 350
+  thinking_tokens_per_call: {low: 300, medium: 1200, high: 3000, xhigh: 6000, max: 10000}

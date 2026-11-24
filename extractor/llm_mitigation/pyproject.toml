@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-mitigation"
+version = "0.1.0"
+description = "LLM-assisted, human-reviewed mitigation->risk link candidates for the AI-RKG core KG"
+requires-python = ">=3.11"
+dependencies = ["anthropic>=2.9", "click>=8", "pyyaml>=6", "jsonschema>=4", "openpyxl>=3"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+llm-mitigation = "llm_mitigation.cli:main"
+
+[tool.setuptools]
+packages = ["llm_mitigation"]
