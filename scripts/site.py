@@ -1,5 +1,5 @@
-"""Static site: one HTML page + one Turtle file per entry (risk, mitigation, role, motif,
-risk pattern, mitigation pattern) and an index. No server.
+"""Static site: one HTML page + one Turtle file per entry (risk, mitigation, risk motif, AI system,
+workflow, context value, model) and an index. No server.
 
 Paths: an IRI under base_iri  -> site/<rest of IRI>.html / .ttl   (e.g. site/risk/atlas-x.html)
        an authored ak: IRI     -> site/ak/<local name>.html / .ttl
@@ -19,10 +19,11 @@ from scripts.merge import bind_prefixes
 
 SECTIONS = [("risks", "Risks", ["Risk"]),
             ("mitigations", "Mitigations", ["Mitigation", "TechnicalMitigation", "OrganisationalMitigation"]),
-            ("roles", "Roles", ["ComponentRole", "StakeholderRole", "Role"]),
-            ("motifs", "Motifs", ["Motif"]),
-            ("risk-patterns", "Risk patterns", ["RiskPattern"]),
-            ("mitigation-patterns", "Mitigation patterns", ["MitigationPattern"])]
+            ("risk-motifs", "Risk motifs", ["RiskMotif"]),
+            ("systems", "AI systems and workflows", ["AISystem", "AIWorkflow"]),
+            ("contexts", "Context values", ["Domain", "Task", "DataCategory", "LifecycleStage", "AutonomyLevel",
+                                            "Stakeholder", "DeploymentEnvironment", "RegulatoryContext", "Objective"]),
+            ("models", "Models", ["LLM", "NeuralNetwork", "StatisticalModel", "SemanticModel", "Model"])]
 
 
 class Site:

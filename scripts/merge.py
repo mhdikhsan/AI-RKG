@@ -1,4 +1,4 @@
-"""Merge: schema + authored (core module, unchanged) + imported + reused + accepted candidates.
+"""Merge: ontology (TBox + authored instances, unchanged) + imported catalogues + reviewed links.
 
 Outputs
   build/declarations.ttl  pipeline-owned OWL declarations for properties the core does not declare
@@ -11,15 +11,15 @@ from rdflib import OWL, RDF, Graph, Namespace, URIRef
 from rdflib.compare import to_canonical_graph
 from rdflib.namespace import DCTERMS, SKOS
 
-from scripts.common import BUILD, ROOT, load_config, log, write_text
+from scripts.common import BUILD, ROOT, load_config, log, ontology_files, write_text
 from scripts.map import to_nt
 
 PARTS = [  # (file in build/, required)
     ("declarations.ttl", True),
     ("imported_risks_ibm.nt", True), ("imported_risks_mit.nt", True), ("imported_risks_owasp.nt", True),
     ("imported_crosswalks.nt", True), ("imported_mitigations.nt", True),
-    ("reused_roles_beam.nt", True), ("reused_roles_iso22989.nt", False), ("role_grounding.nt", False),
-    ("accepted_mitigation_links.nt", False),
+    ("manual_mitigation_links.nt", False), ("accepted_mitigation_links.nt", False),
+    ("accepted_motifs.nt", False),
 ]
 
 
@@ -34,7 +34,6 @@ def declarations() -> Graph:
 def bind_prefixes(g: Graph, cfg: dict) -> None:
     base = cfg["base_iri"]
     for prefix, ns in [("ak", cfg["ak_namespace"]), ("risk", base + "risk/"), ("mitigation", base + "mitigation/"),
-                       ("beamrole", base + "role/beam/"), ("isorole", base + "role/iso22989/"),
                        ("nexus", "https://w3id.org/ai-atlas-nexus/"), ("skos", str(SKOS)), ("dct", str(DCTERMS)),
                        ("owl", str(OWL)), ("beam", "http://w3id.org/beam/core#"), ("dpv", "https://w3id.org/dpv#"),
                        ("airo", "https://w3id.org/airo#")]:
@@ -43,7 +42,8 @@ def bind_prefixes(g: Graph, cfg: dict) -> None:
 
 def build_merged(cfg: dict, include_accepted: bool = True) -> Graph:
     g = Graph()
-    g.parse(ROOT / cfg["ontology"]["core"], format="turtle")
+    for f in ontology_files(cfg):          # airkg.ttl + contexts.ttl
+        g.parse(f, format="turtle")
     for name, required in PARTS:
         if name == "accepted_mitigation_links.nt" and not include_accepted:
             continue

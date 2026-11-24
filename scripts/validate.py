@@ -1,9 +1,9 @@
 """Validate the merged graph.
 
-1 parse  2 OWL consistency (owlready2 + HermiT)  3 SHACL  4 competency queries
-5 dangling IRIs  6 AI system module still works (parse, consistency, baseline queries before/after)
-(+ DPV IRI existence check, warnings only)
-Writes build/reports/validation.md; exits non-zero on any error (warnings do not fail).
+1 parse  2 OWL consistency (owlready2 + HermiT)  3 SHACL (shapes file from config ontology.shapes: integrity
+checks; results with severity sh:Info are risk-motif detections, reported separately and never counted as errors
+or warnings)  4 competency queries (queries/*.rq)  5 dangling IRIs  (+ existence check of reused DPV IRIs, warnings only)
+Writes build/reports/validation.md (+ build/reports/motif_detections.csv); exits non-zero on any error.
 """
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from pyshacl import validate as shacl_validate
 from rdflib import OWL, RDF, XSD, Graph, Literal, Namespace, URIRef
 from rdflib.namespace import SH
 
-from scripts.common import BUILD, QUERIES, REPORTS, ROOT, SHAPES, load_config, log, provenance_line, write_text
+from scripts.common import BUILD, QUERIES, REPORTS, ROOT, load_config, log, provenance_line, write_csv, write_text
 
 KG = BUILD / "airkg-core-kg.ttl"
 
@@ -67,23 +67,6 @@ def owl_self_test(g: Graph, ak: str) -> bool:
     return not owl_check(probe)[0]
 
 
-def query_rows(g: Graph, q: str) -> list[tuple]:
-    return sorted(tuple("" if v is None else str(v) for v in row) for row in g.query(q))
-
-
-def system_graph(core_like: Graph, cfg: dict) -> Graph:
-    """System module + a core graph. owl:imports of the core is dropped (the core is already included)."""
-    g = Graph()
-    for t in core_like:
-        g.add(t)
-    sysg = Graph().parse(ROOT / cfg["ontology"]["system"], format="turtle")
-    for t in sysg:
-        if t[1] == OWL.imports and str(t[2]) == cfg["ontology"]["core_iri"]:
-            continue
-        g.add(t)
-    return g
-
-
 # ------------------------------------------------------------------ main
 def main() -> None:
     cfg = load_config()
@@ -111,29 +94,39 @@ def main() -> None:
           f"Self-test (planted contradiction: a second `ak:level` on an `ak:AutonomyLevel`): "
           f"{'detected - check is effective' if self_test else '**NOT detected**'}.", ""]
 
-    # 3 SHACL
-    shapes_text = (SHAPES / "core.shacl.ttl").read_text(encoding="utf-8").replace("__BASE_IRI__", base)
+    # 3 SHACL (integrity + motif detection, same shapes file)
+    shapes_rel = cfg["ontology"].get("shapes")
+    if not shapes_rel:
+        raise SystemExit("validate: config/pipeline.yaml has no ontology.shapes (path of the SHACL shapes file)")
+    shapes_text = (ROOT / shapes_rel).read_text(encoding="utf-8").replace("__BASE_IRI__", base)
     shapes = Graph().parse(data=shapes_text, format="turtle")
     _, results, text = shacl_validate(g, shacl_graph=shapes, inference="none", advanced=True, allow_warnings=True)
     if not isinstance(results, Graph):
         raise SystemExit(f"validate: SHACL engine failed: {results}")
-    by_sev, by_msg = Counter(), Counter()
+    by_sev, by_msg, detections = Counter(), Counter(), []
     for r in results.subjects(RDF.type, SH.ValidationResult):
         sev = str(results.value(r, SH.resultSeverity)).split("#")[-1]
         msg = str(results.value(r, SH.resultMessage) or "")
         by_sev[sev] += 1
+        if sev == "Info":   # risk-motif detection, not a data problem
+            detections.append({"workflow": str(results.value(r, SH.focusNode)), "motif": str(results.value(r, SH.value)),
+                               "message": msg})
+            continue
         by_msg[(sev, msg)] += 1
     for (sev, msg), n in sorted(by_msg.items()):
         (errors if sev == "Violation" else warnings).append(f"SHACL {sev}: {msg} ({n})")
-    L += ["## 3. SHACL (`shapes/core.shacl.ttl`)", "",
+    L += [f"## 3. SHACL (`{shapes_rel}`)", "",
           f"{'PASS' if not by_sev.get('Violation') else 'FAIL'}: {by_sev.get('Violation', 0)} violations, "
           f"{by_sev.get('Warning', 0)} warnings.", "", "| Severity | Message | Count |", "|---|---|---|"]
     L += [f"| {s} | {m} | {n} |" for (s, m), n in sorted(by_msg.items())] or ["| — | none | 0 |"]
-    AK = Namespace(ak)
-    risks = set(g.subjects(RDF.type, AK.Risk))
-    no_cons = [r for r in risks if (r, AK.hasConsequence, None) not in g]
-    L += ["", f"{len(no_cons)} of {len(risks)} risks have no `ak:hasConsequence` (all imported risks; "
-          "the 5 authored risks have consequences). Reported as warning.", ""]
+    detections.sort(key=lambda d: (d["workflow"], d["motif"], d["message"]))
+    short = lambda s: s.replace(ak, "ak:").replace(base, "")
+    L += ["", f"### Risk-motif detections (`sh:Info`, not counted as errors or warnings): {len(detections)}", ""]
+    if detections:
+        L += ["| Workflow | Motif | Message |", "|---|---|---|"]
+        L += [f"| `{short(d['workflow'])}` | `{short(d['motif'])}` | {short(d['message'])} |" for d in detections]
+    L.append("")
+    write_csv(REPORTS / "motif_detections.csv", ["workflow", "motif", "message"], detections)
 
     # 4 competency queries
     expected_path = QUERIES / "expected.json"
@@ -141,8 +134,8 @@ def main() -> None:
     cq = sorted(QUERIES.glob("*.rq"))
     L += ["## 4. Competency queries (`queries/*.rq`)", ""]
     if not cq:
-        warnings.append("competency queries Q7/Q16/Q17 not provided yet (queries/*.rq, queries/expected.json)")
-        L += ["Not run: no `queries/*.rq` yet (you will provide Q7, Q16, Q17 and `queries/expected.json`).", ""]
+        warnings.append("no competency queries yet (queries/*.rq, queries/expected.json)")
+        L += ["Not run: no `queries/*.rq` yet (see `queries/README.md`).", ""]
     else:
         L += ["| Query | Rows | Expected | Result |", "|---|---|---|---|"]
         for q in cq:
@@ -165,43 +158,26 @@ def main() -> None:
           f"{'PASS' if not dangling else 'FAIL'}: {len(dangling)} object IRIs in `{ak}` or `{base}` that are never a subject."]
     L += [f"- `{d}`" for d in dangling[:50]] + [""]
 
-    # DPV IRI check (warnings)
-    dpv_dir = ROOT / "sources" / "_clones" / "dpv" / cfg["sources"]["dpv"]["version"]
-    dpv_iris = sorted({str(o) for o in g.objects() if isinstance(o, URIRef) and str(o).startswith("https://w3id.org/dpv")})
-    L += ["## DPV IRIs used (existence check)", ""]
-    if (dpv_dir / "dpv" / "dpv.ttl").exists():
-        dpv = Graph()
-        dpv.parse(dpv_dir / "dpv" / "dpv.ttl")
-        dpv.parse(dpv_dir / "ai" / "ai.ttl")
-        known = set(dpv.subjects())
-        missing = [i for i in dpv_iris if URIRef(i) not in known]
+    # Reused-vocabulary IRI check (warnings): DPV, DPV-AI and EU AI Act (DPV)
+    clone = ROOT / "sources" / "_clones" / "dpv"
+    vocab_ns = ("https://w3id.org/dpv",)
+    used = sorted({str(o) for o in g.objects() if isinstance(o, URIRef) and str(o).startswith(vocab_ns)})
+    L += ["## Reused vocabulary IRIs (existence check)", ""]
+    files = [clone / f for f in cfg["sources"]["dpv"]["files"]]
+    if all(f.exists() for f in files):
+        vocab = Graph()
+        for f in files:
+            vocab.parse(f)
+        known = set(vocab.subjects())
+        missing = [i for i in used if URIRef(i) not in known]
         for i in missing:
-            warnings.append(f"DPV IRI not found in DPV {cfg['sources']['dpv']['version']}: {i}")
-        L += [f"{len(dpv_iris) - len(missing)} of {len(dpv_iris)} DPV IRIs found in DPV {cfg['sources']['dpv']['version']}."]
+            warnings.append(f"IRI not found in the fetched vocabularies: {i}")
+        L += [f"{len(used) - len(missing)} of {len(used)} IRIs found in: "
+              + ", ".join(f"`{f.relative_to(ROOT).as_posix()}`" for f in files) + "."]
         L += [f"- not found: `{i}`" for i in missing] + [""]
     else:
-        warnings.append("DPV not fetched: DPV IRIs unverified")
-        L += ["DPV not available; unverified: " + ", ".join(f"`{i}`" for i in dpv_iris), ""]
-
-    # 6 AI system module
-    L += ["## 6. AI system module on top of the merged core", ""]
-    core_orig = Graph().parse(ROOT / cfg["ontology"]["core"], format="turtle")
-    before, after = system_graph(core_orig, cfg), system_graph(g, cfg)
-    L.append(f"Parse: PASS (`{cfg['ontology']['system']}`; its `owl:imports <{cfg['ontology']['core_iri']}>` is "
-             "satisfied by loading the core graph directly).")
-    consistent2, unsat2, note2 = owl_check(after)
-    if not consistent2 or unsat2:
-        errors.append(f"system module + merged core: consistent={consistent2}, unsatisfiable={unsat2}")
-    L += [f"Consistency (system + merged core): {'PASS' if consistent2 and not unsat2 else 'FAIL'} ({note2}).", "",
-          "| Baseline query | Rows before (original core) | Rows after (merged core) | Same rows |", "|---|---|---|---|"]
-    for q in sorted((QUERIES / "system").glob("*.rq")):
-        text = q.read_text(encoding="utf-8")
-        rb, ra = query_rows(before, text), query_rows(after, text)
-        same = rb == ra
-        if not same:
-            errors.append(f"system baseline {q.name}: results differ (before {len(rb)}, after {len(ra)})")
-        L.append(f"| `system/{q.name}` | {len(rb)} | {len(ra)} | {'yes' if same else '**no**'} |")
-    L.append("")
+        warnings.append("reused vocabularies not fetched (run fetch): their IRIs are unverified")
+        L += ["Vocabularies not available; unverified: " + ", ".join(f"`{i}`" for i in used), ""]
 
     # summary
     L[3:3] = ["## Summary", "", f"**{'PASS' if not errors else 'FAIL'}** — {len(errors)} errors, {len(warnings)} warnings.", ""]

@@ -1,19 +1,11 @@
 # Manually placed sources
 
-| File | Status | Notes |
+Files that the pipeline cannot download from a pinned source. `fetch` records their SHA-256 in `sources/manifest.json`.
+
+| File | Used by | Notes |
 |---|---|---|
-| `iso22989_roles.csv` | template (empty) | Columns `id,name,parent_id,clause`. `id`: short kebab-case id (becomes `{base_iri}role/iso22989/{id}`); `parent_id`: id of the broader role or empty; `clause`: ISO/IEC 22989:2022 clause number (stored in `ak:identifier`; `ak:source` = ISO standard URL). |
-| `beam_core.ttl` | missing | Download of https://semsys.ai.wu.ac.at/beam/beam_core.ttl |
-## `role_grounding.csv` (ground authored roles in external vocabularies)
+| `beam_core.ttl` | not used by any step yet | BEAM core vocabulary (<https://semsys.ai.wu.ac.at/beam/beam_core.ttl>); `fetch` downloads it when missing. The ontology's process classes (Generate, Train, Engineer, Transform, Infer) follow BEAM. Licence not stated, so it is not redistributed in the KG. |
+| `iso22989_roles.csv` | not used by any step yet | Stakeholder role names of ISO/IEC 22989:2022 clause 5.19 (columns `id,name,parent_id,clause`), from a secondary source. Candidate source for `Stakeholder` values. |
+| `ai_models/` | not used by any step yet | Epoch AI "Data on AI models" (CC BY 4.0; see `ai_models/README.md`). Candidate source for `Model` instances. |
 
-One row per link from an authored role to an external term. Columns:
-
-| Column | Content | Example |
-|---|---|---|
-| `role` | local name of a role in `ak:` (or a full IRI, e.g. a reused role) | `TrainingDataRole` |
-| `predicate` | one of `seeAlso`, `exactMatch`, `closeMatch`, `broadMatch`, `narrowMatch`, `relatedMatch` (`rdfs:seeAlso` / `skos:*`) | `closeMatch` |
-| `target` | full IRI, or CURIE with `beam:`, `dpv:`, `ai:` (DPV-AI), `airo:` | `ai:TrainingData` |
-| `note` | why (optional, not imported) | `same meaning` |
-
-Rules: the role must exist; BEAM/DPV/DPV-AI targets must exist in the fetched vocabularies (typo protection); other namespaces are accepted but reported as unverified. `skos:exactMatch` only if the meanings are the same; `closeMatch` for very similar; `broadMatch`/`narrowMatch` when the target is broader/narrower than the role; `seeAlso` for a loose pointer.
-Run `python -m scripts.run roles merge validate report`. Suggestions (by name only, not applied): `build/reports/role_grounding_candidates.md`.
+The curated mitigation links are in `sources/mapping/` (see `docs/mitigations.md`); `stage` reads them through `manual_mitigation_links` in `config/pipeline.yaml`.

@@ -20,7 +20,6 @@ STAGING = ROOT / "staging"
 MAPPINGS = ROOT / "mappings"
 BUILD = ROOT / "build"
 REPORTS = BUILD / "reports"
-SHAPES = ROOT / "shapes"
 QUERIES = ROOT / "queries"
 SITE = ROOT / "site"
 DOCS = ROOT / "docs"
@@ -81,15 +80,56 @@ def provenance_line() -> str:
             f"Nexus commit `{nexus.get('commit', 'n/a')}`.")
 
 
+def ontology_files(cfg: dict) -> list[Path]:
+    """The ontology files merged into the graph: the core file plus the optional contexts file."""
+    o = cfg["ontology"]
+    return [ROOT / o[k] for k in ("core", "contexts") if o.get(k)]
+
+
 def check_ontology_unchanged(cfg: dict | None = None) -> None:
-    """The existing ontology files must stay byte-identical (the pipeline never edits them)."""
+    """The ontology and shapes files must match the SHA-256 pinned in config/pipeline.yaml
+    (the pipeline only reads them; after an intended edit, update the hash in the config)."""
     cfg = cfg or load_config()
     o = cfg["ontology"]
-    for key in ("core", "system"):
+    for key in ("core", "contexts", "shapes"):
+        if key not in o:          # contexts is optional
+            continue
         actual = sha256_file(ROOT / o[key])
         if actual != o[f"{key}_sha256"]:
-            sys.exit(f"ERROR: {o[key]} changed (sha256 {actual}); the pipeline must not edit it.")
+            sys.exit(f"ERROR: {o[key]} changed (sha256 {actual}). If the edit is intended, run:\n"
+                     f"  python -m scripts.run accept-ontology")
 
 
 def log(msg: str) -> None:
     print(msg, flush=True)
+
+
+def accept_ontology_changes() -> list[str]:
+    """After an intended edit: check that each changed ontology file is valid Turtle, then write its new SHA-256
+    into config/pipeline.yaml (only the hash lines change; comments and layout are kept)."""
+    import re
+    from rdflib import Graph
+    cfg = load_config()
+    o = cfg["ontology"]
+    with open(CONFIG_PATH, encoding="utf-8", newline="") as fh:     # keep the file's line endings as they are
+        text = fh.read()
+    changed = []
+    for key in ("core", "contexts", "shapes"):
+        if key not in o:
+            continue
+        path = ROOT / o[key]
+        actual = sha256_file(path)
+        if actual == o.get(f"{key}_sha256"):
+            continue
+        try:
+            Graph().parse(path, format="turtle")
+        except Exception as e:                     # syntax error: do not accept
+            sys.exit(f"ERROR: {o[key]} is not valid Turtle, hash not updated:\n  {e}")
+        text, n = re.subn(rf'(\n[ \t]*{key}_sha256:[ \t]*)"[0-9a-f]*"', rf'\g<1>"{actual}"', text, count=1)
+        if n != 1:
+            sys.exit(f"ERROR: no ontology.{key}_sha256 line found in {CONFIG_PATH.relative_to(ROOT)}")
+        changed.append(f"{o[key]} -> {actual}")
+    if changed:
+        with open(CONFIG_PATH, "w", encoding="utf-8", newline="") as fh:
+            fh.write(text)
+    return changed

@@ -2,7 +2,7 @@
 
 - IBM AI Atlas Nexus: fetch exactly the pinned commit (shallow), copy the needed files to
   sources/nexus/<same relative path>, record SHA-256.
-- DPV: treeless sparse clone at the pinned commit; only dpv.ttl / ai.ttl (IRI existence check).
+- DPV: treeless sparse clone at the pinned commit; only the files in sources.dpv.files (IRI existence check).
 - BEAM: try to download; if blocked, expect sources/manual/beam_core.ttl.
 - Manual files: report which are present / missing.
 
@@ -12,8 +12,10 @@ unchanged, so reruns produce a byte-identical manifest.
 from __future__ import annotations
 
 import datetime as dt
+import hashlib
 import shutil
 import subprocess
+import tarfile
 import urllib.request
 
 from scripts.common import (MANIFEST, MANUAL, NEXUS_DIR, ROOT, SOURCES, load_config, log,
@@ -81,7 +83,7 @@ def fetch_nexus(cfg: dict, prev: dict) -> dict:
 def fetch_dpv(cfg: dict, prev: dict) -> dict:
     d = cfg["sources"]["dpv"]
     clone = CLONES / "dpv"
-    paths = [f"{d['version']}/dpv/dpv.ttl", f"{d['version']}/ai/ai.ttl"]
+    paths = d["files"]
     try:
         fetch_commit(d["repo"], d["commit"], clone, sparse=paths)
     except (subprocess.CalledProcessError, SystemExit) as e:
@@ -119,12 +121,75 @@ def fetch_beam(cfg: dict, prev: dict) -> dict:
             "fetched": fetched}
 
 
+AIID_DIR = SOURCES / "aiid"
+AVID_DIR = SOURCES / "avid"
+
+
+def fetch_aiid(cfg: dict, prev: dict) -> dict:
+    """Pinned AIID snapshot: download once, verify SHA-256, extract only the configured CSV exports."""
+    a = cfg["sources"].get("aiid")
+    if not a:
+        return {}
+    AIID_DIR.mkdir(parents=True, exist_ok=True)
+    archive = AIID_DIR / a["snapshot"]
+    if not archive.exists() or sha256_file(archive) != a["sha256"]:
+        url = a["url"].format(snapshot=a["snapshot"])
+        log(f"aiid: downloading {a['snapshot']}")
+        req = urllib.request.Request(url, headers={"User-Agent": "airkg-pipeline"})
+        tmp = archive.with_suffix(archive.suffix + ".part")
+        with urllib.request.urlopen(req, timeout=120) as r, open(tmp, "wb") as fh:
+            shutil.copyfileobj(r, fh, length=1 << 20)
+        tmp.replace(archive)
+    got = sha256_file(archive)
+    if got != a["sha256"]:
+        raise SystemExit(f"ERROR: AIID snapshot {a['snapshot']} has sha256 {got}, expected {a['sha256']}")
+    out = AIID_DIR / "extracted"
+    out.mkdir(exist_ok=True)
+    want = set(a["extract"])
+    files = {}
+    with tarfile.open(archive, "r:bz2") as tf:
+        for m in tf.getmembers():
+            name = m.name.rsplit("/", 1)[-1]
+            # top-level CSV exports only (the archive also holds BSON dumps and translations)
+            if m.isfile() and name in want and m.name.count("/") == 1:
+                with tf.extractfile(m) as src, open(out / name, "wb") as dst:
+                    shutil.copyfileobj(src, dst)
+                files[name] = sha256_file(out / name)
+    missing = sorted(want - set(files))
+    if missing:
+        raise SystemExit(f"ERROR: AIID snapshot lacks {missing}")
+    log(f"aiid: {len(files)} files extracted to {out.relative_to(ROOT)}/")
+    p = prev.get("aiid", {})
+    return {"url": a["url"].format(snapshot=a["snapshot"]), "snapshot": a["snapshot"],
+            "snapshot_date": a["snapshot_date"], "sha256": got, "files": files,
+            "fetched": p["fetched"] if p.get("sha256") == got and p.get("fetched") else TODAY}
+
+
+def fetch_avid(cfg: dict, prev: dict) -> dict:
+    """AVID records at the pinned commit (sparse checkout of the configured folders only)."""
+    v = cfg["sources"].get("avid")
+    if not v:
+        return {}
+    fetch_commit(v["repo"], v["commit"], AVID_DIR, sparse=[p.rstrip("/") + "/" for p in v["paths"]])
+    files = {}
+    for p in v["paths"]:
+        for f in sorted((AVID_DIR / p).rglob("*.json")):
+            files[f.relative_to(AVID_DIR).as_posix()] = sha256_file(f)
+    log(f"avid: {len(files)} JSON records at {v['commit'][:7]}")
+    # one checksum over all record checksums (the manifest stays small)
+    digest = hashlib.sha256("\n".join(f"{k} {h}" for k, h in sorted(files.items())).encode()).hexdigest()
+    p = prev.get("avid", {})
+    same = p.get("commit") == v["commit"] and p.get("files_sha256") == digest and p.get("fetched")
+    return {"url": v["repo"], "commit": v["commit"], "paths": v["paths"], "n_files": len(files),
+            "files_sha256": digest, "fetched": p["fetched"] if same else TODAY}
+
+
 def check_manual(cfg: dict) -> dict:
     out = {}
-    for p in sorted(MANUAL.glob("*")):
-        if p.name == "README.md":
+    for p in sorted(MANUAL.rglob("*")):
+        if not p.is_file() or p.name == "README.md":
             continue
-        out[f"sources/manual/{p.name}"] = sha256_file(p)
+        out[f"sources/manual/{p.relative_to(MANUAL).as_posix()}"] = sha256_file(p)
     iso = ROOT / cfg["sources"]["iso22989"]["manual_file"]
     rows = max(0, len(iso.read_text(encoding="utf-8").strip().splitlines()) - 1) if iso.exists() else 0
     missing = [f for f, ok in [(cfg["sources"]["beam"]["manual_file"], (ROOT / cfg["sources"]["beam"]["manual_file"]).exists()),
@@ -139,6 +204,10 @@ def main() -> None:
     prev = manifest()
     m = {"nexus": fetch_nexus(cfg, prev), "dpv": fetch_dpv(cfg, prev),
          "beam": fetch_beam(cfg, prev), "manual": check_manual(cfg)}
+    for key, fn in (("aiid", fetch_aiid), ("avid", fetch_avid)):
+        entry = fn(cfg, prev)
+        if entry:
+            m[key] = entry
     write_json(MANIFEST, m)
     log(f"wrote {MANIFEST.relative_to(ROOT)}")
 

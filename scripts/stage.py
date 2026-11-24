@@ -8,12 +8,15 @@ Outputs (all sorted, LF, UTF-8):
   mit_control_groups.csv          MIT mitigation taxonomy (4 categories, 23 subcategories)
   mit_control_categorisation.csv  control -> group (+ top category)
   excluded_risks.csv, excluded_crosswalks.csv, excluded_causal_facets.csv, excluded_controls.csv
+  manual_mitigation_links.csv     author-curated control -> risk links (config manual_mitigation_links)
+  incidents.csv                   AIID incidents + AVID records for llm_motif (git-ignored: CC BY-SA text)
   stage_summary.json              counts
 """
 from __future__ import annotations
 
 import ast
 import csv
+import json
 import re
 from collections import Counter
 from pathlib import Path
@@ -242,18 +245,164 @@ def stage_mitigations(cfg: dict, issues: list) -> dict:
             "categorisation": categorisation, "excluded": excluded}
 
 
-def stage_ibm_hints(cfg: dict, risk_ids: set[str]) -> list[dict]:
-    """IBM Risk Atlas fields that say where a risk arises (used only for the pattern-coverage report)."""
-    data = y(cfg["catalogues"]["ibm"]["nexus_file"])
-    groups = {g["id"]: clean(g["name"]) for g in data.get("groups", [])}
-    rows = []
-    for e in data["entries"]:
-        if e["id"] not in risk_ids:
+MANUAL_LINK_COLS = ["risk_id", "risk_iri", "mitigation_id", "mitigation_iri", "via", "skos_match_type",
+                    "reviewer", "source_file"]
+
+
+def stage_manual_links(cfg: dict, risks: list[dict], controls: list[dict]) -> list[dict]:
+    """Author-curated risk -> mitigation links (reviewed). Each row links the MIT control to both the
+    OWASP and the IBM risk of the row. Unknown ids stop the step (nothing is guessed)."""
+    mcfg = cfg.get("manual_mitigation_links")
+    if not mcfg:
+        return []
+    path = ROOT / mcfg["file"]
+    if not path.exists():
+        log(f"stage: {mcfg['file']} missing; no manual mitigation links")
+        return []
+    risk_iri = {r["nexus_id"]: r["iri"] for r in risks}
+    ctl_iri = {c["nexus_id"]: c["iri"] for c in controls}
+
+    def fix(cid: str) -> str:
+        cid = cid.strip()
+        for f in mcfg.get("id_fixes", []):
+            cid = cid.replace(f["find"], f["replace"])
+        return cid
+
+    with open(path, encoding="utf-8-sig", newline="") as fh:
+        rows = list(csv.DictReader(fh))
+    out, seen, problems = [], set(), []
+    for i, r in enumerate(rows, start=2):
+        mid = fix(r["mit_action_id"])
+        if mid not in ctl_iri:
+            problems.append(f"row {i}: MIT control {r['mit_action_id']!r} (fixed: {mid!r}) not in staging/mit_controls.csv")
             continue
-        rows.append({"nexus_id": e["id"], "risk_type": clean(e.get("risk_type")),
-                     "descriptors": "; ".join(clean(d) for d in as_list(e.get("descriptor"))),
-                     "ibm_group_id": e.get("isPartOf", ""), "ibm_group": groups.get(e.get("isPartOf", ""), "")})
-    return sorted(rows, key=lambda r: r["nexus_id"])
+        for via, rid in (("owasp", r["owasp_id"].strip()), ("ibm", r["ibm_risk_id"].strip())):
+            if rid not in risk_iri:
+                problems.append(f"row {i}: risk {rid!r} not in staging/risks.csv")
+                continue
+            if (rid, mid) in seen:
+                continue
+            seen.add((rid, mid))
+            out.append({"risk_id": rid, "risk_iri": risk_iri[rid], "mitigation_id": mid, "mitigation_iri": ctl_iri[mid],
+                        "via": via, "skos_match_type": r.get("skos_match_type", "").strip(),
+                        "reviewer": mcfg.get("reviewer", ""), "source_file": mcfg["file"]})
+    if problems:
+        raise SystemExit("stage: manual mitigation links have unknown ids:\n  " + "\n  ".join(problems))
+    return sorted(out, key=lambda r: (r["risk_id"], r["mitigation_id"]))
+
+
+INCIDENT_COLS = ["incident_id", "source", "record_class", "title", "description", "url", "date",
+                 "deployer", "developer", "harmed_parties",
+                 "mit_risk_ids", "mit_entity", "mit_timing", "mit_intent",
+                 "gmf_goal", "gmf_technology", "gmf_failure", "gmf_potential_technology", "gmf_potential_failure",
+                 "gmf_published",
+                 "cset_sector", "cset_autonomy", "cset_ai_task", "cset_data_inputs",
+                 "avid_artifacts", "avid_lifecycle", "avid_sep", "avid_risk_domain", "license"]
+MIT_SUBDOMAIN = re.compile(r"^\s*(\d+\.\d+)\.")
+
+
+def _cell(v) -> str:
+    s = "" if v is None else str(v)
+    return "" if s.lower() == "nan" else clean(s)
+
+
+def _join(values) -> str:
+    """'; '-joined, de-duplicated, order kept (multi-valued taxonomy fields)."""
+    out = []
+    for v in values:
+        for part in str(v).split(","):
+            p = clean(part)
+            if p and p.lower() != "nan" and p not in out:
+                out.append(p)
+    return "; ".join(out)
+
+
+def stage_incidents(cfg: dict, risks: list[dict]) -> tuple[list[dict], dict]:
+    """AIID incidents (with MIT / GMF / CSETv1 classifications) and AVID records -> one table.
+
+    MIT subdomain labels ('7.3. Lack of ...') are resolved to the imported MIT risks
+    (nexus id mit-ai-risk-subdomain-7.3); everything else stays as text for the LLM step.
+    """
+    icfg, out, stats = cfg.get("incidents", {}), [], Counter()
+    mit_ids = {r["catalogue_identifier"]: r["nexus_id"] for r in risks if r["catalogue"] == "mit"}
+    a = cfg["sources"].get("aiid")
+    ex = ROOT / "sources" / "aiid" / "extracted"
+    if a and (ex / "incidents.csv").exists():
+        def table(name):
+            with open(ex / name, encoding="utf-8-sig", newline="") as fh:
+                return list(csv.DictReader(fh))
+        by_inc = lambda rows: {str(r["Incident ID"]).strip(): r for r in rows}
+        mit, cset = table("classifications_MIT.csv"), by_inc(table("classifications_CSETv1.csv"))
+        gmf = by_inc(r for r in table("classifications_GMF.csv")
+                     if not icfg.get("aiid", {}).get("gmf_published_only") or r.get("Published") == "True")
+        mit_by = {}
+        for r in mit:
+            mit_by.setdefault(str(r["Incident ID"]).strip(), []).append(r)
+        for inc in table("incidents.csv"):
+            iid = str(inc["incident_id"]).strip()
+            m, g, c = mit_by.get(iid, []), gmf.get(iid, {}), cset.get(iid, {})
+            risk_ids, unresolved = [], []
+            for r in m:
+                k = MIT_SUBDOMAIN.match(r.get("Risk Subdomain") or "")
+                (risk_ids if k and k.group(1) in mit_ids else unresolved).append(
+                    mit_ids[k.group(1)] if k and k.group(1) in mit_ids else (r.get("Risk Subdomain") or ""))
+            stats["aiid_unresolved_mit_labels"] += len([u for u in unresolved if u])
+            out.append({
+                "incident_id": f"aiid-{iid}", "source": "aiid", "record_class": "AIID incident",
+                "title": _cell(inc.get("title")), "description": _cell(inc.get("description")),
+                "url": a["incident_url"].format(incident_id=iid), "date": _cell(inc.get("date")),
+                "deployer": _cell(inc.get("Alleged deployer of AI system")),
+                "developer": _cell(inc.get("Alleged developer of AI system")),
+                "harmed_parties": _cell(inc.get("Alleged harmed or nearly harmed parties")),
+                "mit_risk_ids": " ".join(sorted(set(risk_ids))),
+                "mit_entity": _join(r.get("Entity", "") for r in m), "mit_timing": _join(r.get("Timing", "") for r in m),
+                "mit_intent": _join(r.get("Intent", "") for r in m),
+                "gmf_goal": _join([g.get("Known AI Goal", "")]), "gmf_technology": _join([g.get("Known AI Technology", "")]),
+                "gmf_failure": _join([g.get("Known AI Technical Failure", "")]),
+                "gmf_potential_technology": _join([g.get("Potential AI Technology", "")]),
+                "gmf_potential_failure": _join([g.get("Potential AI Technical Failure", "")]),
+                "gmf_published": (g.get("Published", "") or "").lower() if g else "",
+                # CSET values contain commas inside a value (e.g. "Arts, entertainment and recreation"): no splitting
+                "cset_sector": _cell(c.get("Sector of Deployment")), "cset_autonomy": _cell(c.get("Autonomy Level")),
+                "cset_ai_task": _cell(c.get("AI Task")), "cset_data_inputs": _cell(c.get("Data Inputs")),
+                "avid_artifacts": "", "avid_lifecycle": "", "avid_sep": "", "avid_risk_domain": "",
+                "license": a["license"]})
+            stats["aiid"] += 1
+            stats["aiid_with_mit"] += bool(risk_ids)
+            stats["aiid_with_gmf"] += bool(g)
+            stats["aiid_with_cset"] += bool(c)
+    v = cfg["sources"].get("avid")
+    root = ROOT / "sources" / "avid"
+    if v and root.exists():
+        excl = set(icfg.get("avid", {}).get("exclude_classof", []))
+        for p in v["paths"]:
+            for f in sorted((root / p).rglob("*.json")):
+                d = json.loads(f.read_text(encoding="utf-8"))
+                pt = d.get("problemtype") or {}
+                klass = pt.get("classof") or ""
+                if klass in excl:
+                    stats["avid_excluded"] += 1
+                    continue
+                meta = d.get("metadata") or {}
+                rid = meta.get("report_id") or meta.get("vuln_id") or f.stem
+                av = (d.get("impact") or {}).get("avid") or {}
+                aff = d.get("affects") or {}
+                refs = [r.get("url") for r in d.get("references") or [] if r.get("url")]
+                out.append({
+                    "incident_id": f"avid-{rid}", "source": "avid", "record_class": klass or "(none)",
+                    "title": _cell((pt.get("description") or {}).get("value")),
+                    "description": _cell((d.get("description") or {}).get("value")),
+                    "url": refs[0] if refs else "", "date": d.get("reported_date") or d.get("published_date") or "",
+                    "deployer": "; ".join(aff.get("deployer") or []), "developer": "; ".join(aff.get("developer") or []),
+                    "harmed_parties": "", "mit_risk_ids": "", "mit_entity": "", "mit_timing": "", "mit_intent": "",
+                    "gmf_goal": "", "gmf_technology": "", "gmf_failure": "", "gmf_potential_technology": "",
+                    "gmf_potential_failure": "", "gmf_published": "",
+                    "cset_sector": "", "cset_autonomy": "", "cset_ai_task": "", "cset_data_inputs": "",
+                    "avid_artifacts": "; ".join(f"{x.get('type')}: {x.get('name')}" for x in aff.get("artifacts") or []),
+                    "avid_lifecycle": "; ".join(av.get("lifecycle_view") or []), "avid_sep": "; ".join(av.get("sep_view") or []),
+                    "avid_risk_domain": "; ".join(av.get("risk_domain") or []), "license": v["license"]})
+                stats["avid"] += 1
+    return sorted(out, key=lambda r: (r["source"], r["incident_id"])), dict(sorted(stats.items()))
 
 
 RISK_COLS = ["nexus_id", "catalogue", "name", "catalogue_identifier", "source_url", "source_url_note",
@@ -273,9 +422,11 @@ def main() -> None:
     risks, ex_risks, catalogues = stage_risks(cfg, issues)
     xw, ex_xw, causal, xw_stats = stage_crosswalks(cfg, {r["nexus_id"] for r in risks})
     mit = stage_mitigations(cfg, issues)
-    hints = stage_ibm_hints(cfg, {r["nexus_id"] for r in risks})
+    manual_links = stage_manual_links(cfg, risks, mit["controls"])
+    incidents, incident_stats = stage_incidents(cfg, risks)
+    if incidents:
+        write_csv(STAGING / "incidents.csv", INCIDENT_COLS, incidents)
 
-    write_csv(STAGING / "ibm_risk_hints.csv", ["nexus_id", "risk_type", "descriptors", "ibm_group_id", "ibm_group"], hints)
     write_csv(STAGING / "risks.csv", RISK_COLS, risks)
     write_csv(STAGING / "catalogues.csv", list(catalogues[0].keys()), sorted(catalogues, key=lambda c: c["catalogue"]))
     write_csv(STAGING / "crosswalks.csv", XW_COLS + ["subject_iri", "predicate_iri", "object_iri"], xw)
@@ -287,6 +438,8 @@ def main() -> None:
     write_csv(STAGING / "mit_control_categorisation.csv",
               ["control_id", "group_id", "top_category_id", "justification", "author", "mapping_date"], mit["categorisation"])
     write_csv(STAGING / "excluded_controls.csv", ["control_id", "reason"], mit["excluded"])
+    if cfg.get("manual_mitigation_links"):
+        write_csv(STAGING / "manual_mitigation_links.csv", MANUAL_LINK_COLS, manual_links)
 
     summary = {
         "nexus_commit": manifest().get("nexus", {}).get("commit", ""),
@@ -301,6 +454,9 @@ def main() -> None:
         "mit_controls_per_class": dict(sorted(Counter(c["mitigation_class"] for c in mit["controls"]).items())),
         "mit_control_groups": len(mit["groups"]),
         "mit_categorisation_rows": len(mit["categorisation"]),
+        "manual_mitigation_links": len(manual_links),
+        "manual_mitigation_links_per_catalogue": dict(sorted(Counter(r["via"] for r in manual_links).items())),
+        "incidents": incident_stats,
         "issues": issues,
     }
     write_json(STAGING / "stage_summary.json", summary)

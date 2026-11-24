@@ -1,4 +1,32 @@
 {
+  "aiid": {
+    "fetched": "2026-11-24",
+    "files": {
+      "classifications_CSETv1.csv": "9a1af8a205525b7d92b81c8cf2b4b925855c98c8b4c214e418fb272c3244ae13",
+      "classifications_GMF.csv": "db55984a8dc5be77ae9baf2aa35937fe0fe635dd8d0319fbc006aa6b35072690",
+      "classifications_MIT.csv": "4633b8642b283a62178e0fd4c72da7d1fde100f15102ee13065c7cddd90303b3",
+      "incidents.csv": "1d9a52218e50e288ee769f2274c5b307af6315e4579a8db073083a9361771cfe",
+      "license.txt": "ea4f9baa0524469b56b2b899b58d509d224ff67f00cd6ecaa059b2590def1295"
+    },
+    "sha256": "bee2fd7abfbec31e7c79852f39e13c51086f403556491c1d62718541776b3776",
+    "snapshot": "backup-20261123100712.tar.bz2",
+    "snapshot_date": "2026-11-23",
+    "url": "https://pub-72b2b2fc36ec423189843747af98f80e.r2.dev/backup-20261123100712.tar.bz2"
+  },
+  "avid": {
+    "commit": "8eda5f4e6f74a3738eb980b795c4f813c6e52ca8",
+    "fetched": "2026-11-24",
+    "files_sha256": "95aa320144940c4cf2f5345220f1157a492c87fdac2edff8f814051d29f8c645",
+    "n_files": 1785,
+    "paths": [
+      "vulnerabilities",
+      "reports/2022",
+      "reports/2023",
+      "reports/2025",
+      "reports/2026"
+    ],
+    "url": "https://github.com/avidml/avid-db.git"
+  },
   "beam": {
     "fetched": "2026-11-17",
     "file": "sources/manual/beam_core.ttl",
@@ -8,10 +36,11 @@
   },
   "dpv": {
     "commit": "c85ffacc97041b90a7a3afb3b6417f0b4d9fafbc",
-    "fetched": "2026-11-17",
+    "fetched": "2026-11-24",
     "files": {
       "2.3/ai/ai.ttl": "0bf0b50b074cd18da989410cfe6d1d7fd7fee8062ea1fb6829d76e78c422de92",
-      "2.3/dpv/dpv.ttl": "3c89b43a61da5021b9b53c4032f9cf7d2ebdfa4bc43c857574c869ca99d2db46"
+      "2.3/dpv/dpv.ttl": "3c89b43a61da5021b9b53c4032f9cf7d2ebdfa4bc43c857574c869ca99d2db46",
+      "2.3/legal/eu/aiact/eu-aiact.ttl": "bd9b5534e313c72170b7a6bab4d74f0bd7a9aab135064cdc6e8a29d0dd038639"
     },
     "local": "sources/_clones/dpv/",
     "url": "https://github.com/w3c/dpv.git",
@@ -19,9 +48,12 @@
   },
   "manual": {
     "files": {
+      "sources/manual/ai_models/all_ai_models.csv": "d2e6eae925c854b79595079f9da1733369eb84100754477260324ac19649637e",
+      "sources/manual/ai_models/frontier_ai_models.csv": "54c1aa6d0401af9bba5c65c300e07379a738380aa5db5db77c0c7e9c10f7bd08",
+      "sources/manual/ai_models/large_scale_ai_models.csv": "29a7ea8bdd883b1342ff19975f83b480f0c21e2ddc687145f63a6de089f7da58",
+      "sources/manual/ai_models/notable_ai_models.csv": "0c411dbaafd96eb1166545cfe13f760131e4860f18a1d41d222ba77697341107",
       "sources/manual/beam_core.ttl": "68d1ddbc133a3f25235827adb65eaf76be8234c019f67543fd5afee4a45f7072",
-      "sources/manual/iso22989_roles.csv": "f482c9a77032bb8a4bf11b77b8ae1d16eb250821e549996083478b142682dba2",
-      "sources/manual/role_grounding.csv": "0f39949e4d03f7acbc08f1905c6ac00bba61f49e929d938bb0a227c52f57a9c3"
+      "sources/manual/iso22989_roles.csv": "f482c9a77032bb8a4bf11b77b8ae1d16eb250821e549996083478b142682dba2"
     },
     "iso22989_rows": 18,
     "missing_or_empty": []

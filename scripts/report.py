@@ -9,15 +9,8 @@ from rdflib.namespace import SKOS
 
 from scripts.common import BUILD, REPORTS, ROOT, STAGING, load_config, log, provenance_line, read_csv, write_text
 
-LLM_OUT = ROOT / "llm_mitigation" / "output"
+LLM_OUT = ROOT / "extractor" / "llm_mitigation" / "output"
 MATCH = [SKOS.exactMatch, SKOS.closeMatch, SKOS.relatedMatch, SKOS.broadMatch, SKOS.narrowMatch]
-
-
-def role_grounded(g: Graph, s, AK, internal: tuple[str, ...]) -> bool:
-    if (s, AK.source, None) in g:
-        return True
-    return any(isinstance(o, URIRef) and not str(o).startswith(internal)
-               for p in [RDFS.seeAlso, *MATCH] for o in g.objects(s, p))
 
 
 def table(header: list[str], rows: list[list]) -> list[str]:
@@ -34,22 +27,23 @@ def main() -> None:
     base, ak = cfg["base_iri"], cfg["ak_namespace"]
     AK = Namespace(ak)
     g = Graph().parse(kg)
-    internal = (ak, base)
-    L = ["# AI-RKG core knowledge graph – statistics", "", provenance_line(),
+    L =["# AI-RKG core knowledge graph – statistics", "", provenance_line(),
          f"Merged graph: `build/airkg-core-kg.ttl`, {len(g)} triples.", ""]
 
-    # per class (asserted types; authored vs imported/reused by IRI namespace)
-    classes = ["Risk", "Consequence", "Mitigation", "TechnicalMitigation", "OrganisationalMitigation", "Role",
-               "ComponentRole", "StakeholderRole", "Motif", "Condition", "RiskPattern", "MitigationPattern",
-               "ContextElement", "AutonomyLevel", "DataType", "DeploymentEnvironment", "Domain", "Purpose", "Task"]
+    # per class (asserted types; authored vs pipeline by IRI namespace), for every class the ontology declares
+    onto = Graph().parse(ROOT / cfg["ontology"]["core"])
+    classes = sorted(str(c)[len(ak):] for c in onto.subjects(RDF.type, OWL.Class)
+                     if isinstance(c, URIRef) and str(c).startswith(ak))
     rows = []
     for c in classes:
-        inst = set(g.subjects(RDF.type, AK[c]))
+        inst = {s for s in g.subjects(RDF.type, AK[c]) if isinstance(s, (URIRef,))}
+        blank = sum(1 for s in g.subjects(RDF.type, AK[c]) if not isinstance(s, URIRef))
         a = sum(1 for s in inst if str(s).startswith(ak))
-        rows.append([f"`ak:{c}`", a, len(inst) - a, len(inst)])
+        rows.append([f"`ak:{c}`", a, len(inst) - a, blank, len(inst) + blank])
     L += ["## Individuals per class (asserted `rdf:type`)", "",
-          "Authored = in `ak:` (core module); pipeline = minted from `base_iri` (imported or reused).", ""]
-    L += table(["Class", "Authored", "Pipeline", "Total"], rows) + [""]
+          "Authored = in `ak:` (ontology file); pipeline = minted from `base_iri` (imported); "
+          "blank = blank nodes (e.g. architectural contexts written inline).", ""]
+    L += table(["Class", "Authored", "Pipeline", "Blank", "Total"], rows) + [""]
 
     # per catalogue
     risks = read_csv(STAGING / "risks.csv")
@@ -82,27 +76,26 @@ def main() -> None:
                + [["**Total MIT controls**", len(ctl)]]) + [""]
     proposed = read_csv(LLM_OUT / "candidates.csv") if (LLM_OUT / "candidates.csv").exists() else []
     accepted = read_csv(STAGING / "accepted_mitigation_links.csv") if (STAGING / "accepted_mitigation_links.csv").exists() else []
+    manual = read_csv(STAGING / "manual_mitigation_links.csv") if (STAGING / "manual_mitigation_links.csv").exists() else []
     mitigates = list(g.triples((None, AK.mitigates, None)))
-    L += ["Candidate mitigation→risk links (LLM, `llm_mitigation/`):", "",
-          f"- proposed: {len(proposed)}" + (" (LLM run not done yet)" if not proposed else
-                                             f" for {len({r['risk_id'] for r in proposed})} risks"),
-          f"- accepted by review: {len(accepted)}",
+    L += ["Mitigation→risk links (`ak:mitigates`):", "",
+          f"- curated and reviewed by the authors: {len(manual)} "
+          f"({', '.join(f'{k}: {v}' for k, v in sorted(Counter(r['via'] for r in manual).items())) or 'none'}), "
+          f"covering {len({r['risk_id'] for r in manual})} risks and {len({r['mitigation_id'] for r in manual})} controls",
+          f"- proposed by the LLM (`extractor/llm_mitigation/`): {len(proposed)}" + (" (LLM run not done yet)" if not proposed else
+                                                                            f" for {len({r['risk_id'] for r in proposed})} risks"),
+          f"- LLM proposals accepted by review: {len(accepted)}",
           f"- `ak:mitigates` triples in the graph: {len(mitigates)} "
-          f"({sum(1 for s, _, _ in mitigates if str(s).startswith(ak))} authored, "
-          f"{sum(1 for s, _, _ in mitigates if str(s).startswith(base))} from accepted candidates)", ""]
+          f"({sum(1 for s, _, _ in mitigates if str(s).startswith(ak))} authored in the ontology file, "
+          f"{sum(1 for s, _, _ in mitigates if str(s).startswith(base))} on imported controls)", ""]
 
-    # roles grounded vs proposed
-    rows = []
-    for cls in ("ComponentRole", "StakeholderRole"):
-        for origin, prefix in (("authored", ak), ("reused", base)):
-            inst = [s for s in set(g.subjects(RDF.type, AK[cls])) if str(s).startswith(prefix)]
-            gr = sum(1 for s in inst if role_grounded(g, s, AK, internal))
-            rows.append([f"`ak:{cls}`", origin, len(inst), gr, len(inst) - gr])
-    L += ["## Roles: grounded vs. proposed", "",
-          "Grounded = has `ak:source`, or `rdfs:seeAlso` / `skos:*Match` to an external IRI. Proposed = neither.", ""]
-    L += table(["Class", "Origin", "Roles", "Grounded", "Proposed"], rows) + [""]
-    L += ["Reused roles: BEAM (`role/beam/*`, via `rdfs:seeAlso` to BEAM classes); ISO/IEC 22989 "
-          "(`role/iso22989/*`, names from a secondary source, see `LICENSES.md`).", ""]
+    # risk motifs
+    motifs = sorted(set(g.subjects(RDF.type, AK.RiskMotif)), key=str)
+    det = REPORTS / "motif_detections.csv"
+    L += ["## Risk motifs", "", f"- `ak:RiskMotif` individuals: {len(motifs)}",
+          f"- risks indicated by a motif: {len(set(g.objects(None, AK.indicatesRisk)))}",
+          f"- detections in the last validation run: {len(read_csv(det)) if det.exists() else 'not run yet'} "
+          "(`build/reports/motif_detections.csv`)", ""]
 
     # validation summary pointer
     val = REPORTS / "validation.md"

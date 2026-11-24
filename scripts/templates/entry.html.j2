@@ -28,7 +28,7 @@
 {% endif %}
 
 <footer>
-{% if e.attribution %}{{ e.attribution }} Licence: <a href="{{ e.license }}">{{ e.license }}</a>.{% else %}Authored in the AI-RKG core module (<code>ontology/airkg-core.ttl</code>).{% endif %}
+{% if e.attribution %}{{ e.attribution }} Licence: <a href="{{ e.license }}">{{ e.license }}</a>.{% else %}Authored in the AI-RKG ontology file.{% endif %}
 {% if e.candidate_note %}<br><span class="warn">{{ e.candidate_note }}</span>{% endif %}
 </footer>
 {% endblock %}
