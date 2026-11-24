@@ -20,6 +20,8 @@ extractor/*/output/prompts_preview/
 # profiles and motif proposals quote AIID text (CC BY-SA 4.0); keep them out of the repository
 extractor/llm_motif/output/profiles.jsonl
 extractor/llm_motif/output/motifs.jsonl
+extractor/llm_motif/output/*.md
+extractor/llm_motif/output_run1/*
 site/*
 !site/.gitkeep
 # local working notes (survey, decisions, issues, full changelog) - not pushed
