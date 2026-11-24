@@ -593,7 +593,7 @@
     :description "A large language model (LLM) is used to infer on personal data supplied by a user";
     :indicatesRisk :sensitive_data_exposure ;
     :hasManifestCondition :motif2_output, :motif2_stored ;
-    :inContext :motif2_architeture .
+    :inContext :motif2_architeture , :personal_data .
 
 :motif2_architeture a :ArchitecturalContext ;
     :name "Motif 2 Architecture" ;
@@ -632,7 +632,7 @@
 
 :bank_support_assistant a :AISystem ;
   :name "Bank AI Asisstant" ;
-  :hasContext :financial_services , :public_web ;
+  :hasContext :financial_services , :public_website ;
   :hasWorkflow :question_answering_workflow, :fraud_scoring_workflow .
 
 
@@ -659,7 +659,7 @@
   :produces :retrieved_records . 
 
 :generate_answer a :Infer ;
-  :uses :customer_question , :retrieved_context , :gpt-4o ;
+  :uses :customer_question , :retrieved_records , :gpt-4o ;
   :produces :answer .
 
 

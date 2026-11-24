@@ -1,0 +1,14 @@
+# Author-curated (reviewed) risk -> mitigation links -> ak:mitigates
+# Input: staging/manual_mitigation_links.csv, written by scripts/stage.py from the file configured in
+# config/pipeline.yaml (manual_mitigation_links.file). Provenance (via, skos_match_type, reviewer,
+# source file) stays in that CSV and in build/dataset.ttl.
+@prefix rr:   <http://www.w3.org/ns/r2rml#> .
+@prefix rml:  <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql:   <http://semweb.mmlab.be/ns/ql#> .
+@prefix ak:   <http://example.org/airkg#> .
+@base <http://example.org/airkg/mapping/manual_mitigation_links#> .
+
+<#ManualLink>
+  rml:logicalSource [ rml:source "staging/manual_mitigation_links.csv" ; rml:referenceFormulation ql:CSV ] ;
+  rr:subjectMap [ rml:reference "mitigation_iri" ; rr:termType rr:IRI ] ;
+  rr:predicateObjectMap [ rr:predicate ak:mitigates ; rr:objectMap [ rml:reference "risk_iri" ; rr:termType rr:IRI ] ] .

@@ -67,13 +67,15 @@
     sh:targetClass :AIWorkflow ;
     sh:severity sh:Info ;
     sh:sparql[
-        sh:message "Workflow matches risk motif {?value}, which indicates risk {?risk}; it manifests at {?location}." ;
+        sh:message "Workflow matches risk motif {?value}, which indicates risk \"{?riskName}\" ({?risk}); it manifests at {?location}." ;
         sh:prefixes :airkgPrefixes;
         sh:select """
-            SELECT $this ?value ?risk ?location
+            SELECT $this ?value ?risk ?riskName ?location
             WHERE {
                 ?value a :RiskMotif ;
                        :indicatesRisk ?risk .
+                OPTIONAL { ?risk :name ?rn }
+                BIND (COALESCE(?rn, STR(?risk)) AS ?riskName)
 
                 # 1. CONTEXT: no required application context is missing
                 FILTER NOT EXISTS {

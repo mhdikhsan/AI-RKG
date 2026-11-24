@@ -1,0 +1,74 @@
+# Human-accepted RiskMotif proposals (llm_motif) -> ak:RiskMotif with its template architecture.
+# Input: staging/accepted_motif*.csv, written ONLY by `llm-motif apply` from a reviewed sheet
+# (decision=accept, reviewer set). IRIs are minted from the stable motif_key.
+# Provenance (model, prompt hash, run date, reviewer) stays in staging/accepted_motifs.csv and in
+# build/dataset.ttl; the supporting incidents are linked with ak:source.
+@prefix rr:   <http://www.w3.org/ns/r2rml#> .
+@prefix rml:  <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql:   <http://semweb.mmlab.be/ns/ql#> .
+@prefix ak:   <http://example.org/airkg#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@base <http://example.org/airkg/mapping/accepted_motifs#> .
+
+# The motif: risk, manifest condition, architecture (inContext), names
+<#Motif>
+  rml:logicalSource [ rml:source "staging/accepted_motifs.csv" ; rml:referenceFormulation ql:CSV ] ;
+  rr:subjectMap [ rml:reference "motif_iri" ; rr:termType rr:IRI ; rr:class ak:RiskMotif, owl:NamedIndividual ] ;
+  rr:predicateObjectMap
+    [ rr:predicate ak:identifier ;    rr:objectMap [ rml:reference "identifier" ; rr:datatype xsd:string ] ] ,
+    [ rr:predicate ak:name ;          rr:objectMap [ rml:reference "name" ; rr:datatype xsd:string ] ] ,
+    [ rr:predicate rdfs:label ;       rr:objectMap [ rml:reference "name" ; rr:language "en" ] ] ,
+    [ rr:predicate ak:description ;   rr:objectMap [ rml:reference "description" ; rr:datatype xsd:string ] ] ,
+    [ rr:predicate ak:indicatesRisk ; rr:objectMap [ rml:reference "risk_iri" ; rr:termType rr:IRI ] ] ,
+    [ rr:predicate ak:hasManifestCondition ; rr:objectMap [ rml:reference "manifest_iri" ; rr:termType rr:IRI ] ] ,
+    [ rr:predicate ak:inContext ;     rr:objectMap [ rml:reference "architecture_iri" ; rr:termType rr:IRI ] ] .
+
+# The motif's architecture (an ArchitecturalContext needs a name and a description)
+<#Architecture>
+  rml:logicalSource [ rml:source "staging/accepted_motifs.csv" ; rml:referenceFormulation ql:CSV ] ;
+  rr:subjectMap [ rml:reference "architecture_iri" ; rr:termType rr:IRI ; rr:class ak:ArchitecturalContext, owl:NamedIndividual ] ;
+  rr:predicateObjectMap
+    [ rr:predicate ak:name ;        rr:objectMap [ rml:reference "architecture_name" ; rr:datatype xsd:string ] ] ,
+    [ rr:predicate ak:description ; rr:objectMap [ rml:reference "architecture_description" ; rr:datatype xsd:string ] ] .
+
+# Template elements: membership in the architecture and their element class
+<#Element>
+  rml:logicalSource [ rml:source "staging/accepted_motif_elements.csv" ; rml:referenceFormulation ql:CSV ] ;
+  rr:subjectMap [ rml:reference "element_iri" ; rr:termType rr:IRI ; rr:class owl:NamedIndividual ] ;
+  rr:predicateObjectMap
+    [ rr:predicate <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ; rr:objectMap [ rml:reference "class_iri" ; rr:termType rr:IRI ] ] .
+
+<#ElementMembership>
+  rml:logicalSource [ rml:source "staging/accepted_motif_elements.csv" ; rml:referenceFormulation ql:CSV ] ;
+  rr:subjectMap [ rml:reference "architecture_iri" ; rr:termType rr:IRI ] ;
+  rr:predicateObjectMap [ rr:predicate ak:hasElement ; rr:objectMap [ rml:reference "element_iri" ; rr:termType rr:IRI ] ] .
+
+# uses / produces between template elements (the predicate IRI is in the data)
+<#Flow>
+  rml:logicalSource [ rml:source "staging/accepted_motif_flows.csv" ; rml:referenceFormulation ql:CSV ] ;
+  rr:subjectMap [ rml:reference "subject_iri" ; rr:termType rr:IRI ] ;
+  rr:predicateObjectMap [ rr:predicateMap [ rml:reference "predicate_iri" ] ;
+                          rr:objectMap [ rml:reference "object_iri" ; rr:termType rr:IRI ] ] .
+
+# Application context values the motif requires
+<#MotifContext>
+  rml:logicalSource [ rml:source "staging/accepted_motif_contexts.csv" ; rml:referenceFormulation ql:CSV ] ;
+  rr:subjectMap [ rml:reference "motif_iri" ; rr:termType rr:IRI ] ;
+  rr:predicateObjectMap [ rr:predicate ak:inContext ; rr:objectMap [ rml:reference "context_iri" ; rr:termType rr:IRI ] ] .
+
+# Context values proposed by the LLM and accepted with their motif (not in the ontology file yet)
+<#NewContextValue>
+  rml:logicalSource [ rml:source "staging/accepted_motif_new_contexts.csv" ; rml:referenceFormulation ql:CSV ] ;
+  rr:subjectMap [ rml:reference "context_iri" ; rr:termType rr:IRI ; rr:class owl:NamedIndividual ] ;
+  rr:predicateObjectMap
+    [ rr:predicate <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ; rr:objectMap [ rml:reference "class_iri" ; rr:termType rr:IRI ] ] ,
+    [ rr:predicate ak:name ;        rr:objectMap [ rml:reference "name" ; rr:datatype xsd:string ] ] ,
+    [ rr:predicate ak:description ; rr:objectMap [ rml:reference "description" ; rr:datatype xsd:string ] ] .
+
+# Supporting incidents
+<#Source>
+  rml:logicalSource [ rml:source "staging/accepted_motif_sources.csv" ; rml:referenceFormulation ql:CSV ] ;
+  rr:subjectMap [ rml:reference "motif_iri" ; rr:termType rr:IRI ] ;
+  rr:predicateObjectMap [ rr:predicate ak:source ; rr:objectMap [ rml:reference "source_url" ; rr:datatype xsd:anyURI ] ] .
