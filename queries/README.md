@@ -1,16 +1,17 @@
 # Queries
 
-## Competency questions (you provide)
+## Competency questions
 
-Put each competency question as `queries/<ID>.rq` (e.g. `Q7.rq`, `Q16.rq`, `Q17.rq` — the ones that run on the core graph) and the expected **row count** per file in `queries/expected.json`:
+Put each competency question as `queries/<ID>.rq` (for example `Q1.rq`) and the expected **row count** per file in `queries/expected.json`:
 
 ```json
-{ "Q7.rq": 12, "Q16.rq": 3, "Q17.rq": 5 }
+{ "Q1.rq": 12, "Q2.rq": 3 }
 ```
 
 `python -m scripts.run validate` runs every `queries/*.rq` against `build/airkg-core-kg.ttl` and reports a mismatch as an error. A `.rq` without an entry in `expected.json` is run and reported, not checked.
-Compare text values with `STR(?x) = "…"` (Protégé stores typed strings).
 
-## `system/` — AI system module baseline (pipeline-authored)
+Notes for writing queries against the merged graph:
 
-Run against the AI system module loaded with (a) the original core module and (b) the merged core graph; the result rows must be identical. They follow the system module's existing paths (workflow → patterns → risks/mitigations, components → roles, motifs → roles, consequences → stakeholders).
+- rdflib does no reasoning: to find instances of a class and its subclasses, use `?x a/rdfs:subClassOf* :Model`.
+- Compare text values with `STR(?x) = "…"` (strings may be typed).
+- Risk-motif detections are not stored in the graph; they are in `build/reports/motif_detections.csv` (written by `validate`).
