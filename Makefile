@@ -6,18 +6,19 @@ else
   PY ?= .venv/bin/python
 endif
 
-.PHONY: all fetch stage map roles authored merge validate coverage report site check-ontology test venv
+.PHONY: all fetch stage map merge validate coverage report site check-ontology accept-ontology test venv
 
 all:
 	$(PY) -m scripts.run all
 
-fetch stage map roles authored merge validate coverage report site check-ontology:
+fetch stage map merge validate coverage report site check-ontology accept-ontology:
 	$(PY) -m scripts.run $@
 
 test:
-	$(PY) -m pytest -q tests llm_mitigation/tests
+	$(PY) -m pytest -q tests extractor/llm_mitigation/tests extractor/llm_motif/tests
 
 venv:
 	python -m venv .venv
 	$(PY) -m pip install -r requirements.txt
-	$(PY) -m pip install -e llm_mitigation
+	$(PY) -m pip install -e extractor/llm_mitigation
+	$(PY) -m pip install -e extractor/llm_motif

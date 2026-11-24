@@ -7,11 +7,19 @@ __pycache__/
 sources/nexus/
 sources/_clones/
 sources/dpv/
-# LLM response cache (never commit)
-llm_mitigation/cache/
+sources/aiid/
+sources/avid/
+# staged incidents hold CC BY-SA text from AIID (see config: sources.aiid)
+staging/incidents.csv
 # secrets
-.envsources/manual/beam_core.ttl
-llm_mitigation/output/prompts_preview/
+.env
+sources/manual/beam_core.ttl
+# LLM extractors: response caches and prompt previews (never commit)
+extractor/*/cache/
+extractor/*/output/prompts_preview/
+# profiles and motif proposals quote AIID text (CC BY-SA 4.0); keep them out of the repository
+extractor/llm_motif/output/profiles.jsonl
+extractor/llm_motif/output/motifs.jsonl
 site/*
 !site/.gitkeep
 # local working notes (survey, decisions, issues, full changelog) - not pushed
