@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-motif"
+version = "0.1.0"
+description = "LLM-assisted, human-reviewed RiskMotif proposals from AIID incidents and AVID records for the AI-RKG"
+requires-python = ">=3.11"
+# Reuses the provider, cache, schema validation and TF-IDF code of llm-mitigation (same repository).
+dependencies = ["llm-mitigation", "anthropic>=2.9", "click>=8", "pyyaml>=6", "jsonschema>=4", "openpyxl>=3",
+                "rdflib>=7", "pyshacl>=0.26"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+llm-motif = "llm_motif.cli:main"
+
+[tool.setuptools]
+packages = ["llm_motif"]
