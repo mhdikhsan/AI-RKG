@@ -6,9 +6,14 @@ ontology:
   core_iri: "http://example.org/airkg"
   contexts: ontology/new_design/contexts.ttl
   shapes: ontology/new_design/shapes.ttl
-  core_sha256: "4b2b7cc0b54e4c4823e83e41e43fe2b3e30334d7a2766d19b2aec09179df267c"
-  contexts_sha256: "ee3469fb226e8d9804f142929c4bd4078a24e159cb44b464d69f815cbfb08d84"
+  core_sha256: "6b568ef9a74e4037fa7206095f59244546be3d340245a28a6b74fe0947735581"
+  contexts_sha256: "0b0c68d4f17990569234a38366a8c41a31f871c37ed938c7a1c47d88064fb15f"
   shapes_sha256: "04e0336db7fc97d23c80f8e23029096c2b06d2cd92ecd98755def32bd53896b8"
+
+# Instances written in the ontology files. The files are not changed; merge decides which of them enter the KG.
+authored_instances:
+  keep: [context_values, mitigation_links, risk_motifs]
+  test_data: [workflows]       # not in the KG; validate adds them only to test motif detection
 
 sources:
   nexus:

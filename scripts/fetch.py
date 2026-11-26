@@ -1,16 +1,4 @@
-"""Fetch sources at pinned versions and write sources/manifest.json.
-
-- IBM AI Atlas Nexus: fetch exactly the pinned commit (shallow), copy the needed files to
-  sources/nexus/<same relative path>, record SHA-256.
-- DPV: treeless sparse clone at the pinned commit; only the files in sources.dpv.files (IRI existence check).
-- BEAM: try to download; if blocked, expect sources/manual/beam_core.ttl.
-- Manual files: report which are present / missing.
-
-The 'fetched' date of a source is kept from the previous manifest when commit and checksums are
-unchanged, so reruns produce a byte-identical manifest.
-"""
 from __future__ import annotations
-
 import datetime as dt
 import hashlib
 import shutil

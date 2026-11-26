@@ -1,19 +1,4 @@
-"""Stage: clean, deterministic CSV inputs for the RML mappings (staging/).
-
-Outputs (all sorted, LF, UTF-8):
-  risks.csv                       one row per imported risk (+ minted IRIs, licence)
-  catalogues.csv                  one row per catalogue (dataset description)
-  crosswalks.csv                  risk<->risk SKOS links, both ends in risks.csv
-  mit_controls.csv                MIT controls (-> ak:Mitigation)
-  mit_control_groups.csv          MIT mitigation taxonomy (4 categories, 23 subcategories)
-  mit_control_categorisation.csv  control -> group (+ top category)
-  excluded_risks.csv, excluded_crosswalks.csv, excluded_causal_facets.csv, excluded_controls.csv
-  manual_mitigation_links.csv     author-curated control -> risk links (config manual_mitigation_links)
-  incidents.csv                   AIID incidents + AVID records for llm_motif (git-ignored: CC BY-SA text)
-  stage_summary.json              counts
-"""
 from __future__ import annotations
-
 import ast
 import csv
 import json
@@ -26,7 +11,7 @@ import yaml
 from scripts.common import (NEXUS_DIR, ROOT, STAGING, load_config, log, manifest, write_csv,
                             write_json)
 
-EXPECTED = {"ibm": 99, "owasp": 10, "mit": 33}  # raw entry counts at the pinned Nexus commit
+EXPECTED = {"ibm": 99, "owasp": 10, "mit": 33}  
 
 
 def y(rel: str) -> dict:
@@ -35,7 +20,6 @@ def y(rel: str) -> dict:
 
 
 def read_sssom(rel: str) -> tuple[dict, list[dict]]:
-    """Return (header metadata, rows) of an SSSOM TSV. Header lines start with '#'."""
     text = (NEXUS_DIR / rel).read_text(encoding="utf-8")
     lines = text.splitlines()
     meta = yaml.safe_load("\n".join(l[1:] for l in lines if l.startswith("#"))) or {}
@@ -44,7 +28,6 @@ def read_sssom(rel: str) -> tuple[dict, list[dict]]:
 
 
 def as_list(v) -> list[str]:
-    """Nexus stores some lists as their Python repr string: "['a', 'b']"."""
     if v is None:
         return []
     if isinstance(v, list):
@@ -250,8 +233,6 @@ MANUAL_LINK_COLS = ["risk_id", "risk_iri", "mitigation_id", "mitigation_iri", "v
 
 
 def stage_manual_links(cfg: dict, risks: list[dict], controls: list[dict]) -> list[dict]:
-    """Author-curated risk -> mitigation links (reviewed). Each row links the MIT control to both the
-    OWASP and the IBM risk of the row. Unknown ids stop the step (nothing is guessed)."""
     mcfg = cfg.get("manual_mitigation_links")
     if not mcfg:
         return []
@@ -318,11 +299,6 @@ def _join(values) -> str:
 
 
 def stage_incidents(cfg: dict, risks: list[dict]) -> tuple[list[dict], dict]:
-    """AIID incidents (with MIT / GMF / CSETv1 classifications) and AVID records -> one table.
-
-    MIT subdomain labels ('7.3. Lack of ...') are resolved to the imported MIT risks
-    (nexus id mit-ai-risk-subdomain-7.3); everything else stays as text for the LLM step.
-    """
     icfg, out, stats = cfg.get("incidents", {}), [], Counter()
     mit_ids = {r["catalogue_identifier"]: r["nexus_id"] for r in risks if r["catalogue"] == "mit"}
     a = cfg["sources"].get("aiid")

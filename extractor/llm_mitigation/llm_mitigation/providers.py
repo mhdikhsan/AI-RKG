@@ -6,8 +6,8 @@ from dataclasses import dataclass, field
 
 @dataclass
 class ProviderResult:
-    text: str                      # the raw answer text (JSON expected)
-    model_version: str             # model that actually produced the answer
+    text: str                      
+    model_version: str            
     stop_reason: str = ""
     usage: dict = field(default_factory=dict)
 
@@ -20,8 +20,6 @@ class Provider:
     name = "base"
 
     def with_cfg(self, cfg: dict) -> "Provider":
-        """This provider reading another config (e.g. one stage's effort). Providers that ignore the config
-        (the fakes) return themselves."""
         return self
 
     def complete(self, system: str, user: str, schema: dict) -> ProviderResult:  # pragma: no cover
@@ -29,23 +27,17 @@ class Provider:
 
 
 class AnthropicProvider(Provider):
-    """Claude via the official `anthropic` SDK.
-
-    Credentials: the SDK reads ANTHROPIC_API_KEY from the environment (never stored by this tool).
-    No temperature is sent: current Claude models reject non-default sampling values (README).
-    """
     name = "anthropic"
     FALLBACK_BETA = "server-side-fallback-2026-07-01"
     FALLBACK_MODELS = {"claude-sonnet-5-5", "claude-opus-5-5", "claude-fable-5-2", "claude-fable-5-1"}
 
     def __init__(self, cfg: dict):
-        import anthropic  # imported lazily so tests and dry runs need no SDK/credentials
+        import anthropic  
         self._anthropic = anthropic
         self.client = anthropic.Anthropic()
         self.cfg = cfg
 
     def with_cfg(self, cfg: dict) -> "AnthropicProvider":
-        """A copy sharing the SDK client, reading `cfg` (llm_motif passes one stage's config per call)."""
         import copy
         other = copy.copy(self)
         other.cfg = cfg
@@ -97,10 +89,6 @@ class AnthropicProvider(Provider):
 
 
 class FakeProvider(Provider):
-    """Deterministic offline provider: proposes the first `n` shortlisted ids (from the schema enum).
-
-    `responses` can force raw texts (consumed in order) to test invalid-JSON handling.
-    """
     name = "fake"
 
     def __init__(self, cfg: dict | None = None, n: int = 2, responses: list[str] | None = None):

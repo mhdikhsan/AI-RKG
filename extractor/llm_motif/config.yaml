@@ -1,29 +1,21 @@
-# llm-motif configuration. Paths are relative to this file's folder.
-# Two LLM stages, both reviewed by a human before anything enters the graph:
-#   1. profile  : one call per incident  -> the incident's AI system as a small architecture (+ risk candidates)
-#   2. abstract : one call per group of similar profiles -> one generalised RiskMotif proposal
-
-provider: anthropic            # anthropic | fake (fake = deterministic, for tests / dry checks)
-model: claude-sonnet-5-5       # same choice as llm_mitigation; claude-opus-5-5 or claude-haiku-5-5 via --model
-max_tokens: 16000              # covers adaptive thinking + the JSON answer (non-streaming)
-server_side_fallback: true     # refusal fallback (claude-sonnet-5-5 supports the "default" form)
-retries_on_invalid: 1          # retry once on invalid JSON / schema / ontology-constraint violation
-temperature: null              # not sent: current models reject non-default sampling values
+provider: anthropic           
+model: claude-sonnet-5-5       
+max_tokens: 16000              
+server_side_fallback: true     
+retries_on_invalid: 1          
+temperature: null              
 effort:
-  profile: medium              # extraction from one short incident text
-  abstract: high               # generalising several profiles into one pattern
+  profile: medium              
+  abstract: high              
 
 scope:
   sources: [aiid, avid]
-  # AIID incidents with a GMF classification (AI goal / technology / failure) carry the most
-  # technical detail; the others are skipped unless this is false.
   aiid_require_gmf: true
   avid_record_classes: ["ATLAS Case Study", "Third-party Report", "LLM Evaluation"]
 
 shortlist:
-  k_risks: 8                     # catalogue risks offered per incident (TF-IDF over risk name + description)
+  k_risks: 8                     
   catalogues: [owasp, ibm, mit]
-  # AIID's own MIT classification of the incident is always offered as well (deterministic link).
   always_include_aiid_mit: true
 
 profile:
@@ -34,22 +26,16 @@ profile:
   evidence_max_chars: 200
 
 group:
-  # Profiles are grouped by (top risk, set of element classes).
-  # Groups with fewer incidents than min_support are NOT abstracted: a motif from one incident only
-  # restates that incident. Their profiles stay in output/profiles.jsonl, so they can form a group
-  # with incidents added in a later run. Set to 1 to abstract every group (e.g. for a small pilot).
   min_support: 2
-  # Abstracted groups smaller than this are flagged on the review sheet (small_group = yes).
   min_support_flag: 3
-  # Two levels of motifs on the same architecture (like motif1 -> motif2/motif3 in airkg.ttl):
-  #   general:  same shape (element classes) + same top risk                       -> min_support
-  #   specific: same shape + one shared application-context value (any top risk)  -> specific_min_support
-  # A specific motif keeps the general motif's architecture, requires the context value, and may indicate
-  # another risk. Groups with exactly the incidents of their general group are skipped (nothing to add).
   specific_min_support: 3
   specific_context_classes: [Domain, Task, DataCategory, DeploymentEnvironment, Stakeholder, AutonomyLevel,
-                             RegulatoryContext]          # LifecycleStage left out: nearly always "operation"
+                             RegulatoryContext]          
   max_profiles_per_call: 8
+
+review:
+  rule: all                  # all | majority | any : how the decisions of several reviewers are combined
+  min_reviewers: 1           # rows with fewer decisions stay undecided
 
 paths:
   incidents: ../../staging/incidents.csv
@@ -60,16 +46,13 @@ paths:
   schema_motif: schema/motif.schema.json
   output_dir: output
   cache_dir: cache
-  accepted_dir: ../../staging           # accepted_motif*.csv for the main pipeline (RML)
+  accepted_dir: ../../staging           
 
-# Prices in USD per million tokens (Anthropic first-party API). Checked 2026-11-24 against
-# Anthropic's model table (cached 2026-11-03); verify at https://platform.claude.com/docs/en/about-claude/pricing
 pricing:
   claude-opus-5-5:   {input: 4.00, output: 20.00}
   claude-sonnet-5-5: {input: 2.00, output: 10.00}
-  claude-haiku-5-5:  {input: 0.10, output: 0.50}   # prompts up to 100K tokens
+  claude-haiku-5-5:  {input: 0.10, output: 0.50}  
 
-# Assumptions used by `estimate` (no API call). Thinking tokens are billed as output tokens.
 estimate:
   chars_per_token: 3.5
   answer_tokens_per_call: {profile: 900, abstract: 1200}

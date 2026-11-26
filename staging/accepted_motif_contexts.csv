@@ -1,9 +1,0 @@
-motif_iri,context_iri
-http://example.org/airkg/motif/m1824344b0f,http://example.org/airkg#chatbot
-http://example.org/airkg/motif/m3de2f4a4ce,http://example.org/airkg#special_category_personal_data
-http://example.org/airkg/motif/m5778ca41f8,http://example.org/airkg#content_generation
-http://example.org/airkg/motif/m80e16b2fb3,http://example.org/airkg#personal_data
-http://example.org/airkg/motif/m8cff9889e2,http://example.org/airkg#arts_and_entertainment
-http://example.org/airkg/motif/m9fa16f254f,http://example.org/airkg#ai_subject
-http://example.org/airkg/motif/ma228170353,http://example.org/airkg#profiling
-http://example.org/airkg/motif/ma7d6ff404a,http://example.org/airkg#employee

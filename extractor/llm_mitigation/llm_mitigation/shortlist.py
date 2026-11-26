@@ -1,8 +1,3 @@
-"""Deterministic pre-selection of candidate controls per risk (TF-IDF + cosine; no LLM).
-
-Ties are broken by control id, so the result is stable across runs and platforms.
-Controls with similarity 0 are never offered (a shortlist can be shorter than k).
-"""
 from __future__ import annotations
 
 import math
@@ -80,7 +75,6 @@ class TfIdf:
 
 def build_shortlist(risks: list[dict], controls: dict[str, dict], groups: dict, k: int,
                     fields: list[str], exclude: set[tuple[str, str]] | None = None) -> list[dict]:
-    """`exclude`: (risk_id, mitigation_id) pairs that already exist as reviewed links; never offered."""
     index = TfIdf({cid: tokens(control_text(c, groups, fields)) for cid, c in controls.items()})
     exclude = exclude or set()
     rows = []

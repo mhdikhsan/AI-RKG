@@ -1,15 +1,3 @@
-"""Map: run the RML mappings with Morph-KGC and write deterministic N-Triples to build/.
-
-Outputs
-  build/imported_risks_{ibm,mit,owasp}.nt  one file per catalogue (licence separation)
-  build/imported_crosswalks.nt             SKOS links between imported risks (Nexus, Apache-2.0)
-  build/imported_mitigations.nt            MIT controls (CC BY 4.0)
-  build/manual_mitigation_links.nt         author-curated risk-mitigation links (only if staging file exists)
-  build/accepted_mitigation_links.nt       reviewed LLM candidates (only if staging file exists)
-  build/accepted_motifs.nt                 reviewed LLM risk motifs (only if staging files exist)
-  build/dataset.ttl                        DCAT/VoID description of every file above
-  build/reports/map_checks.md              triple counts + checks
-"""
 from __future__ import annotations
 
 import re
@@ -182,7 +170,7 @@ def main() -> None:
             "attribution": f"Curated by the authors ({mcfg['file']}); MIT controls from the MIT AI Risk Repository (CC BY 4.0).",
             "triples": len(g_man)}
 
-    # --- accepted risk motifs (llm_motif), only when reviewed rows exist
+    #  accepted risk motifs
     if (STAGING / "accepted_motifs.csv").exists() and (MAPPINGS / "accepted_motifs.rml.ttl").exists():
         rows = read_csv(STAGING / "accepted_motifs.csv")
         g_mot = materialize("accepted_motifs.rml.ttl") if rows else Graph()
@@ -194,14 +182,13 @@ def main() -> None:
         a = cfg["sources"]["aiid"]
         files["accepted_motifs.nt"] = {
             "title": "Risk motifs proposed by an LLM from AIID incidents and AVID records, accepted by a human reviewer (extractor/llm_motif/)",
-            # derived from AIID (CC BY-SA 4.0); share-alike is the stricter of the two source licences
             "license": a["license"], "sources": ["https://incidentdatabase.ai/", cfg["sources"]["avid"]["repo"]],
             "rights_holder": "AI-RKG authors (motifs and review decisions)",
             "attribution": "Derived from the AI Incident Database (CC BY-SA 4.0) and the AI Vulnerability Database (MIT); "
                            "provenance per motif in staging/accepted_motifs.csv.",
             "triples": len(g_mot)}
 
-    # --- accepted LLM mitigation links, only when reviewed rows exist
+    # accepted LLM mitigation links
     if (STAGING / "accepted_mitigation_links.csv").exists() and (MAPPINGS / "accepted_mitigation_links.rml.ttl").exists():
         rows = read_csv(STAGING / "accepted_mitigation_links.csv")
         g_acc = materialize("accepted_mitigation_links.rml.ttl") if rows else Graph()
@@ -217,7 +204,7 @@ def main() -> None:
     ds = dataset_description(cfg, files)
     write_text(BUILD / "dataset.ttl", ds.serialize(format="turtle"))
 
-    # --- report
+    # report
     lines = ["# Mapping checks", "", provenance_line(), "",
              "| Mapping | Triples |", "|---|---|"]
     lines += [f"| `{k}` | {v} |" for k, v in counts.items()]

@@ -1,7 +1,3 @@
-"""Configuration, ontology vocabulary, prompt blocks and the ontology checks applied to every answer.
-
-Shared machinery (Claude provider, response cache, JSON-schema validation, TF-IDF)
-"""
 from __future__ import annotations
 
 import copy
@@ -16,7 +12,7 @@ from rdflib.collection import Collection
 from llm_mitigation.config import Config, load_config
 from llm_mitigation.ontology import Ontology, pipeline_config
 
-PKG_ROOT = Path(__file__).resolve().parent.parent          # llm_motif/ folder
+PKG_ROOT = Path(__file__).resolve().parent.parent         
 DEFAULT_CONFIG = PKG_ROOT / "config.yaml"
 
 
@@ -25,7 +21,6 @@ def load_cfg(path: str | Path | None = None, overrides: dict | None = None) -> C
 
 
 def stage_cfg(cfg: Config, stage: str) -> Config:
-    """A copy of the config with the stage's effort as `effort` (what the provider and cache key read)."""
     c = Config(copy.deepcopy(dict(cfg)), cfg.base)
     c["effort"] = cfg["effort"][stage]
     return c
@@ -37,7 +32,6 @@ def slug(text: str) -> str:
 
 
 def norm_text(text: str) -> str:
-    """Lower-case, quotes and dashes unified, whitespace collapsed: for evidence matching."""
     t = unicodedata.normalize("NFKC", text or "").lower()
     t = t.translate(str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"',
                                    "–": "-", "—": "-"}))
@@ -45,8 +39,6 @@ def norm_text(text: str) -> str:
 
 
 class Vocab:
-    """Ontology terms the LLM may use, read from the ontology file named in config/pipeline.yaml."""
-
     def __init__(self, onto: Ontology | None = None):
         self.pcfg = pipeline_config()
         self.onto = onto or Ontology(pcfg=self.pcfg)
@@ -56,7 +48,6 @@ class Vocab:
         self.element_classes = [c for c in o.subclasses("Element") if c != "Element"]
         self.context_classes = o.subclasses("ApplicationContext", include_root=False)
         self.existing = {c: o.individuals(c) for c in self.context_classes}
-        # domain / range of the two element relations, closed under subclasses
         self.domain, self.range = {}, {}
         for p in ("uses", "produces"):
             self.domain[p] = self._closure(o.g.value(o.iri(p), RDFS.domain))
@@ -75,7 +66,7 @@ class Vocab:
     def existing_ids(self) -> list[str]:
         return sorted({i for vals in self.existing.values() for i, _ in vals})
 
-    # ---------------------------------------------------------------- IRIs (shared by apply and check)
+    # ---------------------------------------------------------------- IRIs 
     def class_iri(self, local: str) -> str:
         return self.ns + local
 
@@ -123,7 +114,6 @@ def fill_schema(base: dict, *, element_classes: list[str], context_classes: list
 
 
 def api_schema(full: dict) -> dict:
-    """Schema sent to the API: drop keywords structured outputs do not need for decoding."""
     s = copy.deepcopy(full)
     for key in ("$schema", "$id", "title"):
         s.pop(key, None)
@@ -143,8 +133,6 @@ def api_schema(full: dict) -> dict:
 
 # -------------------------------------------------------------------- ontology checks on an answer
 def check_structure(data: dict, vocab: Vocab, manifest_key: str) -> list[str]:
-    """Errors that the JSON schema cannot express: references between ids, and the ontology's
-    domain/range for uses/produces. A non-empty result makes the answer invalid (retry, then skip)."""
     errors = []
     ids = [e["id"] for e in data["elements"]]
     if len(ids) != len(set(ids)):
@@ -172,19 +160,34 @@ def check_structure(data: dict, vocab: Vocab, manifest_key: str) -> list[str]:
 
 
 def evidence_report(data: dict, source_text: str) -> tuple[int, int]:
-    """(elements with evidence found in the source text, elements with evidence)."""
     src = norm_text(source_text)
     with_ev = [e for e in data["elements"] if e.get("evidence", "").strip()]
     found = sum(1 for e in with_ev if norm_text(e["evidence"]).strip(" .\"'") in src)
     return found, len(with_ev)
 
 
-def structure_text(data: dict) -> str:
-    """Compact, readable structure for review sheets: 'm1 Infer uses m2 Data; ...'."""
-    cls = {e["id"]: e["class"] for e in data["elements"]}
-    flows = [f"{f['from']} {cls.get(f['from'], '?')} {f['relation']} {f['to']} {cls.get(f['to'], '?')}" for f in data["flows"]]
-    loose = [f"{i} {c}" for i, c in cls.items() if not any(i in (f["from"], f["to"]) for f in data["flows"])]
-    return "; ".join(flows + loose)
+def element_text(data: dict, eid: str) -> str:
+    """'role label (Class)', or 'Class' when the element has no label."""
+    e = next((e for e in data["elements"] if e["id"] == eid), None)
+    if e is None:
+        return "?"
+    return f"{e['label']} ({e['class']})" if e.get("label") else e["class"]
+
+
+def structure_text(data: dict, mark: bool = True) -> str:
+    """One part per process: 'inputs -> [process] -> outputs'. With mark, '[!]' follows the element where the risk
+    shows up (manifest_condition of a motif, failure_point of a profile). ASCII only, so Excel shows it as written."""
+    hot = (data.get("manifest_condition") or data.get("failure_point") or "") if mark else ""
+    name = lambda i: element_text(data, i) + (" [!]" if i == hot else "")
+    procs = list(dict.fromkeys(f["from"] for f in data["flows"]))
+    parts = []
+    for p in procs:
+        ins = [name(f["to"]) for f in data["flows"] if f["from"] == p and f["relation"] == "uses"]
+        outs = [name(f["to"]) for f in data["flows"] if f["from"] == p and f["relation"] == "produces"]
+        parts.append((" + ".join(ins) + " -> " if ins else "") + f"[{name(p)}]" + (" -> " + " + ".join(outs) if outs else ""))
+    linked = set(procs) | {f["to"] for f in data["flows"]}
+    parts += [name(e["id"]) for e in data["elements"] if e["id"] not in linked]
+    return "; ".join(parts)
 
 
 def dumps(obj) -> str:

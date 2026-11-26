@@ -1,6 +1,4 @@
-"""Shared helpers: paths, config, deterministic I/O."""
 from __future__ import annotations
-
 import csv
 import hashlib
 import json
@@ -39,7 +37,6 @@ def sha256_file(path: Path) -> str:
 
 
 def write_csv(path: Path, header: list[str], rows: list[dict] | list[list]) -> int:
-    """Write a CSV deterministically (LF line endings, UTF-8, rows as given)."""
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh, lineterminator="\n")
@@ -73,7 +70,6 @@ def manifest() -> dict:
 
 
 def provenance_line() -> str:
-    """'Computed <date> from Nexus commit <sha>' - every reported count carries this."""
     m = manifest()
     nexus = m.get("nexus", {})
     return (f"Computed from sources fetched {nexus.get('fetched', 'n/a')}, "
@@ -81,14 +77,11 @@ def provenance_line() -> str:
 
 
 def ontology_files(cfg: dict) -> list[Path]:
-    """The ontology files merged into the graph: the core file plus the optional contexts file."""
     o = cfg["ontology"]
     return [ROOT / o[k] for k in ("core", "contexts") if o.get(k)]
 
 
 def check_ontology_unchanged(cfg: dict | None = None) -> None:
-    """The ontology and shapes files must match the SHA-256 pinned in config/pipeline.yaml
-    (the pipeline only reads them; after an intended edit, update the hash in the config)."""
     cfg = cfg or load_config()
     o = cfg["ontology"]
     for key in ("core", "contexts", "shapes"):
@@ -105,13 +98,11 @@ def log(msg: str) -> None:
 
 
 def accept_ontology_changes() -> list[str]:
-    """After an intended edit: check that each changed ontology file is valid Turtle, then write its new SHA-256
-    into config/pipeline.yaml (only the hash lines change; comments and layout are kept)."""
     import re
     from rdflib import Graph
     cfg = load_config()
     o = cfg["ontology"]
-    with open(CONFIG_PATH, encoding="utf-8", newline="") as fh:     # keep the file's line endings as they are
+    with open(CONFIG_PATH, encoding="utf-8", newline="") as fh:     
         text = fh.read()
     changed = []
     for key in ("core", "contexts", "shapes"):
@@ -123,7 +114,7 @@ def accept_ontology_changes() -> list[str]:
             continue
         try:
             Graph().parse(path, format="turtle")
-        except Exception as e:                     # syntax error: do not accept
+        except Exception as e:                   
             sys.exit(f"ERROR: {o[key]} is not valid Turtle, hash not updated:\n  {e}")
         text, n = re.subn(rf'(\n[ \t]*{key}_sha256:[ \t]*)"[0-9a-f]*"', rf'\g<1>"{actual}"', text, count=1)
         if n != 1:

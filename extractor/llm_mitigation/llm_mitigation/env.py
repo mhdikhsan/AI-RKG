@@ -1,9 +1,3 @@
-"""Load settings such as ANTHROPIC_API_KEY from the repository's `.env` file (git-ignored).
-
-Format: one `NAME=value` per line; `#` starts a comment; surrounding quotes are removed.
-A variable that is already set in the environment wins over the file, so a key exported in the
-shell (or an `ant auth login` profile, which the SDK reads itself) is never overridden.
-"""
 from __future__ import annotations
 
 import os
@@ -15,7 +9,6 @@ ENV_FILE = REPO_ROOT / ".env"
 
 
 def load_env(path: Path | None = None) -> list[str]:
-    """Set variables from the file that are not set yet. Returns their names (never the values)."""
     path = Path(path) if path else ENV_FILE
     if not path.exists():
         return []

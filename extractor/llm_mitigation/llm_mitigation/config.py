@@ -62,6 +62,10 @@ def load_inputs(cfg: Config) -> tuple[list[dict], dict[str, dict], dict[str, dic
     """Risks in scope (sorted by nexus_id), controls by id, groups by id."""
     cats = set(cfg["scope"]["catalogues"])
     risks = sorted((r for r in read_csv(cfg.path("risks")) if r["catalogue"] in cats), key=lambda r: r["nexus_id"])
+    only = cfg["scope"].get("only_risks_from")          # optional CSV with a risk_id column (e.g. an evaluation set)
+    if only:
+        keep = {r["risk_id"] for r in read_csv(cfg.base / only)}
+        risks = [r for r in risks if r["nexus_id"] in keep]
     controls = {c["nexus_id"]: c for c in read_csv(cfg.path("controls"))}
     groups = {g["group_id"]: g for g in read_csv(cfg.path("groups"))} if cfg.path("groups").exists() else {}
     return risks, controls, groups

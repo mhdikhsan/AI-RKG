@@ -1,11 +1,4 @@
-"""Static site: one HTML page + one Turtle file per entry (risk, mitigation, risk motif, AI system,
-workflow, context value, model) and an index. No server.
-
-Paths: an IRI under base_iri  -> site/<rest of IRI>.html / .ttl   (e.g. site/risk/atlas-x.html)
-       an authored ak: IRI     -> site/ak/<local name>.html / .ttl
-"""
 from __future__ import annotations
-
 import os
 import posixpath
 import shutil
@@ -45,7 +38,7 @@ class Site:
         self.candidates = {(r["mitigation_iri"], r["risk_iri"]) for r in read_csv(STAGING / "accepted_mitigation_links.csv")} \
             if (STAGING / "accepted_mitigation_links.csv").exists() else set()
 
-    # ------------------------------------------------------------ paths
+    # paths
     def rel(self, iri: URIRef) -> str:
         s = str(iri)
         if s.startswith(self.base):
@@ -86,7 +79,7 @@ class Site:
             out.append({"label": self.qname(p), "values": vals})
         return out
 
-    # ------------------------------------------------------------ build
+    #  build
     def entry(self, s: URIRef) -> dict:
         g, rel = self.g, self.rel(s)
         props = [(p, o) for p, o in g.predicate_objects(s)
@@ -123,7 +116,7 @@ def main() -> None:
     env = Environment(loader=FileSystemLoader(ROOT / "scripts" / "templates"),
                       autoescape=select_autoescape(["html", "j2"]), keep_trailing_newline=True)
     entry_t, index_t = env.get_template("entry.html.j2"), env.get_template("index.html.j2")
-    # clean generated output (keep .gitkeep)
+    # 
     for child in SITE.iterdir() if SITE.exists() else []:
         if child.name == ".gitkeep":
             continue

@@ -1,15 +1,11 @@
-"""Deterministic offline provider for tests and dry checks. Builds a valid answer from the per-call
-schema: input data and a model used by an inference step that produces output data."""
+
 from __future__ import annotations
-
 import json
-
 from llm_mitigation.providers import Provider, ProviderResult, get_provider as _get_provider
 
 
 class FakeMotifProvider(Provider):
     name = "fake"
-
     def __init__(self, cfg: dict | None = None, responses: list[str] | None = None):
         self.responses, self.calls = list(responses or []), 0
 
@@ -33,6 +29,8 @@ class FakeMotifProvider(Provider):
             flows = [{"from": ids[2], "relation": "uses", "to": ids[0]}, {"from": ids[2], "relation": "uses", "to": ids[1]},
                      {"from": ids[2], "relation": "produces", "to": ids[3]}]
             if motif:
+                for e, label in zip(elements, ["input data", "model", "inference", "output data"]):
+                    e["label"] = label
                 ans = {"name": "Fake motif", "description": "Fake description.", "risk_id": p["risk_id"]["enum"][0],
                        "elements": elements, "flows": flows, "contexts": [], "manifest_condition": ids[3],
                        "support": list(p["support"]["items"]["enum"]), "confidence": "medium", "issues": []}
@@ -52,4 +50,4 @@ class FakeMotifProvider(Provider):
 def get_provider(cfg: dict) -> Provider:
     if cfg["provider"] == "fake":
         return FakeMotifProvider(cfg)
-    return _get_provider(cfg)   # Claude via the Anthropic SDK (llm_mitigation.providers.AnthropicProvider)
+    return _get_provider(cfg)   

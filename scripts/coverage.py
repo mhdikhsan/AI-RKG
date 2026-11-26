@@ -1,16 +1,5 @@
-"""Coverage: which risks are indicated by a risk motif and which have mitigations.
-
-Writes build/reports/coverage.md and build/reports/coverage.csv. Nothing is asserted in the graph.
-
-A risk counts as covered by a motif when an ak:RiskMotif indicates
-  (a) the risk itself, or
-  (b) a risk linked to it by skos:exactMatch or skos:closeMatch (in either direction).
-Mitigations are the subjects of ak:mitigates for the risk (author-curated, reviewed LLM or authored links).
-"""
 from __future__ import annotations
-
 from collections import Counter, defaultdict
-
 from rdflib import RDF, Graph, Namespace, URIRef
 from rdflib.namespace import SKOS
 

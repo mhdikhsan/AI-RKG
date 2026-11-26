@@ -1,11 +1,8 @@
-"""Render the versioned prompt template and build the per-call JSON schema."""
 from __future__ import annotations
-
 import copy
 import json
 import re
 from pathlib import Path
-
 from .config import Config, sha256_file
 
 SECTION = re.compile(r"^## (System|User)\s*$", re.M)
@@ -53,9 +50,7 @@ def shortlist_block(ids: list[str], controls: dict, groups: dict) -> str:
 
 _ONTOLOGY_CACHE: dict = {}
 
-
 def ontology_block(cfg: Config) -> str:
-    """The configured ontology terms, rendered from the ontology file named in config/pipeline.yaml."""
     terms = tuple(sorted(cfg.get("ontology_terms") or []))
     if terms not in _ONTOLOGY_CACHE:
         from .ontology import Ontology
@@ -73,7 +68,6 @@ def render(cfg: Config, risk: dict, ids: list[str], controls: dict, groups: dict
 
 
 def validation_schema(cfg: Config, allowed_ids: list[str]) -> dict:
-    """Full schema used to validate an answer locally: file schema + config limits + shortlist enum."""
     s = json.loads(cfg.path("schema").read_text(encoding="utf-8"))
     s["properties"]["links"]["maxItems"] = cfg["answer"]["max_links_per_risk"]
     item = s["properties"]["links"]["items"]
@@ -83,7 +77,6 @@ def validation_schema(cfg: Config, allowed_ids: list[str]) -> dict:
 
 
 def prompt_files_sha256(paths: list[Path]) -> str:
-    """One hash over several prompt files (tools whose run uses more than one template)."""
     import hashlib
     h = hashlib.sha256()
     for p in paths:
@@ -92,7 +85,6 @@ def prompt_files_sha256(paths: list[Path]) -> str:
 
 
 def api_schema(full: dict) -> dict:
-    """Schema sent to the API (structured outputs): drop keywords not needed for decoding."""
     s = copy.deepcopy(full)
     for key in ("$schema", "$id", "title"):
         s.pop(key, None)

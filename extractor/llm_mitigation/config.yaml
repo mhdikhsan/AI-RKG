@@ -1,27 +1,23 @@
-# llm-mitigation configuration. Paths are relative to this file's folder.
-
 provider: anthropic            
 model: claude-sonnet-5-5       
 effort: medium                
 
 temperature: null
-max_tokens: 16000              # covers adaptive thinking + the short JSON answer
+max_tokens: 16000              
 
 server_side_fallback: true
-retries_on_invalid: 1          # retry once on invalid JSON / schema violation, then log and skip
+retries_on_invalid: 1          
 
 scope:
-  catalogues: [ibm, mit, owasp]   # risks in scope (from staging/risks.csv)
+  catalogues: [ibm, mit, owasp]   
 
 shortlist:
-  k: 20                          # controls offered to the LLM per risk
-  # Text of a control used for TF-IDF. "description" is included to raise recall; set to
-  # [name, group] to use names only.
+  k: 20                         
+  
 
   control_fields: [name, group, description]
   exclude_links: [../../staging/manual_mitigation_links.csv]
 
-# Ontology terms shown to the model (rendered from the ontology file named in config/pipeline.yaml).
 ontology_terms: [Risk, Mitigation, TechnicalMitigation, OrganisationalMitigation, mitigates, mitigatedBy]
 
 answer:

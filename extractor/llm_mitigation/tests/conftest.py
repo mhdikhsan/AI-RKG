@@ -1,4 +1,3 @@
-"""Small offline fixtures: a temp config with 3 risks and 6 controls. No network."""
 import csv
 import shutil
 from pathlib import Path

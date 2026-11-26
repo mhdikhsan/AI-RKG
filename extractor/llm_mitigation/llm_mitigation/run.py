@@ -1,6 +1,4 @@
-"""`run` and `estimate`: one LLM call per risk with its shortlist; responses cached by hash."""
 from __future__ import annotations
-
 import datetime as dt
 import json
 from collections import defaultdict
@@ -51,7 +49,6 @@ class Cache:
 
 
 def parse_answer(text: str, schema: dict) -> dict:
-    """Parse + validate. Raises ValueError with a readable reason."""
     try:
         data = json.loads(text)
     except json.JSONDecodeError as e:
@@ -64,7 +61,6 @@ def parse_answer(text: str, schema: dict) -> dict:
 
 
 def plan(cfg: Config, limit: int | None = None):
-    """Yield (risk, shortlist ids, system, user, validation schema) for each risk in scope."""
     risks, controls, groups = load_inputs(cfg)
     shortlists = load_shortlists(cfg)
     n = 0
@@ -163,7 +159,6 @@ def run(cfg: Config, provider: Provider | None = None, limit: int | None = None,
 
 
 def estimate(cfg: Config, limit: int | None = None, exact: bool = False) -> dict:
-    """Approximate calls, tokens and cost. No API call unless exact=True (token counting endpoint)."""
     est = cfg["estimate"]
     cache = Cache(cfg.path("cache_dir"))
     counter = get_provider(cfg) if exact else None

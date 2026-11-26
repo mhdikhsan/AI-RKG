@@ -22,13 +22,6 @@
            rdfs:range :AIWorkflow .
 
 
-###  http://example.org/airkg#handles
-:handles rdf:type owl:ObjectProperty ;
-         rdfs:subPropertyOf owl:topObjectProperty ;
-         rdfs:domain :Mitigation ;
-         rdfs:range :Risk .
-
-
 ###  http://example.org/airkg#hasApplicationContext
 :hasApplicationContext rdf:type owl:ObjectProperty ;
                        rdfs:subPropertyOf :hasContext ;

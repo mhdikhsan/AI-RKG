@@ -1,8 +1,5 @@
-"""`apply`: keep only decision=accept rows and write the staging file for the main pipeline."""
 from __future__ import annotations
-
 from pathlib import Path
-
 from .config import Config, read_csv, write_csv
 
 ACCEPTED_COLS = ["risk_id", "risk_iri", "mitigation_id", "mitigation_iri", "confidence", "model",

@@ -1,18 +1,10 @@
-"""Read the AI-RKG ontology (the file named in config/pipeline.yaml) and render it for prompts.
-
-AgentO pastes the full ontology into its prompt. We render the TBox as compact, deterministic text
-instead: the response cache is keyed on the exact prompt, so the rendering must not change between
-runs unless the ontology itself changes.
-"""
 from __future__ import annotations
-
 from pathlib import Path
-
 import yaml
 from rdflib import OWL, RDF, RDFS, BNode, Graph, URIRef
 from rdflib.collection import Collection
 
-REPO_ROOT = Path(__file__).resolve().parents[3]       # <repo>/extractor/llm_mitigation/llm_mitigation/ontology.py
+REPO_ROOT = Path(__file__).resolve().parents[3]    
 PIPELINE_CONFIG = REPO_ROOT / "config" / "pipeline.yaml"
 
 
@@ -27,10 +19,10 @@ class Ontology:
         self.ns = pcfg["ak_namespace"]
         self.path = Path(path) if path else REPO_ROOT / pcfg["ontology"]["core"]
         self.g = Graph().parse(self.path)
-        if path is None and pcfg["ontology"].get("contexts"):    # extra Domain/Task/... values
+        if path is None and pcfg["ontology"].get("contexts"):    
             self.g.parse(REPO_ROOT / pcfg["ontology"]["contexts"])
 
-    # ---------------------------------------------------------------- names
+    #  names
     def local(self, node) -> str:
         if isinstance(node, URIRef):
             s = str(node)
@@ -54,7 +46,6 @@ class Ontology:
                        and str(c).startswith(self.ns)), key=str)
 
     def subclasses(self, root: str, include_root: bool = True) -> list[str]:
-        """Local names of `root` and all its (transitive) subclasses, sorted."""
         top = self.iri(root)
         out, todo = set(), [top]
         while todo:
@@ -68,7 +59,7 @@ class Ontology:
         return sorted(self.local(c) for c in out)
 
     def individuals(self, cls: str) -> list[tuple[str, str]]:
-        """(local name, ak:name or '') of the individuals typed with `cls` or one of its subclasses."""
+
         name = self.iri("name")
         out = set()
         for c in self.subclasses(cls):
@@ -77,7 +68,7 @@ class Ontology:
                     out.add((self.local(s), str(self.g.value(s, name) or "")))
         return sorted(out)
 
-    # ---------------------------------------------------------------- rendering
+    #  rendering
     def _restrictions(self, cls: URIRef) -> list[str]:
         out = []
         for sup in self.g.objects(cls, RDFS.subClassOf):
@@ -94,8 +85,6 @@ class Ontology:
         return sorted(out)
 
     def render(self, only: set[str] | None = None) -> str:
-        """Classes (with parents and restrictions) and properties (with domain and range) as text lines.
-        `only`: restrict to these local names (classes and properties)."""
         keep = (lambda n: n in only) if only else (lambda n: True)
         lines = ["Classes (`X < Y` means X is a subclass of Y):"]
         for c in self.classes():

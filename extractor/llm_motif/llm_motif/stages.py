@@ -1,6 +1,5 @@
-"""Stage 1 (profile), grouping, and stage 2 (abstract): planning, dry runs, cached LLM calls, estimates."""
-from __future__ import annotations
 
+from __future__ import annotations
 import datetime as dt
 import hashlib
 import json
@@ -15,11 +14,8 @@ from llm_mitigation.shortlist import TfIdf, tokens
 
 from .core import (Vocab, api_schema, check_structure, dumps, evidence_report, fill_schema, stage_cfg,
                    structure_text)
-
 CONF_RANK = {"high": 0, "medium": 1, "low": 2}
-
-
-# ==================================================================== inputs
+# inputs
 def load_incidents(cfg: Config) -> list[dict]:
     sc = cfg["scope"]
     out = []
@@ -33,7 +29,7 @@ def load_incidents(cfg: Config) -> list[dict]:
             continue
         out.append(r)
     out.sort(key=lambda r: r["incident_id"])
-    per = sc.get("per_source") or {}          # e.g. {"aiid": 20, "avid": 10}: the first N of each source
+    per = sc.get("per_source") or {}        
     if per:
         seen = {}
         kept = []
@@ -52,7 +48,6 @@ def load_risks(cfg: Config) -> dict[str, dict]:
 
 
 def incident_text(inc: dict) -> str:
-    """All text the model sees about the incident (also the haystack for evidence checks)."""
     return " ".join(inc[k] for k in ("title", "description", "deployer", "developer", "harmed_parties", "gmf_goal",
                                      "gmf_technology", "gmf_failure", "gmf_potential_technology", "gmf_potential_failure",
                                      "cset_sector", "cset_ai_task", "cset_data_inputs", "avid_artifacts") if inc.get(k))
@@ -83,10 +78,8 @@ def risks_block(ids: list[str], risks: dict[str, dict], max_desc: int = 400) -> 
     return "\n".join(out) or "(none)"
 
 
-# ==================================================================== shortlist: incident -> risks
+# shortlist: incident and risk
 def build_risk_shortlist(cfg: Config, incidents: list[dict], risks: dict[str, dict]) -> dict[str, list[str]]:
-    """Top-k catalogue risks per incident by TF-IDF cosine (deterministic, ties by id), plus AIID's own
-    MIT classification of the incident (always offered when configured)."""
     index = TfIdf({rid: tokens(f"{r['name']} {r.get('description', '')}") for rid, r in risks.items()})
     k = cfg["shortlist"]["k_risks"]
     out = {}
@@ -102,10 +95,9 @@ def build_risk_shortlist(cfg: Config, incidents: list[dict], risks: dict[str, di
     return out
 
 
-# ==================================================================== generic cached call
+# generic cached call
 def call(cfg: Config, provider: Provider, cache: Cache, system: str, user: str, schema: dict, check, tag: str,
          log=print) -> tuple[dict | None, dict, dict]:
-    """Cached LLM call with JSON-schema + ontology checks. Returns (answer or None, cache entry, log row)."""
     api = api_schema(schema)
     key = cache_key(cfg, system, user, api)
     entry, attempts, cached, err = cache.get(key), 0, True, ""
@@ -155,7 +147,7 @@ def prompt_sha(cfg: Config) -> str:
     return prompt_files_sha256([cfg.path("prompt_profile"), cfg.path("prompt_abstract")])
 
 
-# ==================================================================== stage 1: profiles
+#  stage 1: profiles
 def plan_profiles(cfg: Config, vocab: Vocab, limit: int | None = None):
     incidents = load_incidents(cfg)
     risks = load_risks(cfg)
@@ -213,9 +205,43 @@ def read_jsonl(path: Path) -> list[dict]:
     return [json.loads(l) for l in Path(path).read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
-# ==================================================================== grouping (deterministic)
-GROUP_COLS = ["motif_key", "level", "risk_id", "element_classes", "context", "parent_key", "n_profiles", "abstracted",
-              "incident_ids"]
+#  readable motif IDs: staging/motif_ids.csv maps the stable group hash to M-0001 (specific: M-0001.1)
+REG_COLS = ["motif_id", "motif_hash", "motif_level", "general_motif_id", "first_seen"]
+
+
+def registry_path(cfg: Config) -> Path:
+    return Path(cfg.path("accepted_dir")) / "motif_ids.csv"
+
+
+def read_registry(cfg: Config) -> list[dict]:
+    return read_csv(registry_path(cfg)) if registry_path(cfg).exists() else []
+
+
+def next_id(reg: list[dict], parent: str = "") -> str:
+    if parent:
+        n = max([int(r["motif_id"].rsplit(".", 1)[1]) for r in reg if r["motif_id"].startswith(parent + ".")] or [0])
+        return f"{parent}.{n + 1}"
+    n = max([int(r["motif_id"].split(".")[0][2:]) for r in reg] or [0])
+    return f"M-{n + 1:04d}"
+
+
+def assign_ids(cfg: Config, groups: list[dict]) -> None:
+    """General groups first. Only groups sent to the LLM get an ID; an ID is never changed or reused."""
+    reg = read_registry(cfg)
+    ids = {r["motif_hash"]: r["motif_id"] for r in reg}
+    for g in groups:
+        h, parent = g["motif_hash"], ids.get(g.pop("parent_hash", ""), "")
+        if h not in ids and g["sent_to_llm"] == "yes":
+            ids[h] = next_id(reg, parent if g["motif_level"] == "specific" else "")
+            reg.append({"motif_id": ids[h], "motif_hash": h, "motif_level": g["motif_level"],
+                        "general_motif_id": parent, "first_seen": dt.date.today().isoformat()})
+        g["motif_id"], g["general_motif_id"] = ids.get(h, ""), parent
+    write_csv(registry_path(cfg), REG_COLS, reg)
+
+
+#  grouping
+GROUP_COLS = ["motif_id", "motif_level", "top_risk", "architecture_classes", "shared_context", "general_motif_id",
+              "number_of_incidents", "sent_to_llm", "incidents", "motif_hash"]
 DEFAULT_SPECIFIC_CLASSES = ["Domain", "Task", "DataCategory", "DeploymentEnvironment", "Stakeholder", "AutonomyLevel",
                             "RegulatoryContext"]
 
@@ -226,24 +252,14 @@ def top_risk(answer: dict) -> str:
 
 
 def shape_of(answer: dict) -> str:
-    """The architecture shape of a profile: its set of element classes."""
     return ",".join(sorted({e["class"] for e in answer["elements"]}))
 
 
 def profile_contexts(answer: dict) -> set[str]:
-    """Existing context values of a profile as 'Class=id' (proposed new values are not stable, so not used)."""
     return {f"{c['class']}={c['existing']}" for c in answer["contexts"] if c["existing"] != "new"}
 
 
 def group_profiles(cfg: Config) -> list[dict]:
-    """Two levels of groups, like the hand-written motifs (motif1 general; motif2/motif3 add a context):
-
-    general   profiles with the same shape (set of element classes) and the same top risk.
-    specific  profiles with the same shape that share one application-context value (any top risk). Their motif
-              keeps the shape, requires that value, and may indicate another risk than the general motif.
-              parent_key = the general group of the same shape that shares the most incidents.
-
-    motif_key = hash of the grouping key, so a group keeps its key (and its IRIs) across runs."""
     g = cfg["group"]
     profiles = [p for p in read_jsonl(Path(cfg.path("output_dir")) / "profiles.jsonl") if top_risk(p["answer"])]
     min_support = int(g.get("min_support", 1))
@@ -256,11 +272,11 @@ def group_profiles(cfg: Config) -> list[dict]:
     rows = []
     for (risk, classes), ids in sorted(general.items()):
         key = "m" + hashlib.sha256(f"{risk}|{classes}".encode()).hexdigest()[:10]
-        rows.append({"motif_key": key, "level": "general", "risk_id": risk, "element_classes": classes, "context": "",
-                     "parent_key": "", "n_profiles": len(ids),
-                     "abstracted": "yes" if len(ids) >= min_support else f"no (< min_support {min_support})",
-                     "incident_ids": " ".join(sorted(ids))})
-    kept_general = [r for r in rows if r["abstracted"] == "yes"]
+        rows.append({"motif_hash": key, "motif_level": "general", "top_risk": risk, "architecture_classes": classes,
+                     "shared_context": "", "number_of_incidents": len(ids),
+                     "sent_to_llm": "yes" if len(ids) >= min_support else f"no (< min_support {min_support})",
+                     "incidents": " ".join(sorted(ids))})
+    kept_general = [r for r in rows if r["sent_to_llm"] == "yes"]
 
     specific = defaultdict(list)
     for p in profiles:
@@ -273,30 +289,31 @@ def group_profiles(cfg: Config) -> list[dict]:
         for p in members:
             risks[top_risk(p["answer"])] += 1
         risk = sorted(risks.items(), key=lambda x: (-x[1], x[0]))[0][0]      # most frequent top risk (for reading)
-        overlap = sorted(((len(set(ids) & set(r["incident_ids"].split())), r["n_profiles"], r["motif_key"], r)
-                          for r in kept_general if r["element_classes"] == classes), key=lambda x: (-x[0], -x[1], x[2]))
+        overlap = sorted(((len(set(ids) & set(r["incidents"].split())), r["number_of_incidents"], r["motif_hash"], r)
+                          for r in kept_general if r["architecture_classes"] == classes),
+                         key=lambda x: (-x[0], -x[1], x[2]))
         parent = overlap[0][3] if overlap and overlap[0][0] else None
         if len(ids) < spec_min:
             status = f"no (< specific_min_support {spec_min})"
-        elif parent and sorted(parent["incident_ids"].split()) == ids:
-            status = f"no (same incidents as general group {parent['motif_key']})"
+        elif parent and sorted(parent["incidents"].split()) == ids:
+            status = "no (same incidents as its general motif)"
         else:
             status = "yes"
         key = "m" + hashlib.sha256(f"{classes}|{ctx}".encode()).hexdigest()[:10]
-        rows.append({"motif_key": key, "level": "specific", "risk_id": risk, "element_classes": classes, "context": ctx,
-                     "parent_key": parent["motif_key"] if parent else "", "n_profiles": len(ids), "abstracted": status,
-                     "incident_ids": " ".join(ids)})
+        rows.append({"motif_hash": key, "motif_level": "specific", "top_risk": risk, "architecture_classes": classes,
+                     "shared_context": ctx, "parent_hash": parent["motif_hash"] if parent else "",
+                     "number_of_incidents": len(ids), "sent_to_llm": status, "incidents": " ".join(ids)})
+    assign_ids(cfg, rows)
     write_csv(Path(cfg.path("output_dir")) / "groups.csv", GROUP_COLS, rows)
     return rows
 
 
 def level_block(g: dict, parent: dict | None) -> str:
-    """The part of the abstract prompt that says which level of motif to write."""
-    if g.get("level", "general") == "general":
+    if g.get("motif_level", "general") == "general":
         return ("Level: **general**. These incidents share one architecture and the same top risk. Write the general "
                 "motif of this architecture: require an application context only when the risk cannot arise without it.")
-    cls, val = g["context"].split("=", 1)
-    lines = [f"Level: **specific**. These incidents share the architecture ({g['element_classes']}) and the application "
+    cls, val = g["shared_context"].split("=", 1)
+    lines = [f"Level: **specific**. These incidents share the architecture ({g['architecture_classes']}) and the application "
              f"context value `{val}` ({cls}). Write a more specific motif on top of the general one:",
              f"- keep the architecture (same element classes and the same uses/produces relations);",
              f"- require the context: class `{cls}`, existing `{val}` (you may add other values that "
@@ -306,7 +323,7 @@ def level_block(g: dict, parent: dict | None) -> str:
         a = parent["answer"]
         ctx = "; ".join(f"{c['class']}={c['existing']}" for c in a["contexts"]) or "none"
         lines += ["", "The general motif of this architecture (keep its elements and relations):",
-                  f"- name: {a['name']}", f"- risk: {a['risk_id']}", f"- architecture: {structure_text(a)}",
+                  f"- name: {a['name']}", f"- risk: {a['risk_id']}", f"- architecture: {structure_text(a, mark=False)}",
                   f"- contexts: {ctx}", f"- manifest condition: {a['manifest_condition']}"]
     else:
         lines += ["", "No general motif of this architecture is available; take the architecture the profiles share."]
@@ -314,17 +331,15 @@ def level_block(g: dict, parent: dict | None) -> str:
 
 
 def shape_signature(answer: dict) -> tuple:
-    """Element classes and class-level relations, independent of element ids."""
     cls = {e["id"]: e["class"] for e in answer["elements"]}
     return (tuple(sorted(cls.values())),
             tuple(sorted((cls.get(f["from"], "?"), f["relation"], cls.get(f["to"], "?")) for f in answer["flows"])))
 
 
 def level_check(g: dict, parent: dict | None):
-    """Extra checks for a specific motif: it requires its context and keeps the general motif's architecture."""
-    if g.get("level", "general") == "general":
+    if g.get("motif_level", "general") == "general":
         return lambda d: []
-    cls, val = g["context"].split("=", 1)
+    cls, val = g["shared_context"].split("=", 1)
 
     def check(d: dict) -> list[str]:
         errs = []
@@ -336,13 +351,13 @@ def level_check(g: dict, parent: dict | None):
     return check
 
 
-# ==================================================================== stage 2: abstraction
+# stage 2: abstraction
 def profiles_block(profiles: list[dict]) -> str:
     out = []
     for p in profiles:
         a = p["answer"]
         cls = {e["id"]: e["class"] for e in a["elements"]}
-        out.append(f"- incident: {p['incident_id']}\n  title: {p['title']}\n  architecture: {structure_text(a)}\n"
+        out.append(f"- incident: {p['incident_id']}\n  title: {p['title']}\n  architecture: {structure_text(a, mark=False)}\n"
                    f"  elements: " + "; ".join(f"{e['id']} {e['class']} ({e['label']})" for e in a["elements"]) + "\n"
                    f"  contexts: " + ("; ".join(f"{c['class']}={c['existing'] if c['existing'] != 'new' else c['value']}"
                                                for c in a["contexts"]) or "none") + "\n"
@@ -353,8 +368,6 @@ def profiles_block(profiles: list[dict]) -> str:
 
 
 def plan_motifs(cfg: Config, vocab: Vocab, limit: int | None = None, done: dict | None = None):
-    """Yields one abstraction call per group; general groups come first, so that `done` (motif_key -> motif row,
-    filled by run_motifs) holds a specific group's general motif when that group is planned."""
     done = done if done is not None else {}
     profiles = {p["incident_id"]: p for p in read_jsonl(Path(cfg.path("output_dir")) / "profiles.jsonl")}
     groups = read_csv(Path(cfg.path("output_dir")) / "groups.csv") if (Path(cfg.path("output_dir")) / "groups.csv").exists() else []
@@ -366,9 +379,9 @@ def plan_motifs(cfg: Config, vocab: Vocab, limit: int | None = None, done: dict 
     for g in groups:
         if limit is not None and n >= limit:
             break
-        if g.get("abstracted", "yes") != "yes":          # below min_support: not abstracted
+        if g.get("sent_to_llm", "yes") != "yes":
             continue
-        members = [profiles[i] for i in g["incident_ids"].split() if i in profiles][: cfg["group"]["max_profiles_per_call"]]
+        members = [profiles[i] for i in g["incidents"].split() if i in profiles][: cfg["group"]["max_profiles_per_call"]]
         if not members:
             continue
         n += 1
@@ -377,7 +390,7 @@ def plan_motifs(cfg: Config, vocab: Vocab, limit: int | None = None, done: dict 
             for r in p["answer"]["risks"]:
                 if r["risk_id"] not in cand and r["risk_id"] in risks:
                     cand.append(r["risk_id"])
-        parent = done.get(g.get("parent_key") or "")
+        parent = done.get(g.get("general_motif_id") or "")
         system, user = render(cfg.path("prompt_abstract"), {**common, "risks_block": risks_block(cand, risks),
                                                             "profiles_block": profiles_block(members),
                                                             "level_block": level_block(g, parent)})
@@ -397,19 +410,20 @@ def run_motifs(cfg: Config, provider: Provider, vocab: Vocab, limit: int | None 
         data, entry, lrow = call(scfg, provider, cache, system, user, schema,
                                  lambda d: check_structure(d, vocab, "manifest_condition") +
                                  ([] if d["manifest_condition"] else ["manifest_condition is empty"]) + extra(d),
-                                 g["motif_key"], log)
+                                 g["motif_id"], log)
         logs.append(lrow)
         stats["cached" if lrow["cached"] else "called"] += lrow["status"] == "ok"
         if data is None:
             stats["skipped"] += 1
             continue
-        row = {"motif_key": g["motif_key"], "level": g.get("level", "general"), "context": g.get("context", ""),
-               "parent_key": g.get("parent_key", ""), "group_risk_id": g["risk_id"],
-               "group_element_classes": g["element_classes"], "group_incident_ids": g["incident_ids"].split(),
+        row = {"motif_key": g["motif_id"], "motif_hash": g["motif_hash"], "level": g.get("motif_level", "general"),
+               "context": g.get("shared_context", ""), "parent_key": g.get("general_motif_id", ""),
+               "group_risk_id": g["top_risk"], "group_element_classes": g["architecture_classes"],
+               "group_incident_ids": g["incidents"].split(),
                "answer": data, "model": cfg["model"], "model_version": entry.get("model_version", ""),
                "prompt_sha256": psha, "run_date": entry.get("run_date", "")}
         rows.append(row)
-        done[g["motif_key"]] = row
+        done[g["motif_id"]] = row
     out.mkdir(parents=True, exist_ok=True)
     (out / "motifs.jsonl").write_text("".join(dumps(r) + "\n" for r in rows), encoding="utf-8")
     write_csv(out / "motif_log.csv", list(logs[0].keys()) if logs else ["id"], logs)
@@ -417,17 +431,15 @@ def run_motifs(cfg: Config, provider: Provider, vocab: Vocab, limit: int | None 
     return dict(stats)
 
 
-# ==================================================================== dry run and estimate
+# dry run and estimate
 def remember_cached(scfg: Config, cache: Cache, stage: str, item: dict, system: str, user: str, schema: dict,
                     done: dict) -> bool:
-    """True if this call is cached. For a cached general motif, keep its answer in `done`, so the specific motifs
-    built on it are planned (and estimated) with the same prompt as in a real run."""
     entry = cache.get(cache_key(scfg, system, user, api_schema(schema)))
     if entry is None:
         return False
-    if stage == "abstract" and item.get("level", "general") == "general":
+    if stage == "abstract" and item.get("motif_level", "general") == "general":
         try:
-            done[item["motif_key"]] = {"answer": json.loads(entry["text"])}
+            done[item["motif_id"]] = {"answer": json.loads(entry["text"])}
         except (ValueError, KeyError):
             pass
     return True
@@ -444,7 +456,7 @@ def dry_run(cfg: Config, vocab: Vocab, stage: str, limit: int | None = None) -> 
     for t in plan:
         item, (system, user, schema) = t[0], t[-3:]
         remember_cached(scfg, cache, stage, item, system, user, schema, done)
-        name = item["incident_id"] if stage == "profile" else item["motif_key"]
+        name = item["incident_id"] if stage == "profile" else item["motif_id"]
         (folder / f"{name}.md").write_text(
             f"# Prompt preview ({stage}): {name}\n\nmodel: {cfg['model']} | effort: {cfg['effort'][stage]} | "
             f"prompt_sha256: {prompt_sha(cfg)}\n\n## System\n\n{system}\n\n## User\n\n{user}\n\n"

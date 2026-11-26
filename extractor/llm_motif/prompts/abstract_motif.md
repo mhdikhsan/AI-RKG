@@ -53,7 +53,7 @@ Return a JSON object with:
 - `name`: a short name for the motif.
 - `description`: two or three sentences: the arrangement, and why it leads to the risk.
 - `risk_id`: the one risk from the candidates that the motif indicates.
-- `elements`: at most {max_elements} elements, each with an `id` (m1, m2, ...) and a `class`.
+- `elements`: at most {max_elements} elements, each with an `id` (m1, m2, ...), a `class`, and a `label`: the element's role in the motif in two to four general words (for example "user prompt", "retrieved documents", "generated answer", "answer generation"). No product, model or company names; two elements of the same class must have different labels.
 - `flows`: relations `{"from": <process element id>, "relation": "uses" | "produces", "to": <data or model element id>}`.
 - `contexts`: the application context values the motif requires (possibly none), each with `class`, `existing` and `value`.
 - `manifest_condition`: the id of the element where the risk shows up.

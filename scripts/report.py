@@ -1,4 +1,3 @@
-"""Statistics report: build/reports/stats.md (every count carries source date + Nexus commit)."""
 from __future__ import annotations
 
 import json
@@ -27,10 +26,9 @@ def main() -> None:
     base, ak = cfg["base_iri"], cfg["ak_namespace"]
     AK = Namespace(ak)
     g = Graph().parse(kg)
-    L =["# AI-RKG core knowledge graph – statistics", "", provenance_line(),
+    L =["# AI-RKG core knowledge graph: statistics", "", provenance_line(),
          f"Merged graph: `build/airkg-core-kg.ttl`, {len(g)} triples.", ""]
 
-    # per class (asserted types; authored vs pipeline by IRI namespace), for every class the ontology declares
     onto = Graph().parse(ROOT / cfg["ontology"]["core"])
     classes = sorted(str(c)[len(ak):] for c in onto.subjects(RDF.type, OWL.Class)
                      if isinstance(c, URIRef) and str(c).startswith(ak))
@@ -68,7 +66,7 @@ def main() -> None:
                  ", ".join(f"{k}: {v}" for k, v in s.items() if k not in ("raw", "kept")) or "—"]
                 for f, s in summ["crosswalks_per_file"].items()]) + [""]
 
-    # mitigations + candidate links
+    # mitigations with candidate links
     ctl = read_csv(STAGING / "mit_controls.csv")
     L += ["## Mitigations", ""]
     L += table(["Type rule result (MIT top category)", "Controls"],

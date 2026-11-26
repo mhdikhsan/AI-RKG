@@ -28,8 +28,7 @@ STAGES = click.Choice(["profile", "abstract"])
               help="take the first N incidents of a source, repeatable, e.g. --per-source aiid=20 --per-source avid=10")
 @click.pass_context
 def main(ctx, config_path, model, source, record_classes, per_source):
-    """Propose RiskMotifs from AIID incidents and AVID records with an LLM, for human review."""
-    load_env()                                   # ANTHROPIC_API_KEY etc. from the repository's .env
+    load_env()                                 
     ctx.obj = load_cfg(config_path, {"model": model})
     if source:
         ctx.obj["scope"]["sources"] = [source]
@@ -51,7 +50,6 @@ def main(ctx, config_path, model, source, record_classes, per_source):
 @click.option("--limit", type=int, default=None, help="only the first N incidents (profile) or groups (abstract)")
 @click.pass_obj
 def estimate(cfg, stage, limit):
-    """Calls, approximate tokens and cost for one stage. No API call."""
     click.echo(json.dumps(stages.estimate(cfg, Vocab(), stage, limit), indent=2))
 
 
@@ -61,13 +59,12 @@ def estimate(cfg, stage, limit):
 @click.option("--limit", type=int, default=None)
 @click.pass_obj
 def run(cfg, stage, dry_run, limit):
-    """profile: one call per incident -> output/profiles.jsonl; abstract: one call per group -> output/motifs.jsonl"""
     vocab = Vocab()
     if dry_run:
         n = stages.dry_run(cfg, vocab, stage, limit)
         click.echo(f"dry run: {n} prompts written to {Path(cfg.path('output_dir')) / 'prompts_preview' / stage}")
         return
-    provider = get_provider(stage_cfg(cfg, stage))   # Claude with this stage's effort level
+    provider = get_provider(stage_cfg(cfg, stage))  
     fn = stages.run_profiles if stage == "profile" else stages.run_motifs
     click.echo(f"run {stage}: {json.dumps(fn(cfg, provider, vocab, limit, log=click.echo), sort_keys=True)}")
 
@@ -75,36 +72,45 @@ def run(cfg, stage, dry_run, limit):
 @main.command()
 @click.pass_obj
 def group(cfg):
-    """General groups (shape + top risk) and specific groups (shape + context value) -> output/groups.csv (no LLM)."""
     rows = stages.group_profiles(cfg)
     for level in ("general", "specific"):
-        lv = [r for r in rows if r["level"] == level]
-        kept = [r for r in lv if r["abstracted"] == "yes"]
-        click.echo(f"group: {level}: {len(lv)} groups, {len(kept)} will be abstracted")
+        lv = [r for r in rows if r["motif_level"] == level]
+        kept = [r for r in lv if r["sent_to_llm"] == "yes"]
+        click.echo(f"group: {level}: {len(lv)} groups, {len(kept)} sent to the LLM")
 
 
 @main.command()
 @click.pass_obj
 def check(cfg):
-    """Behaviour test with the pipeline's MotifDetectionShape -> output/check.csv"""
     click.echo(f"check: {json.dumps(check_mod.run_check(cfg))}")
 
 
 @main.command("review-export")
-@click.option("--xlsx", is_flag=True, help="write review_sheet.xlsx (with an accept/reject dropdown)")
+@click.option("--xlsx", is_flag=True, help="write an .xlsx sheet (with an accept/reject dropdown)")
 @click.option("--force", is_flag=True, help="overwrite a sheet that already holds decisions")
+@click.option("--reviewer", default=None,
+              help="write this reviewer's own sheet, output/review_sheet_<name>.csv, with the reviewer column filled")
 @click.pass_obj
-def review_export(cfg, xlsx, force):
-    """output/review_sheet.csv: one row per motif proposal, empty reviewer and decision columns."""
-    click.echo(f"review sheet: {review_mod.export(cfg, xlsx=xlsx, force=force)}")
+def review_export(cfg, xlsx, force, reviewer):
+    click.echo(f"review sheet: {review_mod.export(cfg, xlsx=xlsx, force=force, reviewer=reviewer)}")
+
+
+REVIEWS = click.option("--review", "review_paths", type=click.Path(exists=True, dir_okay=False), multiple=True,
+                       required=True, help="a filled review sheet; repeat for several reviewers")
+
+
+@main.command("review-status")
+@REVIEWS
+@click.pass_obj
+def review_status(cfg, review_paths):
+    click.echo(json.dumps(review_mod.status(cfg, [Path(p) for p in review_paths]), indent=2))
 
 
 @main.command()
-@click.option("--review", "review_path", type=click.Path(exists=True, dir_okay=False), required=True)
+@REVIEWS
 @click.pass_obj
-def apply(cfg, review_path):
-    """Accepted motifs -> staging/accepted_motif*.csv (mapped by the main pipeline with RML)."""
-    click.echo(f"apply: {json.dumps(review_mod.apply(cfg, Path(review_path)))}")
+def apply(cfg, review_paths):
+    click.echo(f"apply: {json.dumps(review_mod.apply(cfg, [Path(p) for p in review_paths]))}")
 
 
 @main.command("all")
@@ -112,7 +118,6 @@ def apply(cfg, review_path):
 @click.option("--yes", is_flag=True, help="do not ask before calling the API")
 @click.pass_context
 def all_(ctx, limit, yes):
-    """estimate -> (confirm) -> profile -> group -> estimate -> (confirm) -> abstract -> check -> review-export"""
     cfg, vocab = ctx.obj, Vocab()
     for stage in ("profile", "abstract"):
         if stage == "abstract":
@@ -122,11 +127,11 @@ def all_(ctx, limit, yes):
         if e["calls"] and not yes and cfg["provider"] != "fake":
             click.confirm(f"Stage {stage}: make {e['calls']} API calls with {cfg['model']} "
                           f"(about ${e['cost_usd_configured_model']})?", abort=True)
-        provider = get_provider(stage_cfg(cfg, stage))   # Claude with this stage's effort level
+        provider = get_provider(stage_cfg(cfg, stage))  
         fn = stages.run_profiles if stage == "profile" else stages.run_motifs
         click.echo(f"run {stage}: {json.dumps(fn(cfg, provider, vocab, limit if stage == 'profile' else None, log=click.echo))}")
     ctx.invoke(check)
-    ctx.invoke(review_export, xlsx=False, force=False)
+    ctx.invoke(review_export, xlsx=False, force=False, reviewer=None)
 
 
 if __name__ == "__main__":

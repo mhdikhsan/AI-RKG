@@ -1,10 +1,3 @@
-"""Validate the merged graph.
-
-1 parse  2 OWL consistency (owlready2 + HermiT)  3 SHACL (shapes file from config ontology.shapes: integrity
-checks; results with severity sh:Info are risk-motif detections, reported separately and never counted as errors
-or warnings)  4 competency queries (queries/*.rq)  5 dangling IRIs  (+ existence check of reused DPV IRIs, warnings only)
-Writes build/reports/validation.md (+ build/reports/motif_detections.csv); exits non-zero on any error.
-"""
 from __future__ import annotations
 
 import json
@@ -23,7 +16,7 @@ from scripts.common import BUILD, QUERIES, REPORTS, ROOT, load_config, log, prov
 KG = BUILD / "airkg-core-kg.ttl"
 
 
-# ------------------------------------------------------------------ helpers
+# helpers
 def hermit(owl_file: Path, option: str) -> subprocess.CompletedProcess:
     """Run the HermiT command line bundled with owlready2 (needs Java)."""
     import owlready2
@@ -34,11 +27,6 @@ def hermit(owl_file: Path, option: str) -> subprocess.CompletedProcess:
 
 
 def owl_check(g: Graph) -> tuple[bool, list[str], str]:
-    """(consistent, unsatisfiable classes, note) with HermiT on an RDF/XML export of the graph.
-
-    HermiT is called directly (not through owlready2.sync_reasoner, which returned an empty world after
-    reasoning in this setup and missed a planted contradiction).
-    """
     n_ind = len(set(g.subjects(RDF.type, OWL.NamedIndividual)))
     with tempfile.TemporaryDirectory() as d:
         f = Path(d) / "kg.owl"
@@ -56,7 +44,6 @@ def owl_check(g: Graph) -> tuple[bool, list[str], str]:
 
 
 def owl_self_test(g: Graph, ak: str) -> bool:
-    """The OWL check must detect a planted contradiction (second ak:level on an AutonomyLevel)."""
     probe = Graph()
     for t in g:
         probe.add(t)
@@ -67,7 +54,7 @@ def owl_self_test(g: Graph, ak: str) -> bool:
     return not owl_check(probe)[0]
 
 
-# ------------------------------------------------------------------ main
+# main
 def main() -> None:
     cfg = load_config()
     base, ak = cfg["base_iri"], cfg["ak_namespace"]
@@ -94,13 +81,16 @@ def main() -> None:
           f"Self-test (planted contradiction: a second `ak:level` on an `ak:AutonomyLevel`): "
           f"{'detected - check is effective' if self_test else '**NOT detected**'}.", ""]
 
-    # 3 SHACL (integrity + motif detection, same shapes file)
+    # 3 SHACL (integrity plus motif detection, same shapes file)
     shapes_rel = cfg["ontology"].get("shapes")
     if not shapes_rel:
         raise SystemExit("validate: config/pipeline.yaml has no ontology.shapes (path of the SHACL shapes file)")
     shapes_text = (ROOT / shapes_rel).read_text(encoding="utf-8").replace("__BASE_IRI__", base)
     shapes = Graph().parse(data=shapes_text, format="turtle")
-    _, results, text = shacl_validate(g, shacl_graph=shapes, inference="none", advanced=True, allow_warnings=True)
+    test_file = BUILD / "authored_test_data.ttl"      # authored example workflows: not in the KG, only tested here
+    test_g = Graph().parse(test_file, format="turtle") if test_file.exists() else Graph()
+    _, results, text = shacl_validate(g + test_g, shacl_graph=shapes, inference="none", advanced=True,
+                                      allow_warnings=True)
     if not isinstance(results, Graph):
         raise SystemExit(f"validate: SHACL engine failed: {results}")
     by_sev, by_msg, detections = Counter(), Counter(), []
@@ -108,7 +98,7 @@ def main() -> None:
         sev = str(results.value(r, SH.resultSeverity)).split("#")[-1]
         msg = str(results.value(r, SH.resultMessage) or "")
         by_sev[sev] += 1
-        if sev == "Info":   # risk-motif detection, not a data problem
+        if sev == "Info":   # risk-motif detection
             detections.append({"workflow": str(results.value(r, SH.focusNode)), "motif": str(results.value(r, SH.value)),
                                "message": msg})
             continue
@@ -116,6 +106,8 @@ def main() -> None:
     for (sev, msg), n in sorted(by_msg.items()):
         (errors if sev == "Violation" else warnings).append(f"SHACL {sev}: {msg} ({n})")
     L += [f"## 3. SHACL (`{shapes_rel}`)", "",
+          f"Run on the KG plus `build/authored_test_data.ttl` ({len(test_g)} triples: authored example workflows, "
+          f"not part of the KG, used to test motif detection).", "",
           f"{'PASS' if not by_sev.get('Violation') else 'FAIL'}: {by_sev.get('Violation', 0)} violations, "
           f"{by_sev.get('Warning', 0)} warnings.", "", "| Severity | Message | Count |", "|---|---|---|"]
     L += [f"| {s} | {m} | {n} |" for (s, m), n in sorted(by_msg.items())] or ["| — | none | 0 |"]
@@ -158,7 +150,7 @@ def main() -> None:
           f"{'PASS' if not dangling else 'FAIL'}: {len(dangling)} object IRIs in `{ak}` or `{base}` that are never a subject."]
     L += [f"- `{d}`" for d in dangling[:50]] + [""]
 
-    # Reused-vocabulary IRI check (warnings): DPV, DPV-AI and EU AI Act (DPV)
+    # Reused-vocabulary IRI check 
     clone = ROOT / "sources" / "_clones" / "dpv"
     vocab_ns = ("https://w3id.org/dpv",)
     used = sorted({str(o) for o in g.objects() if isinstance(o, URIRef) and str(o).startswith(vocab_ns)})

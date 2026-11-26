@@ -13,9 +13,10 @@
         "type": "object",
         "properties": {
           "id": { "type": "string", "pattern": "^m[0-9]+$" },
-          "class": { "type": "string" }
+          "class": { "type": "string" },
+          "label": { "type": "string", "minLength": 1, "maxLength": 60 }
         },
-        "required": ["id", "class"],
+        "required": ["id", "class", "label"],
         "additionalProperties": false
       }
     },

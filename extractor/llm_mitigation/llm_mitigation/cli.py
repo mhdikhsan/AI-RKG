@@ -1,9 +1,6 @@
-"""llm-mitigation command-line tool."""
 from __future__ import annotations
-
 import json
 from pathlib import Path
-
 import click
 
 from . import apply as apply_mod
@@ -20,15 +17,13 @@ from .shortlist import SHORTLIST_COLS, build_shortlist
 @click.option("--model", default=None, help="override the model in config.yaml (e.g. claude-haiku-5-5)")
 @click.pass_context
 def main(ctx, config_path, model):
-    """Propose mitigation->risk links with an LLM, for human review."""
-    load_env()                                   # ANTHROPIC_API_KEY etc. from the repository's .env
+    load_env()                                 
     ctx.obj = load_config(config_path, {"model": model})
 
 
 @main.command()
 @click.pass_obj
 def shortlist(cfg):
-    """Deterministic top-k controls per risk (TF-IDF, no LLM) -> output/shortlist.csv"""
     risks, controls, groups = load_inputs(cfg)
     exclude = set()
     for rel in cfg["shortlist"].get("exclude_links") or []:
@@ -48,7 +43,6 @@ def shortlist(cfg):
 @click.option("--exact", is_flag=True, help="count input tokens with the API's token-counting endpoint")
 @click.pass_obj
 def estimate(cfg, limit, exact):
-    """Calls, approximate tokens and cost for the configured model. No generation call."""
     e = run_mod.estimate(cfg, limit, exact)
     click.echo(json.dumps(e, indent=2))
 
@@ -58,7 +52,6 @@ def estimate(cfg, limit, exact):
 @click.option("--limit", type=int, default=None, help="only the first N risks")
 @click.pass_obj
 def run(cfg, dry_run, limit):
-    """One LLM call per risk with its shortlist -> output/candidates.csv (cached)."""
     if dry_run:
         n = run_mod.dry_run(cfg, limit)
         click.echo(f"dry run: {n} prompts written to {Path(cfg.path('output_dir')) / 'prompts_preview'}")
@@ -72,7 +65,6 @@ def run(cfg, dry_run, limit):
 @click.option("--force", is_flag=True, help="overwrite a sheet that already holds decisions")
 @click.pass_obj
 def review_export(cfg, xlsx, force):
-    """output/review_sheet.csv with empty reviewer and decision columns."""
     click.echo(f"review sheet: {review_mod.export(cfg, xlsx=xlsx, force=force)}")
 
 
@@ -80,7 +72,6 @@ def review_export(cfg, xlsx, force):
 @click.option("--review", "review_path", type=click.Path(exists=True, dir_okay=False), required=True)
 @click.pass_obj
 def apply(cfg, review_path):
-    """Keep decision=accept rows -> staging/accepted_mitigation_links.csv"""
     stats = apply_mod.apply(cfg, Path(review_path))
     click.echo(f"apply: {json.dumps(stats)} -> {cfg.path('accepted_out')}")
 
@@ -90,7 +81,6 @@ def apply(cfg, review_path):
 @click.option("--yes", is_flag=True, help="do not ask before calling the API")
 @click.pass_context
 def all_(ctx, limit, yes):
-    """shortlist -> estimate -> (confirm) -> run -> review-export"""
     cfg = ctx.obj
     ctx.invoke(shortlist)
     e = run_mod.estimate(cfg, limit)

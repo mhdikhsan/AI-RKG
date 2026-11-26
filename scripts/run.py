@@ -1,10 +1,3 @@
-"""Make-free pipeline runner (same targets as the Makefile).
-
-Usage:  python -m scripts.run <target> [<target> ...]
-Targets: fetch stage map merge validate coverage report site all check-ontology accept-ontology
-(accept-ontology: after an intended edit of the ontology/shapes files, check they parse and record their new hashes)
-(The LLM extractors in extractor/ run separately; see extractor/README.md.)
-"""
 from __future__ import annotations
 
 import importlib

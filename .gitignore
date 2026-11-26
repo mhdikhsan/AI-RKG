@@ -21,7 +21,6 @@ extractor/*/output/prompts_preview/
 extractor/llm_motif/output/profiles.jsonl
 extractor/llm_motif/output/motifs.jsonl
 extractor/llm_motif/output/*.md
-extractor/llm_motif/output_run1/*
 site/*
 !site/.gitkeep
 # local working notes (survey, decisions, issues, full changelog) - not pushed

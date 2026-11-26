@@ -1,8 +1,5 @@
-"""`review-export`: a review sheet with empty reviewer/decision columns, sorted by risk."""
 from __future__ import annotations
-
 from pathlib import Path
-
 from .config import Config, load_inputs, read_csv, write_csv
 from .shortlist import group_names
 

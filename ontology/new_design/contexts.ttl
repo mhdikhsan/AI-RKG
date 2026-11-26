@@ -1,0 +1,390 @@
+@prefix : <http://example.org/airkg#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix ai: <https://w3id.org/dpv/ai#> .
+@prefix eu-aiact: <https://w3id.org/dpv/legal/eu/aiact#> .
+
+
+:food_products a :Domain ;
+    :name "Food Products" ;
+    :identifier "ISIC Rev.4 10-12" ;
+    skos:note "OECD AI intensity: Low" .
+
+:textiles_and_apparel a :Domain ;
+    :name "Textiles and Apparel" ;
+    :identifier "ISIC Rev.4 13-15" ;
+    skos:note "OECD AI intensity: Low" .
+
+:wood_and_paper a :Domain ;
+    :name "Wood and Paper" ;
+    :identifier "ISIC Rev.4 16-18" ;
+    skos:note "OECD AI intensity: Low" .
+
+:chemicals a :Domain ;
+    :name "Chemicals" ;
+    :identifier "ISIC Rev.4 20" ;
+    skos:note "OECD AI intensity: Medium" .
+
+:pharmaceuticals a :Domain ;
+    :name "Pharmaceuticals" ;
+    :identifier "ISIC Rev.4 21" ;
+    skos:note "OECD AI intensity: Medium" .
+
+:rubber_plastics_and_minerals a :Domain ;
+    :name "Rubber, Plastics and Minerals" ;
+    :identifier "ISIC Rev.4 22-23" ;
+    skos:note "OECD AI intensity: Low" .
+
+:metal_products a :Domain ;
+    :name "Metal Products" ;
+    :identifier "ISIC Rev.4 24-25" ;
+    skos:note "OECD AI intensity: Low" .
+
+:computer_and_electronics a :Domain ;
+    :name "Computer and Electronics" ;
+    :identifier "ISIC Rev.4 26" ;
+    skos:note "OECD AI intensity: High" .
+
+:electrical_equipment a :Domain ;
+    :name "Electrical Equipment" ;
+    :identifier "ISIC Rev.4 27" ;
+    skos:note "OECD AI intensity: Medium" .
+
+:machinery_and_equipment a :Domain ;
+    :name "Machinery and Equipment" ;
+    :identifier "ISIC Rev.4 28" ;
+    skos:note "OECD AI intensity: Medium" .
+
+:transport_equipment a :Domain ;
+    :name "Transport Equipment" ;
+    :identifier "ISIC Rev.4 29-30" ;
+    skos:note "OECD AI intensity: Medium" .
+
+:other_manufactures a :Domain ;
+    :name "Other Manufactures" ;
+    :identifier "ISIC Rev.4 31-33" ;
+    skos:note "OECD AI intensity: Medium" .
+
+:construction a :Domain ;
+    :name "Construction" ;
+    :identifier "ISIC Rev.4 41-43" ;
+    skos:note "OECD AI intensity: Low" .
+
+:wholesale_and_retail a :Domain ;
+    :name "Wholesale and Retail" ;
+    :identifier "ISIC Rev.4 45-47" ;
+    skos:note "OECD AI intensity: Medium" .
+
+:transportation_and_storage a :Domain ;
+    :name "Transportation and Storage" ;
+    :identifier "ISIC Rev.4 49-53" ;
+    skos:note "OECD AI intensity: Medium" .
+
+:hotels_and_food_services a :Domain ;
+    :name "Hotels and Food Services" ;
+    :identifier "ISIC Rev.4 55-56" ;
+    skos:note "OECD AI intensity: Low" .
+
+:media a :Domain ;
+    :name "Media" ;
+    :identifier "ISIC Rev.4 58-60" ;
+    skos:note "OECD AI intensity: High" .
+
+:telecommunications a :Domain ;
+    :name "Telecommunications" ;
+    :identifier "ISIC Rev.4 61" ;
+    skos:note "OECD AI intensity: High" .
+
+:it_services a :Domain ;
+    :name "IT Services" ;
+    :identifier "ISIC Rev.4 62-63" ;
+    skos:note "OECD AI intensity: High" .
+
+:financial_services :identifier "ISIC Rev.4 64-66" ;
+    skos:note "OECD AI intensity: High" .   # OECD: Finance & insurance
+
+:real_estate a :Domain ;
+    :name "Real Estate" ;
+    :identifier "ISIC Rev.4 68" ;
+    skos:note "OECD AI intensity: Medium" .
+
+:legal_and_accounting a :Domain ;
+    :name "Legal and Accounting" ;
+    :identifier "ISIC Rev.4 69-71" ;
+    skos:note "OECD AI intensity: High" .
+
+:scientific_research_and_development a :Domain ;
+    :name "Scientific Research and Development" ;
+    :identifier "ISIC Rev.4 72" ;
+    skos:note "OECD AI intensity: High" .
+
+:other_business_services a :Domain ;
+    :name "Other Business Services" ;
+    :identifier "ISIC Rev.4 73-75" ;
+    skos:note "OECD AI intensity: Medium" .
+
+:administrative_and_support_services a :Domain ;
+    :name "Administrative and Support Services" ;
+    :identifier "ISIC Rev.4 77-82" ;
+    skos:note "OECD AI intensity: Medium" .
+
+# --- Domains: EU AI Act Annex III areas (DPV), not covered by the OECD taxonomy ---
+
+:law_enforcement a :Domain ;
+    :name "Law Enforcement" ;
+    skos:exactMatch eu-aiact:LawEnforcementSector .
+
+:justice a :Domain ;
+    :name "Justice" ;
+    skos:exactMatch eu-aiact:JusticeSector .
+
+:employment a :Domain ;
+    :name "Employment" ;
+    skos:exactMatch eu-aiact:EmploymentSector .  # workforce management, hiring
+
+:education a :Domain ;
+    :name "Education" ;
+    skos:exactMatch eu-aiact:EducationSector .
+
+:public_administration a :Domain ;
+    :name "Public Administration" ;
+    skos:closeMatch eu-aiact:PublicSector .
+
+:migration_and_border_control a :Domain ;
+    :name "Migration, Asylum and Border Control" ;
+    skos:closeMatch eu-aiact:MigrationSector , eu-aiact:AsylumSector , eu-aiact:BorderControlSector .
+
+:critical_infrastructure a :Domain ;
+    :name "Critical Infrastructure" ;
+    skos:exactMatch eu-aiact:CriticalInfrastructureSector .
+
+:democratic_processes a :Domain ;
+    :name "Democratic Processes" ;
+    skos:exactMatch eu-aiact:DemocraticProcessSector .   # elections, referendums
+
+# --- Domains: frequent in AIID incidents, in neither taxonomy (no external link) ---
+
+:healthcare a :Domain ;
+    :name "Healthcare" .
+
+:arts_and_entertainment a :Domain ;
+    :name "Arts, Entertainment and Recreation" .
+
+# --- Tasks (DPV-AI capabilities) ---
+
+:question_answering skos:exactMatch ai:QuestionAnswering .
+
+:face_recognition a :Task ;
+    :name "Face Recognition" ;
+    skos:exactMatch ai:FaceRecognition .
+
+:biometric_identification a :Task ;
+    :name "Biometric Identification" ;
+    skos:exactMatch ai:BiometricIdentification .
+
+:speech_recognition a :Task ;
+    :name "Speech Recognition" ;
+    skos:exactMatch ai:SpeechRecognition .
+
+:emotion_recognition a :Task ;
+    :name "Emotion Recognition" ;
+    skos:exactMatch ai:EmotionRecognition .
+
+:object_detection a :Task ;
+    :name "Object Detection" ;
+    skos:exactMatch ai:ObjectDetection .
+
+:image_classification a :Task ;
+    :name "Image Classification" ;
+    skos:exactMatch ai:ImageClassification .
+
+:text_classification a :Task ;
+    :name "Text Classification" ;
+    skos:exactMatch ai:TextClassification .      # e.g. content moderation, hate-speech detection
+
+:machine_translation a :Task ;
+    :name "Machine Translation" ;
+    skos:exactMatch ai:MachineTranslation .
+
+:chatbot a :Task ;
+    :name "Chatbot" ;
+    skos:exactMatch ai:ChatbotCapability .
+
+:content_generation a :Task ;
+    :name "Content Generation" ;
+    skos:exactMatch ai:ContentGeneration .
+
+:image_generation a :Task ;
+    :name "Image Generation" ;
+    skos:exactMatch ai:ImageGeneration .
+
+:video_generation a :Task ;
+    :name "Video Generation" ;
+    skos:exactMatch ai:VideoGeneration .         # incl. deepfake video
+
+:audio_generation a :Task ;
+    :name "Audio Generation" ;
+    skos:exactMatch ai:AudioGeneration .         # incl. voice cloning
+
+:profiling a :Task ;
+    :name "Profiling and Scoring of People" ;
+    skos:closeMatch ai:Profiling .               # e.g. credit, recidivism, applicant scoring
+
+:content_recommendation a :Task ;
+    :name "Content Recommendation" .
+
+:autonomous_driving a :Task ;
+    :name "Autonomous Driving" .
+
+# --- Data categories (DPV) ---
+
+:personal_data skos:exactMatch dpv:PersonalData .
+
+:sensitive_personal_data a :DataCategory ;
+    :name "Sensitive Personal Data" ;
+    skos:exactMatch dpv:SensitivePersonalData .
+
+:special_category_personal_data a :DataCategory ;
+    :name "Special Category Personal Data" ;
+    skos:exactMatch dpv:SpecialCategoryPersonalData .   # GDPR Art. 9: health, biometric, ...
+
+:pseudonymised_data a :DataCategory ;
+    :name "Pseudonymised Data" ;
+    skos:exactMatch dpv:PseudonymisedData .
+
+:anonymised_data a :DataCategory ;
+    :name "Anonymised Data" ;
+    skos:exactMatch dpv:AnonymisedData .
+
+:non_personal_data a :DataCategory ;
+    :name "Non-Personal Data" ;
+    skos:exactMatch dpv:NonPersonalData .
+
+# --- Deployment environments ---
+
+:mobile_app a :DeploymentEnvironment ;
+    :name "Mobile App" .
+
+:internal_enterprise_system a :DeploymentEnvironment ;
+    :name "Internal Enterprise System" .
+
+:cloud_service a :DeploymentEnvironment ;
+    :name "Cloud Service" ;
+    skos:closeMatch dpv:CloudLocation .
+
+:public_physical_space a :DeploymentEnvironment ;
+    :name "Public Physical Space" ;
+    skos:closeMatch dpv:PublicLocation .         # e.g. cameras in streets, shops, stations
+
+:vehicle a :DeploymentEnvironment ;
+    :name "Vehicle" .
+
+# --- Lifecycle stages (DPV-AI, ISO/IEC 22989) ---
+
+:operation skos:exactMatch ai:OperationStage .
+
+:inception a :LifecycleStage ;
+    :name "Inception" ;
+    skos:exactMatch ai:InceptionStage .
+
+:design a :LifecycleStage ;
+    :name "Design" ;
+    skos:exactMatch ai:DesignStage .
+
+:development a :LifecycleStage ;
+    :name "Development" ;
+    skos:exactMatch ai:DevelopmentStage .
+
+:deployment a :LifecycleStage ;
+    :name "Deployment" ;
+    skos:exactMatch ai:DeploymentStage .
+
+:retirement a :LifecycleStage ;
+    :name "Retirement" ;
+    skos:exactMatch ai:RetirementStage .
+
+# --- Autonomy levels (DPV automation levels = ISO/IEC 22989 levels 0-6) ---
+
+:assistive skos:exactMatch dpv:AssistiveAutomation .
+
+:not_automated a :AutonomyLevel ;
+    :name "Not Automated" ;
+    :level 0 ;
+    skos:exactMatch dpv:NotAutomated .
+
+:partial_automation a :AutonomyLevel ;
+    :name "Partial Automation" ;
+    :level 2 ;
+    skos:exactMatch dpv:PartialAutomation .
+
+:conditional_automation a :AutonomyLevel ;
+    :name "Conditional Automation" ;
+    :level 3 ;
+    skos:exactMatch dpv:ConditionalAutomation .
+
+:high_automation a :AutonomyLevel ;
+    :name "High Automation" ;
+    :level 4 ;
+    skos:exactMatch dpv:HighAutomation .
+
+:full_automation a :AutonomyLevel ;
+    :name "Full Automation" ;
+    :level 5 ;
+    skos:exactMatch dpv:FullAutomation .
+
+:autonomous a :AutonomyLevel ;
+    :name "Autonomous" ;
+    :level 6 ;
+    skos:exactMatch dpv:Autonomous .
+
+# --- Stakeholders (DPV) ---
+
+:ai_customer skos:closeMatch dpv:Customer .
+:ai_subject skos:closeMatch dpv:HumanSubject .
+
+:ai_user a :Stakeholder ;
+    :name "AI User" ;
+    skos:closeMatch dpv:User .
+
+:employee a :Stakeholder ;
+    :name "Employee" ;
+    skos:exactMatch dpv:Employee .
+
+:job_applicant a :Stakeholder ;
+    :name "Job Applicant" ;
+    skos:exactMatch dpv:JobApplicant .
+
+:patient a :Stakeholder ;
+    :name "Patient" ;
+    skos:exactMatch dpv:Patient .
+
+:student a :Stakeholder ;
+    :name "Student" ;
+    skos:exactMatch dpv:Student .
+
+:child a :Stakeholder ;
+    :name "Child" ;
+    skos:exactMatch dpv:Child .
+
+:consumer a :Stakeholder ;
+    :name "Consumer" ;
+    skos:exactMatch dpv:Consumer .
+
+:citizen a :Stakeholder ;
+    :name "Citizen" ;
+    skos:exactMatch dpv:Citizen .
+
+:vulnerable_person a :Stakeholder ;
+    :name "Vulnerable Person" ;
+    skos:closeMatch dpv:VulnerableDataSubject .
+
+# --- Regulatory contexts ---
+
+:eu_ai_act a :RegulatoryContext ;
+    :name "EU AI Act" ;
+    :identifier "Regulation (EU) 2024/1689" .
+
+:gdpr a :RegulatoryContext ;
+    :name "General Data Protection Regulation" ;
+    :identifier "Regulation (EU) 2016/679" .

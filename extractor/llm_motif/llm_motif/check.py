@@ -1,34 +1,23 @@
-"""Behaviour test with the pipeline's MotifDetectionShape:
-
-- each profiled incident becomes a test workflow: does a motif fire on its own supporting incidents, and on how many
-  others?
-- each motif's own template also becomes a test workflow: `covered_by` lists the other motifs with the SAME risk that
-  fire on it, i.e. broader motifs that always fire wherever this one fires (for two motifs with identical
-  requirements, only the second key is marked). A reviewer keeps one of the pair; nothing is removed automatically.
-"""
 from __future__ import annotations
-
 from pathlib import Path
-
 from pyshacl import validate
 from rdflib import OWL, RDF, RDFS, Graph, Literal, Namespace, URIRef
 from rdflib.namespace import SH
-
 from llm_mitigation.config import Config, read_csv, write_csv
 from llm_mitigation.ontology import REPO_ROOT
-
+from . import accepted as accepted_mod
 from .core import Vocab
 from .stages import read_jsonl
 
-CHECK_COLS = ["motif_key", "risk_id", "n_support", "fires_on_support", "missed_support", "fires_elsewhere", "fired_on",
-              "covered_by"]
-TEMPLATE = "motif-template-"           # id prefix of the test workflows built from motif templates
+CHECK_COLS = ["motif_id", "risk_id", "number_of_incidents", "matches_own_incidents", "own_incidents_not_matched",
+              "matches_other_incidents", "all_matched_incidents", "broader_motif_same_risk"]
+EXTENSION_COLS = ["motif_id", "incident_id", "incident_title", "incident_url"]
+TEMPLATE = "motif-template-"           
 SCHEMA_TYPES = {OWL.Class, OWL.ObjectProperty, OWL.DatatypeProperty, OWL.AnnotationProperty, OWL.Ontology,
                 OWL.Restriction, RDFS.Datatype}
 
 
 def tbox(vocab: Vocab) -> Graph:
-    """The ontology without its own individuals (authored examples would otherwise be matched too)."""
     g = vocab.onto.g
     inst = {s for s, o in g.subject_objects(RDF.type) if o not in SCHEMA_TYPES}
     out = Graph()
@@ -67,15 +56,16 @@ def build_graph(vocab: Vocab, profiles: list[dict], motifs: list[dict], risks: d
         motif, arch = URIRef(f"{base}motif/{key}"), URIRef(f"{base}motif/{key}/architecture")
         g.add((motif, RDF.type, AK.RiskMotif))
         g.add((motif, AK.identifier, Literal(key)))
-        g.add((motif, AK.indicatesRisk, URIRef(risks[a["risk_id"]]["iri"]) if a["risk_id"] in risks
-               else URIRef(vocab.base + "risk/" + a["risk_id"])))
+        g.add((motif, AK.indicatesRisk, URIRef(a.get("risk_iri") or (risks[a["risk_id"]]["iri"] if a["risk_id"] in risks
+                                                                     else vocab.base + "risk/" + a["risk_id"]))))
         g.add((motif, AK.inContext, arch))
         g.add((arch, RDF.type, AK.ArchitecturalContext))
         g.add((motif, AK.hasManifestCondition, URIRef(f"{base}motif/{key}/{a['manifest_condition']}")))
         add_structure(g, a, f"{base}motif/{key}/", ns, arch)
         for c in a["contexts"]:
-            g.add((motif, AK.inContext, URIRef(vocab.context_iri(c))))
-            g.add((URIRef(vocab.context_iri(c)), RDF.type, URIRef(ns + c["class"])))
+            ci = URIRef(c.get("iri") or vocab.context_iri(c))
+            g.add((motif, AK.inContext, ci))
+            g.add((ci, RDF.type, URIRef(ns + c["class"])))
     return g
 
 
@@ -83,11 +73,15 @@ def run_check(cfg: Config, vocab: Vocab | None = None) -> dict:
     vocab = vocab or Vocab()
     out_dir = Path(cfg.path("output_dir"))
     profiles, motifs = read_jsonl(out_dir / "profiles.jsonl"), read_jsonl(out_dir / "motifs.jsonl")
-    if not profiles or not motifs:
+    by_url = {p["url"]: p["incident_id"] for p in profiles if p.get("url")}
+    acc = accepted_mod.load(cfg, vocab, by_url)
+    acc_keys = {m["motif_key"] for m in acc}
+    proposals = [m for m in motifs if m["motif_key"] not in acc_keys]   
+    if not profiles or not (motifs or acc):
         raise SystemExit("check: needs output/profiles.jsonl and output/motifs.jsonl (run the profile and abstract stages)")
     risks = {r["nexus_id"]: r for r in read_csv(cfg.path("risks"))}
-    templates = [{"incident_id": TEMPLATE + m["motif_key"], "answer": m["answer"]} for m in motifs]
-    g = build_graph(vocab, profiles + templates, motifs, risks)
+    templates = [{"incident_id": TEMPLATE + m["motif_key"], "answer": m["answer"]} for m in proposals]
+    g = build_graph(vocab, profiles + templates, proposals + acc, risks)
     shapes = Graph().parse(REPO_ROOT / vocab.pcfg["ontology"]["shapes"])
     _, results, _ = validate(g, shacl_graph=shapes, inference="none", advanced=True, allow_warnings=True)
     if not isinstance(results, Graph):
@@ -103,31 +97,39 @@ def run_check(cfg: Config, vocab: Vocab | None = None) -> dict:
             fired.setdefault(mo[len(motif_prefix):], set()).add(wf[len(wf_prefix):])
     on_templates = {k: {w[len(TEMPLATE):] for w in v if w.startswith(TEMPLATE)} for k, v in fired.items()}
     fired = {k: {w for w in v if not w.startswith(TEMPLATE)} for k, v in fired.items()}
-    covered = covered_by(motifs, on_templates)
+    covered = covered_by(proposals + acc, on_templates)
+    mark = lambda k: f"{k}(accepted)" if k in acc_keys else k
+    profile_ids = {p["incident_id"] for p in profiles}
     rows = []
-    for m in motifs:
-        sup = set(m["answer"]["support"]) & {p["incident_id"] for p in profiles}
+    for m in proposals:
+        sup = set(m["answer"]["support"]) & profile_ids
         f = fired.get(m["motif_key"], set())
-        rows.append({"motif_key": m["motif_key"], "risk_id": m["answer"]["risk_id"], "n_support": len(sup),
-                     "fires_on_support": f"{len(f & sup)}/{len(sup)}", "missed_support": " ".join(sorted(sup - f)),
-                     "fires_elsewhere": len(f - sup), "fired_on": " ".join(sorted(f)),
-                     "covered_by": " ".join(covered.get(m["motif_key"], []))})
+        rows.append({"motif_id": m["motif_key"], "risk_id": m["answer"]["risk_id"], "number_of_incidents": len(sup),
+                     "matches_own_incidents": f"{len(f & sup)} of {len(sup)}",
+                     "own_incidents_not_matched": " ".join(sorted(sup - f)),
+                     "matches_other_incidents": len(f - sup), "all_matched_incidents": " ".join(sorted(f)),
+                     "broader_motif_same_risk": " ".join(mark(k) for k in covered.get(m["motif_key"], []))})
     write_csv(out_dir / "check.csv", CHECK_COLS, rows)
-    full = sum(1 for r in rows if r["fires_on_support"].split("/")[0] == r["fires_on_support"].split("/")[1])
+    pmap = {p["incident_id"]: p for p in profiles}
+    ext = [{"motif_id": m["motif_key"], "incident_id": i, "incident_title": pmap[i]["title"],
+            "incident_url": pmap[i].get("url", "")}
+           for m in acc for i in sorted(fired.get(m["motif_key"], set()) - set(m["answer"]["support"]))
+           if pmap[i].get("url", "") not in m["excluded"]]
+    write_csv(out_dir / "extensions.csv", EXTENSION_COLS, ext)
+    full = sum(1 for r in rows if not r["own_incidents_not_matched"])
     return {"motifs": len(rows), "fire_on_all_their_support": full, "profiles": len(profiles),
-            "detections": sum(len(v) for v in fired.values()), "covered_by_another": len(covered)}
+            "detections": sum(len(v) for v in fired.values()), "covered_by_another": len(covered),
+            "accepted_motifs": len(acc), "proposals_already_accepted": len(motifs) - len(proposals),
+            "extension_candidates": len(ext)}
 
 
 def covered_by(motifs: list[dict], on_templates: dict[str, set[str]]) -> dict[str, list[str]]:
-    """motif_key -> the other motifs with the same risk that fire on its template (broader or identical motifs).
-    on_templates: motif B -> the motif templates B fired on. Of two motifs with identical requirements, only the one
-    with the larger key is marked, so one of each pair stays unmarked."""
     risk = {m["motif_key"]: m["answer"]["risk_id"] for m in motifs}
     fires_on = {a: {b for b, temps in on_templates.items() if a in temps and b != a} for a in risk}
     out = {}
     for a in sorted(risk):
         cov = sorted(b for b in fires_on[a] if risk.get(b) == risk[a]
-                     and not (a in fires_on.get(b, set()) and a < b))       # identical pair: mark only the larger key
+                     and not (a in fires_on.get(b, set()) and a < b))      
         if cov:
             out[a] = cov
     return out
